@@ -2,4 +2,48 @@
     --main-color: #170f23;
     --text-color: #fff;
     --text-color-hover: #b65adc;
+    --playing-bg: rgb(18 12 28 / 1);
+    --border-player: hsla(0, 0%, 100%, 0.1);
+    --fweight-text: 700;
+}
+
+.header {
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    top: 0;
+}
+.navbar {
+    background-color: var(--main-color);
+    border-bottom: 1px solid var(--border-player);
+}
+
+.header__logo {
+    width: 50px;
+    height: 50px;
+}
+.nav-item a {
+    color: white;
+}
+.nav-item:hover .nav-link {
+    color: var(--text-color-hover);
+}
+.song_image a img {
+    width: 100%;
+    height: auto;
+}
+.form-control {
+    width: 300px;
+}
+.content {
+    padding-top: 77px;
+    background-color: var(--main-color);
+}
+.footer{
+    margin-bottom: 100px;
+}
+.footer-text {
+    background-color: var(--main-color);
+    color: var(--text-color);
+    padding-bottom: 50px;
 }
