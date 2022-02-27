@@ -43,11 +43,16 @@
 }
 .song_image {
     position: relative;
+    cursor: pointer;
+    height: 90%;
 }
 .song_image a{
     display: block;
     height: 100%;
     overflow: hidden;
+}
+.song_image a img{
+    height: 100%;
 }
 .song_des {
     text-align: center;
@@ -83,3 +88,8 @@
     fill: white;
 }
 
+.footer-text{
+    background-color: var(--main-color);
+    color: var(--text-color);
+    padding-bottom: 50px;
+}
