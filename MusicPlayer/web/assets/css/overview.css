@@ -1,0 +1,115 @@
+
+.list {
+    height: 510px;
+    overflow-y: scroll;
+}
+#list::-webkit-scrollbar {
+    width: 2px;
+}
+#list::-webkit-scrollbar-thumb {
+    background-color: #b65adc;
+    border-radius: 10px;
+}
+#list::-webkit-scrollbar-track {
+    background-color: white;
+}
+.media {
+    color: white;
+    justify-content: space-between;
+    font-weight: var(--fweight-text);
+}
+.media:hover{
+    background-color: hsla(0,0%,100%,0.1);
+}
+.media-left-title:hover {
+    color: var(--text-color-hover);
+}
+.media-left-title {
+    flex: 1;
+}
+.media-center {
+    flex: 1;
+}
+
+.playList_nav {
+    color: var(--text-color);
+    font-weight: var(--fweight-text);
+    margin-top: 5px;
+    padding: 25px 0;
+    border-top: 1px solid var(--text-color-hover);
+}
+
+.playList_nav-showAll a span:hover {
+    cursor: pointer;
+    color: var(--text-color-hover);
+}
+.playList_nav-showAll:hover svg {
+    fill: var(--text-color-hover);
+}
+
+.playList-create {
+    width: 100%;
+    height: 100%;
+    min-height: 206px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    cursor: pointer;
+    background: linear-gradient(33deg, #5a1eae -7%, #ce267a 117%);
+    border-radius: 5px;
+}
+.playList-create-btn{
+    height: 20%;
+    width: 20%;
+}
+.plasy-list-thumbnail {
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.plasy-list-thumbnail a {
+    display: block;
+    top: 0;
+    width: 100%;
+}
+.plasy-list-thumbnail a img {
+    width: 100%;
+    transition: all 0.3s ease-out;
+}
+.plasy-list-thumbnail:hover img {
+    transform: scale(1.1);
+}
+.plasy-list-modal {
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    fill: white;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+.plasy-list-modal-play {
+    width: 100%;
+    height: 30%;
+}
+.plasy-list-thumbnail:hover .plasy-list-modal {
+    display: flex;
+}
+
+.plasy-list-des {
+    color: white;
+    font-weight: var(--fweight-text);
+    margin-top: 10px;
+    text-align: center;
+}
+.plasy-list-des .plasy-list-title span {
+    color: white;
+}
+.plasy-list-des .plasy-list-title span:hover {
+    color: var(--text-color-hover);
+}

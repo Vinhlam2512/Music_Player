@@ -2,7 +2,7 @@
     margin-top: 20px;
     color: #fff;
 }
-
+.content_chart .song_image img,
 .content_song .song_image img {
     transition: transform linear 0.3s;
     width: 100%;
@@ -12,6 +12,7 @@
     cursor: pointer;
     height: 90%;
 }
+
 .song_image a {
     display: block;
     height: 100%;
@@ -23,6 +24,13 @@
     margin-top: 5px;
     text-align: center;
     font-weight: 700;
+}
+.song_des-title{
+    display: inline-block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
 }
 .song_des-title a {
     text-decoration: none;
