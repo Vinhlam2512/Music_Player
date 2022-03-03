@@ -25,6 +25,22 @@
     opacity: 0.8;
 }
 
+.chart_type-country{
+    display: flex;
+}
+.chart_type-country a{
+    padding: 5px;
+    margin: 30px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: var(--fweight-text);
+    font-size: 30px;
+}
+
+.active-chart{
+    border-bottom: 3px solid var(--text-color-hover);
+}
+
 .song{ 
     display: flex;
     width: 100%;

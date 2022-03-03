@@ -12,6 +12,7 @@
     --border-player: hsla(0, 0%, 100%, 0.1);
     --fweight-text: 700;
     --boder-color: hsla(0, 0%, 100%, 0.05);
+    --layout-bg: #170f23;
 }
 .active,
 .active p {
@@ -37,10 +38,10 @@ body::-webkit-scrollbar {
     height: 50px;
 }
 
-.nav-link{
+.nav-link {
     color: white;
 }
-.nav-item:hover .nav-link{
+.nav-item:hover .nav-link {
     color: var(--text-color-hover);
 }
 
