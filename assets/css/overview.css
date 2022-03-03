@@ -18,6 +18,9 @@
     justify-content: space-between;
     font-weight: var(--fweight-text);
 }
+.media:hover{
+    background-color: hsla(0,0%,100%,0.1);
+}
 .media-left-title:hover {
     color: var(--text-color-hover);
 }
