@@ -9,8 +9,9 @@
                     <div class="media-left">
                         <div class="media-left-ava">
                             <a>
-                                <img src="https://avatar-ex-swe.nixcdn.com/song/2022/02/10/2/a/7/7/1644475457323_500.jpg"
+                                <img src=""
                                     alt="">
+                                    <audio src=""></audio>
                             </a>
                             <div class="zoom">
                                 <svg fill="#FFFFFF" id="Capa_1" enable-background="new 0 0 426.667 426.667" height="512"
@@ -28,12 +29,12 @@
                     <div class="media-content">
                         <div class="media-title">
                             <a href="">
-                                <span>Ch?y V? N?i Phía Anh</span>
+                                <span></span>
                             </a>
                         </div>
                         <div class="media-singer">
                             <a href="">
-                                <span>Kh?c Vi?t</span>
+                                <span></span>
                             </a>
                         </div>
                     </div>
@@ -58,7 +59,7 @@
             </div>
             <div class="playing-center">
                 <div class="player-controls">
-                    <a href="">
+                    <div class="random" style="cursor: pointer">
                         <svg class="play-control" id="Layer_1" enable-background="new 0 0 100 100" height="512"
                             viewBox="0 0 100 100" width="512" xmlns="http://www.w3.org/2000/svg">
                             <g>
@@ -66,8 +67,8 @@
                                     d="m76.35 60.54c-.8-.76-2.07-.72-2.83.08s-.72 2.07.08 2.83l4.82 4.55h-9.8c-1.7 0-3.32-.74-4.43-2.02l-13.51-15.49 13.51-15.48c1.12-1.28 2.73-2.01 4.43-2.01h9.8l-4.82 4.54c-.8.76-.84 2.02-.08 2.83.39.42.92.63 1.46.63.49 0 .99-.18 1.37-.54l8.49-8c.4-.38.63-.9.63-1.46s-.23-1.08-.63-1.46l-8.49-8c-.8-.76-2.07-.72-2.83.08s-.72 2.07.08 2.83l4.82 4.55h-9.8c-2.86 0-5.57 1.23-7.45 3.38l-13.14 15.07-13.13-15.06c-1.87-2.16-4.59-3.39-7.45-3.39h-12.91c-1.1 0-2 .9-2 2s.9 2 2 2h12.91c1.7 0 3.32.74 4.43 2.02l13.49 15.47-13.53 15.5c-1.11 1.28-2.72 2.01-4.42 2.01h-12.88c-1.1 0-2 .9-2 2s.9 2 2 2h12.88c2.86 0 5.57-1.23 7.45-3.38l13.17-15.08 13.15 15.08c1.88 2.15 4.59 3.39 7.45 3.39h9.8l-4.82 4.54c-.8.76-.84 2.02-.08 2.83.39.42.92.63 1.46.63.49 0 .99-.18 1.37-.54l8.49-8c.4-.38.63-.9.63-1.46s-.23-1.08-.63-1.46z" />
                             </g>
                         </svg>
-                    </a>
-                    <a href="">
+                    </div>
+                    <div class="back" style="cursor: pointer">
                         <?xml version="1.0" encoding="iso-8859-1"?>
                         <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg
                             class="play-control" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
@@ -80,8 +81,8 @@
                                 </g>
                             </g>
                         </svg>
-                    </a>
-                    <a href="" class="play">
+                    </div>
+                    <div class="play" style="cursor: pointer">
                         <?xml version="1.0" encoding="iso-8859-1"?>
                         <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg
                             class="play-control " version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
@@ -94,8 +95,8 @@
                                     d="M30,0C13.458,0,0,13.458,0,30s13.458,30,30,30s30-13.458,30-30S46.542,0,30,0z M30,58C14.561,58,2,45.439,2,30		S14.561,2,30,2s28,12.561,28,28S45.439,58,30,58z" />
                             </g>
                         </svg>
-                    </a>
-                    <a href="" class="pause">
+                    </div>
+                    <div class="pause" style="cursor: pointer">
                         <?xml version="1.0" encoding="iso-8859-1"?>
                         <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg
                             class="play-control " version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
@@ -120,8 +121,8 @@
                                 </g>
                             </g>
                         </svg>
-                    </a>
-                    <a href="">
+                    </div>
+                    <div class="next" style="cursor: pointer">
                         <?xml version="1.0" encoding="iso-8859-1"?>
                         <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg
                             class="play-control" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
@@ -134,8 +135,8 @@
                                 </g>
                             </g>
                         </svg>
-                    </a>
-                    <a href="">
+                    </div>
+                    <div class="repeat" style="cursor: pointer">
                         <?xml version="1.0" encoding="iso-8859-1"?>
                         <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg
                             class="play-control" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -148,14 +149,14 @@
                                 </g>
                             </g>
                         </svg>
-                    </a>
+                    </div>
                 </div>
                 <div class="player-progress">
-                    <input id="progress" class="progress" type="range" value="5" step="1" min="0" max="100">
+                    <input id="progress" class="progress" type="range" value="0" step="1" min="0" max="100">
                 </div>
             </div>
             <div class="playing-right">
-                <a href="" class="un-mute ">
+                <a href="" class="un-mute" style="cursor: pointer">
                     <?xml version="1.0" encoding="iso-8859-1"?>
                     <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg
                         class="sound-control" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"

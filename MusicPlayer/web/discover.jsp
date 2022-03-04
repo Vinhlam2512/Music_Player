@@ -87,6 +87,7 @@
                                             <span>${s.getSinger()}</span>
                                         </div>
                                     </div>
+                                    <audio src="${s.getLink()}"></audio>
                                 </div>
                             </c:forEach>
                         </div>
