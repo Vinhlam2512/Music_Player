@@ -1,10 +1,7 @@
 var songs = document.querySelectorAll('.content_song');
-var mediaPlaying = document.querySelector('.playing-left');
-var media_title = document.querySelectorAll('.song_des-title a span');
-var media_singer = document.querySelectorAll('.song_des-singer');
-var playing_bar = document.querySelector('.now-playing');
-var mdeia_src = document.querySelectorAll('.song_des-title a audio');
+var footer = document.querySelector('.footer');
 
+var playing_bar = document.querySelector('.now-playing');
 var playBtn = document.querySelector('.play');
 var pauseBtn = document.querySelector('.pause');
 var repeatBtn = document.querySelector('.repeat');
@@ -23,19 +20,19 @@ const app = {
     isPlaying: false, // check playing
     isRandom: false, // check random mode
     isRepeat: false, // check repeat mode
-    currentVolume: 1, 
+    currentVolume: 1,
 
     render: function () {
         for (let i = 0; i < songs.length; i++) {
             songs[i].addEventListener('click', function () {
-                console.log(songs[i].dataset.index);
                 app.currentIndex = i;
                 playing_bar.style.display = 'flex';
+                footer.style.marginBottom = '100px';
                 document.querySelector('.media-left-ava a img').src =
                     songs[i].querySelector('.song_image a img').src;
-                document.querySelector('.media-title a span').innerHTML = songs[
+                document.querySelector('.media-title span').innerHTML = songs[
                     i
-                ].querySelector('.song_des-title a span').outerText;
+                ].querySelector('.song_des-title span').outerText;
                 document.querySelector('.media-singer span').innerHTML = songs[
                     i
                 ].querySelector('.song_des-singer span').outerText;
@@ -50,17 +47,19 @@ const app = {
     },
     load: function () {
         document.querySelector('.media-left-ava a img').src =
-                    songs[app.currentIndex].querySelector('.song_image a img').src;
-                document.querySelector('.media-title a span').innerHTML = songs[
-                    app.currentIndex
-                ].querySelector('.song_des-title a span').outerText;
-                document.querySelector('.media-singer span').innerHTML = songs[
-                    app.currentIndex
-                ].querySelector('.song_des-singer span').outerText;
-                audio.src = songs[app.currentIndex].querySelector('.content_song audio').src;
-                setTimeout(() => {
-                    audio.play();
-                }, 10);
+            songs[app.currentIndex].querySelector('.song_image a img').src;
+        document.querySelector('.media-title span').innerHTML = songs[
+            app.currentIndex
+        ].querySelector('.song_des-title span').outerText;
+        document.querySelector('.media-singer span').innerHTML = songs[
+            app.currentIndex
+        ].querySelector('.song_des-singer span').outerText;
+        audio.src = songs[app.currentIndex].querySelector(
+            '.content_song audio'
+        ).src;
+        setTimeout(() => {
+            audio.play();
+        }, 10);
     },
     handleEvent: function () {
         playBtn.onclick = function () {
@@ -136,12 +135,12 @@ const app = {
             audio.volume = 0;
             unMuteBtn.style.display = 'none';
             muteBtn.style.display = 'block';
-        }
+        };
         muteBtn.onclick = function () {
             audio.volume = app.currentVolume;
             unMuteBtn.style.display = 'block';
             muteBtn.style.display = 'none';
-        }
+        };
         progress_sound.oninput = function (e) {
             // when have change in thẻ input
             const sound = e.target.value / 100;
@@ -149,22 +148,27 @@ const app = {
             app.currentVolume = sound;
         };
     },
-    playRandomSong: function() {
+    playRandomSong: function () {
         var songLength = songs.length;
         var newIndex;
-        if(this.listRandom.length == songLength ){ // nếu độ mảng bằng số bài hát thì clear mảng
+        if (this.listRandom.length == songLength) {
+            // nếu độ mảng bằng số bài hát thì clear mảng
             this.listRandom.length = 0;
         }
-        if(this.listRandom.length === 0){ // nếu mảng rỗng thì gán mảng bằng currentIndex
+        if (this.listRandom.length === 0) {
+            // nếu mảng rỗng thì gán mảng bằng currentIndex
             this.listRandom = [this.currentIndex];
         }
         do {
             newIndex = Math.floor(Math.random() * songLength); // random từ 0 đến this.songs.length
-        }while( this.currentIndex == newIndex || this.listRandom.includes(newIndex) ); // nếu newIndex = currentIndex và newIndex đãcó trong mảng thì lặp lại do
-        
+        } while (
+            this.currentIndex == newIndex ||
+            this.listRandom.includes(newIndex)
+        ); // nếu newIndex = currentIndex và newIndex đãcó trong mảng thì lặp lại do
+
         this.currentIndex = newIndex; // gán newIndex == currentIndex
         this.listRandom.push(this.currentIndex); // đẩy currentIndex vào mảng
-        
+
         console.log(this.listRandom);
         console.log(songs.length);
     },

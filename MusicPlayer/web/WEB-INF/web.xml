@@ -1,18 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    
+    <filter>
+        <filter-name>loginFilter</filter-name>
+        <filter-class>filter.loginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>loginFilter</filter-name>
+        <servlet-name>loginController</servlet-name>
+    </filter-mapping>
     <servlet>
         <servlet-name>discoverController</servlet-name>
         <servlet-class>controller.discoverController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>overviewController</servlet-name>
+        <servlet-class>controller.overviewController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>songsController</servlet-name>
+        <servlet-class>controller.songsController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>playlistController</servlet-name>
+        <servlet-class>controller.playlistController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>loginController</servlet-name>
+        <servlet-class>controller.loginController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>registerController</servlet-name>
+        <servlet-class>controller.registerController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>logoutController</servlet-name>
+        <servlet-class>controller.logoutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>zingChartVNController</servlet-name>
+        <servlet-class>controller.zingChartVNController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>top100Controller</servlet-name>
+        <servlet-class>controller.top100Controller</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>showMoreController</servlet-name>
+        <servlet-class>controller.showMoreController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>discoverController</servlet-name>
         <url-pattern>/kham-pha</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>overviewController</servlet-name>
+        <url-pattern>/personal/tong-quan</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>songsController</servlet-name>
+        <url-pattern>/personal/bai-hat</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>playlistController</servlet-name>
+        <url-pattern>/personal/play-list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>registerController</servlet-name>
+        <url-pattern>/login/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loginController</servlet-name>
+        <url-pattern>/login/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logoutController</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>zingChartVNController</servlet-name>
+        <url-pattern>/zingChart/zing-chart-vn</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>top100Controller</servlet-name>
+        <url-pattern>/top100/top-100</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>showMoreController</servlet-name>
+        <url-pattern>/zingChart/show</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
-            30
+            60
         </session-timeout>
     </session-config>
-    
 </web-app>

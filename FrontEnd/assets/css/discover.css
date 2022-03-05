@@ -1,5 +1,6 @@
-
-.content_song, .content_song100, .content_song-list{
+.content_song,
+.content_song100,
+.content_song-list {
     height: 300px;
 }
 
@@ -7,6 +8,8 @@
     margin-top: 20px;
     color: #fff;
 }
+.content_song100 .song_image img,
+.content_song-list .song_image img,
 .content_chart .song_image img,
 .content_song .song_image img {
     transition: transform linear 0.3s;
@@ -30,7 +33,8 @@
     text-align: center;
     font-weight: 700;
 }
-.song_des-title{
+.song_des-singer,
+.song_des-title {
     display: inline-block;
     width: 100%;
     white-space: nowrap;

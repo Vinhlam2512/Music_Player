@@ -5,22 +5,19 @@
  */
 package controller;
 
-import dao.songDao;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.jsp.PageContext;
-import model.Song;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author VINH
  */
-public class discoverController extends HttpServlet {
+public class logoutController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +36,10 @@ public class discoverController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet discoverController</title>");            
+            out.println("<title>Servlet logoutController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet discoverController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet logoutController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,12 +57,10 @@ public class discoverController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        songDao db = new songDao();
-        ArrayList<Song> list1 = db.getRandom10();
-        ArrayList<Song> list2 = db.getRandom10();
-        request.setAttribute("list1", list1);
-        request.setAttribute("list2", list2);
-        request.getRequestDispatcher("discover.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        boolean isLogin = false;
+        session.setAttribute("isLogin", isLogin);
+        request.getRequestDispatcher("./kham-pha").forward(request, response);
     }
 
     /**
@@ -79,12 +74,8 @@ public class discoverController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        songDao db = new songDao();
-        ArrayList<Song> list1 = db.getRandom10();
-        ArrayList<Song> list2 = db.getRandom10();
-        request.setAttribute("list1", list1);
-        request.setAttribute("list2", list2);
-        }
+        processRequest(request, response);
+    }
 
     /**
      * Returns a short description of the servlet.

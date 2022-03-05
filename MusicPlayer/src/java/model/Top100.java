@@ -5,31 +5,27 @@
  */
 package model;
 
-import lombok.Setter;
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  *
  * @author VINH
  */
-@Setter
 @Getter
-public class Song {
+@Setter
+public class Top100 {
+
     private String name;
-    private String singer;
     private String image;
-    private String link;
 
-    public Song() {
+    public Top100() {
     }
 
-    public Song(String name, String singer, String image, String link) {
+    public Top100(String name, String image) {
         this.name = name;
-        this.singer = singer;
         this.image = image;
-        this.link = link;
     }
 
-   
     
 }
