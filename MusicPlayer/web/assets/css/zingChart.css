@@ -10,19 +10,23 @@
     margin-bottom: 100px;
 }
 
-.chart_title a {
+.chart_title button {
     height: 19%;
     width: 4%;
     margin-left: 10px;
 }
-.chart_title a svg {
+.chart_title button svg {
     height: 100%;
     width: 100%;
 }
 .chart_type-country a:hover,
-.chart_title a:hover {
+.chart_title button:hover {
     cursor: pointer;
     opacity: 0.8;
+}
+
+#add:hover svg{
+    fill: red;
 }
 
 .chart_type-country {
@@ -41,19 +45,20 @@
     border-bottom: 3px solid var(--text-color-hover);
 }
 
+.chart_content-song{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-player);
+}
+
 .content_song {
     display: flex;
     width: 100%;
     align-items: center;
-    justify-content: space-between;
     padding: 10px 0;
-    border-bottom: 1px solid var(--border-player);
     border-radius: 5px;
 }
-.content_song:hover {
-    background-color: hsla(0, 0%, 100%, 0.1);
-    cursor: pointer;
-}
+
 .song-prefix {
     display: flex;
     align-items: center;
@@ -77,6 +82,7 @@
     margin-left: 10px;
     height: 100px;
     width: 100px;
+    cursor: pointer;
 }
 .song_image a {
     display: block;

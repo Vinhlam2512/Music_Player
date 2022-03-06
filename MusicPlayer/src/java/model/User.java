@@ -15,7 +15,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class User {
-
+    private int id;
     private String fullName;
     private String email;
     private String password;
@@ -23,12 +23,11 @@ public class User {
     public User() {
     }
 
-    public User(String fullName, String email, String password) {
+    public User(int id, String fullName, String email, String password) {
+        this.id = id;
         this.fullName = fullName;
         this.email = email;
         this.password = password;
     }
-
-    
 
 }

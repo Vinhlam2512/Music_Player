@@ -5,21 +5,20 @@
  */
 package controller;
 
-import dao.userDao;
+import dao.songDao;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.User;
+import model.Song;
 
 /**
  *
  * @author VINH
  */
-public class overviewController extends HttpServlet {
+public class zingChartController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,19 +31,7 @@ public class overviewController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet overviewController</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet overviewController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -59,8 +46,16 @@ public class overviewController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    
-        request.getRequestDispatcher("overview.jsp").forward(request, response);
+        String idType = request.getParameter("idType");
+        System.out.println(idType);
+        if (idType == null) {
+            idType = this.getInitParameter("idType");
+        }
+        songDao db = new songDao();
+        ArrayList<Song> list = db.getTop20VN(idType);
+        request.setAttribute("list", list);
+        request.setAttribute("idType", idType);
+        request.getRequestDispatcher("zingChart.jsp").forward(request, response);
     }
 
     /**

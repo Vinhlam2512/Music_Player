@@ -25,7 +25,7 @@ public class userDao {
     private ResultSet rs;
 
     public User login(String email, String password) {
-        String sql = "select FullName, Email, PassWord from [user] where Email = ? and PassWord = ?";
+        String sql = "select * from [user] where Email = ? and PassWord = ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
@@ -33,8 +33,7 @@ public class userDao {
             ps.setString(2, password);
             rs = ps.executeQuery();
             while (rs.next()) {
-                User u = new User(rs.getString(1), rs.getString(2), rs.getString(3));
-                return u;
+                return new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
             }
         } catch (Exception ex) {
             Logger.getLogger(userDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -64,8 +63,8 @@ public class userDao {
     }
 
  
-    public String getFullname(String email, String password) {
-        String sql = "select FullName from [user] where Email= ? and PassWord= ? ";
+    public User getUser(String email, String password) {
+        String sql = "select * from [user] where Email= ? and PassWord= ? ";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
@@ -73,7 +72,7 @@ public class userDao {
             ps.setString(2, password);
             rs = ps.executeQuery();
              while (rs.next()) {
-                return rs.getString(1);
+                return new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
             }
         } catch (Exception ex) {
             Logger.getLogger(userDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -82,7 +81,7 @@ public class userDao {
     }
    public static void main(String[] args) {
         userDao db = new userDao();
-        System.out.println(db.getFullname("lamvinh@gmail.com", "123456"));
+        System.out.println(db.getUser("lamvinh@gmail.com", "123456"));
     }
 
 }

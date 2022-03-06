@@ -37,16 +37,24 @@
         <servlet-class>controller.logoutController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>zingChartVNController</servlet-name>
-        <servlet-class>controller.zingChartVNController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>top100Controller</servlet-name>
         <servlet-class>controller.top100Controller</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>showMoreController</servlet-name>
-        <servlet-class>controller.showMoreController</servlet-class>
+        <servlet-name>insertController</servlet-name>
+        <servlet-class>controller.insertController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>zingChartController</servlet-name>
+        <servlet-class>controller.zingChartController</servlet-class>
+        <init-param>
+            <param-name>idType</param-name>
+            <param-value>1</param-value>
+        </init-param>
+    </servlet>
+    <servlet>
+        <servlet-name>deleteController</servlet-name>
+        <servlet-class>controller.deleteController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>discoverController</servlet-name>
@@ -77,16 +85,20 @@
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>zingChartVNController</servlet-name>
-        <url-pattern>/zingChart/zing-chart-vn</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>top100Controller</servlet-name>
         <url-pattern>/top100/top-100</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>showMoreController</servlet-name>
-        <url-pattern>/zingChart/show</url-pattern>
+        <servlet-name>zingChartController</servlet-name>
+        <url-pattern>/zing-chart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>insertController</servlet-name>
+        <url-pattern>/insert</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteController</servlet-name>
+        <url-pattern>/delete</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

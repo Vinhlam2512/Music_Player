@@ -1,5 +1,6 @@
 var songs = document.querySelectorAll('.content_song');
 var footer = document.querySelector('.footer');
+var playRan = document.querySelector('#play-ran');
 
 var playing_bar = document.querySelector('.now-playing');
 var playBtn = document.querySelector('.play');
@@ -14,6 +15,30 @@ var progress = document.querySelector('#progress');
 var unMuteBtn = document.querySelector('.un-mute');
 var muteBtn = document.querySelector('.mute');
 var progress_sound = document.querySelector('#progress-sound');
+
+if (playRan != null) {
+    playRan.onclick = function () {
+        app.currentIndex = Math.floor(Math.random() * songs.length) + 1;
+        playing_bar.style.display = 'flex';
+        footer.style.marginBottom = '100px';
+        document.querySelector('.media-left-ava a img').src =
+                songs[app.currentIndex].querySelector('.song_image a img').src;
+        document.querySelector('.media-title span').innerHTML = songs[
+                app.currentIndex
+        ].querySelector('.song_des-title span').outerText;
+        document.querySelector('.media-singer span').innerHTML = songs[
+                app.currentIndex
+        ].querySelector('.song_des-singer span').outerText;
+        audio.src = songs[app.currentIndex].querySelector(
+                '.content_song audio'
+                ).src;
+        setTimeout(() => {
+            audio.play();
+            playBtn.style.display = 'none';
+            pauseBtn.style.display = 'block';
+        }, 10);
+    }
+}
 const app = {
     listRandom: [],
     currentIndex: 0,
@@ -29,14 +54,15 @@ const app = {
                 playing_bar.style.display = 'flex';
                 footer.style.marginBottom = '100px';
                 document.querySelector('.media-left-ava a img').src =
-                    songs[i].querySelector('.song_image a img').src;
+                        songs[i].querySelector('.song_image a img').src;
                 document.querySelector('.media-title span').innerHTML = songs[
-                    i
+                        i
                 ].querySelector('.song_des-title span').outerText;
                 document.querySelector('.media-singer span').innerHTML = songs[
-                    i
+                        i
                 ].querySelector('.song_des-singer span').outerText;
                 audio.src = songs[i].querySelector('.content_song audio').src;
+                playing_bar.setAttribute('data-id', songs[i].getAttribute('data-id'));
                 setTimeout(() => {
                     audio.play();
                 }, 10);
@@ -47,16 +73,17 @@ const app = {
     },
     load: function () {
         document.querySelector('.media-left-ava a img').src =
-            songs[app.currentIndex].querySelector('.song_image a img').src;
+                songs[app.currentIndex].querySelector('.song_image a img').src;
         document.querySelector('.media-title span').innerHTML = songs[
-            app.currentIndex
+                app.currentIndex
         ].querySelector('.song_des-title span').outerText;
         document.querySelector('.media-singer span').innerHTML = songs[
-            app.currentIndex
+                app.currentIndex
         ].querySelector('.song_des-singer span').outerText;
         audio.src = songs[app.currentIndex].querySelector(
-            '.content_song audio'
-        ).src;
+                '.content_song audio'
+                ).src;
+        playing_bar.setAttribute('data-id', songs[app.currentIndex].getAttribute('data-id'));
         setTimeout(() => {
             audio.play();
         }, 10);
@@ -77,8 +104,8 @@ const app = {
             if (audio.duration) {
                 // duration of song
                 const progressPercent = Math.floor(
-                    (audio.currentTime / audio.duration) * 100
-                );
+                        (audio.currentTime / audio.duration) * 100
+                        );
                 progress.value = progressPercent;
             }
         };
@@ -162,9 +189,9 @@ const app = {
         do {
             newIndex = Math.floor(Math.random() * songLength); // random từ 0 đến this.songs.length
         } while (
-            this.currentIndex == newIndex ||
-            this.listRandom.includes(newIndex)
-        ); // nếu newIndex = currentIndex và newIndex đãcó trong mảng thì lặp lại do
+                this.currentIndex == newIndex ||
+                this.listRandom.includes(newIndex)
+                ); // nếu newIndex = currentIndex và newIndex đãcó trong mảng thì lặp lại do
 
         this.currentIndex = newIndex; // gán newIndex == currentIndex
         this.listRandom.push(this.currentIndex); // đẩy currentIndex vào mảng
@@ -194,3 +221,4 @@ const app = {
 };
 
 app.start();
+

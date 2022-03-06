@@ -56,10 +56,10 @@
                                     <a class="nav-link active" href="#">Khám Phá</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="./zingChart/zing-chart-vn">ZingChart</a>
+                                    <a class="nav-link" href="./zing-chart">ZingChart</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="./top100/top100.html">Top 100</a>
+                                    <a class="nav-link" href="./top100/top-100">Top 100</a>
                                 </li>
                             </ul>
                             <div class="d-flex">
@@ -139,7 +139,7 @@
                     <div class="container">
                         <div class="row row-cols-xl-5 mt-5">
                             <c:forEach items="${list1}" var="s">
-                                <div class="col content_song  mb-5" >
+                                <div class="col content_song  mb-5" data-id="${s.getId()}">
                                     <div class="song_image">
                                         <a href="">
                                             <img src="${s.getImage()}"
@@ -178,8 +178,8 @@
                     <p class="text-center fs-2" style="font-weight: 700;">Nhạc Hay Mỗi Ngày</p>
                     <div class="container">
                         <div class="row row-cols-xl-5 mt-5">
-                            <c:forEach items="${list2}" var="s">
-                                <div class="col content_song  mb-5" >
+                            <c:forEach items="${list2}" var="s" >
+                                <div class="col content_song  mb-5" data-id="${s.getId()}">
                                     <div class="song_image">
                                         <a href="">
                                             <img src="${s.getImage()}" alt="">
@@ -471,14 +471,14 @@
                             <div class="row row-cols-xl-3 mt-5">
                                 <div class="col content_chart  mb-5">
                                     <div class="song_image">
-                                        <a class="rounded" href="">
+                                        <a class="rounded" href="./zingChart/zing-chart?idType=1">
                                             <img src="https://zmp3-static.zadn.vn/skins/zmp3-v5.2/images/song-vn-2x.jpg" alt="">
                                         </a>
                                     </div>
                                 </div>
                                 <div class="col content_chart  mb-5">
                                     <div class="song_image">
-                                        <a class="rounded" href="">
+                                        <a class="rounded" href="./zingChart/zing-chart?idType=2">
                                             <img src="https://zmp3-static.zadn.vn/skins/zmp3-v5.2/images/web_song_usuk.jpg"
                                                  alt="">
                                         </a>
@@ -486,7 +486,7 @@
                                 </div>
                                 <div class="col content_chart  mb-5">
                                     <div class="song_image">
-                                        <a class="rounded" href="">
+                                        <a class="rounded" href="./zingChart/zing-chart?idType=6">
                                             <img src="https://zmp3-static.zadn.vn/skins/zmp3-v5.2/images/web_song_kpop.jpg"
                                                  alt="">
                                         </a>

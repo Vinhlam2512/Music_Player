@@ -15,6 +15,7 @@ import lombok.Getter;
 @Setter
 @Getter
 public class Song {
+    private int id;
     private String name;
     private String singer;
     private String image;
@@ -23,12 +24,15 @@ public class Song {
     public Song() {
     }
 
-    public Song(String name, String singer, String image, String link) {
+    public Song(int id, String name, String singer, String image, String link) {
+        this.id = id;
         this.name = name;
         this.singer = singer;
         this.image = image;
         this.link = link;
     }
+
+    
 
    
     

@@ -60,10 +60,10 @@
                                     <a class="nav-link " aria-current="page" href="${isLogin ? "../personal/tong-quan" : "../login/login"}">Cá Nhân</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link " href="../discover.html">Khám Phá</a>
+                                    <a class="nav-link " href="../kham-pha">Khám Phá</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="../zingChart/zing-chart-vn">ZingChart</a>
+                                    <a class="nav-link" href="../zing-chart">ZingChart</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link active" href="#">Top 100</a>
@@ -75,7 +75,7 @@
                                            placeholder="Nhập Tên ca sĩ, bài hát hoặc MV..." aria-label="Search">
                                     <button class="btn btn-outline-success" type="submit">Search</button>
                                 </form>
-                                <a href="${isLogin ? "./personal/tong-quan" : "./login/login"}">
+                                <a href="${isLogin ? "../personal/tong-quan" : "../login/login"}">
                                     <?xml version="1.0" encoding="iso-8859-1"?>
                                     <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg
                                         style="height: 40px; width: 40px; fill: #fff; margin-left: 12px;" version="1.1"

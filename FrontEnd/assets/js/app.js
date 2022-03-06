@@ -1,5 +1,6 @@
 var songs = document.querySelectorAll('.content_song');
 var footer = document.querySelector('.footer');
+var playRan = document.querySelector('#play-ran');
 
 var playing_bar = document.querySelector('.now-playing');
 var playBtn = document.querySelector('.play');
@@ -14,6 +15,7 @@ var progress = document.querySelector('#progress');
 var unMuteBtn = document.querySelector('.un-mute');
 var muteBtn = document.querySelector('.mute');
 var progress_sound = document.querySelector('#progress-sound');
+
 const app = {
     listRandom: [],
     currentIndex: 0,
@@ -40,6 +42,7 @@ const app = {
                 setTimeout(() => {
                     audio.play();
                 }, 10);
+                playing_bar.setAttribute('data-id', songs[i].getAttribute('data-id'));
                 playBtn.style.display = 'none';
                 pauseBtn.style.display = 'block';
             });
@@ -57,6 +60,7 @@ const app = {
         audio.src = songs[app.currentIndex].querySelector(
             '.content_song audio'
         ).src;
+        playing_bar.setAttribute('data-id', songs[app.currentIndex].getAttribute('data-id'));
         setTimeout(() => {
             audio.play();
         }, 10);
@@ -194,3 +198,7 @@ const app = {
 };
 
 app.start();
+
+playRan.onclick = function () {
+    console.log(1);
+};

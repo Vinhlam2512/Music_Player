@@ -8,18 +8,16 @@ package controller;
 import dao.songDao;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Song;
 
 /**
  *
  * @author VINH
  */
-public class zingChartVNController extends HttpServlet {
+public class deleteController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,7 +30,19 @@ public class zingChartVNController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet deleteController</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet deleteController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -47,10 +57,7 @@ public class zingChartVNController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        songDao db = new songDao();
-        ArrayList<Song> list = db.getTop10();
-        request.setAttribute("list", list);
-        request.getRequestDispatcher("zingChart.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -64,7 +71,10 @@ public class zingChartVNController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+         String idSong = request.getParameter("idSong");
+        String idUser = request.getParameter("idUser");
+        songDao db = new songDao();
+        db.deleteFavorSong(idUser, idSong);
     }
 
     /**

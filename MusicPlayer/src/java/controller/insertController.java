@@ -5,21 +5,19 @@
  */
 package controller;
 
-import dao.userDao;
+import dao.songDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.User;
 
 /**
  *
  * @author VINH
  */
-public class overviewController extends HttpServlet {
+public class insertController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +36,10 @@ public class overviewController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet overviewController</title>");
+            out.println("<title>Servlet insertController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet overviewController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet insertController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,8 +57,7 @@ public class overviewController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    
-        request.getRequestDispatcher("overview.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -74,7 +71,11 @@ public class overviewController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String idSong = request.getParameter("idSong");
+        String idUser = request.getParameter("idUser");
+        System.out.println(idUser);
+        songDao db = new songDao();
+        db.insertFavorSong(idUser, idSong);
     }
 
     /**

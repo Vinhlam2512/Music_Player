@@ -29,6 +29,10 @@ body::-webkit-scrollbar-thumb {
 ::-webkit-scrollbar-track {
     background-color: var(--main-color);
 }
+button{
+    border: none;
+    background-color: transparent;
+}
 .header {
     position: fixed;
     width: 100%;

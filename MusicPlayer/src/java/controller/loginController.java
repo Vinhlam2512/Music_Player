@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dao.userDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.User;
 
 /**
  *
@@ -75,9 +77,11 @@ public class loginController extends HttpServlet {
         String password = request.getParameter("password");
         HttpSession session = request.getSession();
         boolean isLogin = true;
+         userDao db = new userDao();
+        User user = db.getUser(email, password);
         session.setAttribute("isLogin", isLogin);
-        session.setAttribute("email", email);
-        session.setAttribute("password", password);
+        session.setAttribute("fullName", user.getFullName());
+        session.setAttribute("id", user.getId());
         response.sendRedirect("../kham-pha");
     }
 
