@@ -3,19 +3,44 @@ var footer = document.querySelector('.footer');
 var playRan = document.querySelector('#play-ran');
 
 var playing_bar = document.querySelector('.now-playing');
+var likeBtn = document.querySelector('.like-playing');
+var unlikeBtn = document.querySelector('.unlike-playing');
 var playBtn = document.querySelector('.play');
 var pauseBtn = document.querySelector('.pause');
 var repeatBtn = document.querySelector('.repeat');
 var randomBtn = document.querySelector('.random');
 var nextBtn = document.querySelector('.next');
 var prevBtn = document.querySelector('.prev');
-var audio = document.querySelector('.media-left-ava a audio');
+var audio = document.querySelector('.media-left-ava audio');
 var progress = document.querySelector('#progress');
 
 var unMuteBtn = document.querySelector('.un-mute');
 var muteBtn = document.querySelector('.mute');
 var progress_sound = document.querySelector('#progress-sound');
 
+if (playRan != null) {
+    playRan.onclick = function () {
+        app.currentIndex = Math.floor(Math.random() * songs.length) + 1;
+        playing_bar.style.display = 'flex';
+        footer.style.marginBottom = '100px';
+        document.querySelector('.media-left-ava a img').src =
+            songs[app.currentIndex].querySelector('.song_image a img').src;
+        document.querySelector('.media-title span').innerHTML = songs[
+            app.currentIndex
+        ].querySelector('.song_des-title span').outerText;
+        document.querySelector('.media-singer span').innerHTML = songs[
+            app.currentIndex
+        ].querySelector('.song_des-singer span').outerText;
+        audio.src = songs[app.currentIndex].querySelector(
+            '.content_song audio'
+        ).src;
+        setTimeout(() => {
+            audio.play();
+            playBtn.style.display = 'none';
+            pauseBtn.style.display = 'block';
+        }, 10);
+    };
+}
 const app = {
     listRandom: [],
     currentIndex: 0,
@@ -30,7 +55,7 @@ const app = {
                 app.currentIndex = i;
                 playing_bar.style.display = 'flex';
                 footer.style.marginBottom = '100px';
-                document.querySelector('.media-left-ava a img').src =
+                document.querySelector('.media-left-ava img').src =
                     songs[i].querySelector('.song_image a img').src;
                 document.querySelector('.media-title span').innerHTML = songs[
                     i
@@ -39,17 +64,24 @@ const app = {
                     i
                 ].querySelector('.song_des-singer span').outerText;
                 audio.src = songs[i].querySelector('.content_song audio').src;
+                likeBtn.setAttribute(
+                    'data-id',
+                    songs[app.currentIndex].getAttribute('data-id')
+                );
+                unlikeBtn.setAttribute(
+                    'data-id',
+                    songs[app.currentIndex].getAttribute('data-id')
+                );
                 setTimeout(() => {
                     audio.play();
                 }, 10);
-                playing_bar.setAttribute('data-id', songs[i].getAttribute('data-id'));
                 playBtn.style.display = 'none';
                 pauseBtn.style.display = 'block';
             });
         }
     },
     load: function () {
-        document.querySelector('.media-left-ava a img').src =
+        document.querySelector('.media-left-ava img').src =
             songs[app.currentIndex].querySelector('.song_image a img').src;
         document.querySelector('.media-title span').innerHTML = songs[
             app.currentIndex
@@ -60,7 +92,14 @@ const app = {
         audio.src = songs[app.currentIndex].querySelector(
             '.content_song audio'
         ).src;
-        playing_bar.setAttribute('data-id', songs[app.currentIndex].getAttribute('data-id'));
+        likeBtn.setAttribute(
+            'data-id',
+            songs[app.currentIndex].getAttribute('data-id')
+        );
+        unlikeBtn.setAttribute(
+            'data-id',
+            songs[app.currentIndex].getAttribute('data-id')
+        );
         setTimeout(() => {
             audio.play();
         }, 10);
@@ -198,7 +237,3 @@ const app = {
 };
 
 app.start();
-
-playRan.onclick = function () {
-    console.log(1);
-};

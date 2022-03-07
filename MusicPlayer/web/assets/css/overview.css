@@ -1,4 +1,3 @@
-
 .list {
     height: 510px;
     overflow-y: scroll;
@@ -13,24 +12,89 @@
 #list::-webkit-scrollbar-track {
     background-color: white;
 }
-.media {
-    color: white;
-    justify-content: space-between;
-    font-weight: var(--fweight-text);
-}
-.media:hover{
-    background-color: hsla(0,0%,100%,0.1);
-}
-.media-left-title:hover {
-    color: var(--text-color-hover);
-}
-.media-left-title {
-    flex: 1;
-}
-.media-center {
-    flex: 1;
+.content_song {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 10px 0;
+    border-radius: 5px;
 }
 
+
+.song-prefix {
+    display: flex;
+    align-items: center;
+    width: 15%;
+}
+
+.song-prefix .number {
+    min-width: 38px;
+    -webkit-text-stroke: 1.5px var(--text-primary);
+    opacity: 0.7;
+    font-size: 32px;
+    font-weight: 900;
+    line-height: 1;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    white-space: nowrap;
+}
+
+.song_image {
+    position: relative;
+    margin-left: 10px;
+    height: 100px;
+    width: 100px;
+    cursor: pointer;
+}
+.song_image a {
+    display: block;
+    height: 100%;
+}
+.song_image a img {
+    border-radius: 5px;
+}
+.modal-play {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    border-radius: 5px;
+}
+.modal-play svg {
+    width: 100%;
+    height: 50%;
+    margin-top: 25%;
+}
+
+.song_image:hover .modal-play {
+    display: block;
+}
+.song_des {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10px;
+    height: 100%;
+    margin-top: 28px; */
+    margin-left: 10px;
+    width: 300px;
+}
+.song_des-singer,
+.song_des-title {
+    display: inline-block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+.chart_content-song{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-player);
+}
 .playList_nav {
     color: var(--text-color);
     font-weight: var(--fweight-text);
@@ -60,7 +124,7 @@
     background: linear-gradient(33deg, #5a1eae -7%, #ce267a 117%);
     border-radius: 5px;
 }
-.playList-create-btn{
+.playList-create-btn {
     height: 20%;
     width: 20%;
 }

@@ -3,7 +3,6 @@ var unliked = document.querySelectorAll('#unliked');
 var size = liked.length;
 for (let i = 0; i < size; i++) {
     unliked[i].addEventListener('click', function () {
-        console.log(i)
         liked[i].style.display = 'block';
         unliked[i].style.display = 'none';
     });

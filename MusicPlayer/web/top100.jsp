@@ -16,16 +16,16 @@
         <script src="https://kit.fontawesome.com/b758da46dd.js" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <link rel="stylesheet" href="../assets/css/base.css">
-        <link rel="stylesheet" href="../assets/css/top100.css">
-        <link rel="stylesheet" href="../assets/css/discover.css">
+        <link rel="stylesheet" href="./assets/css/base.css">
+        <link rel="stylesheet" href="./assets/css/top100.css">
+        <link rel="stylesheet" href="./assets/css/discover.css">
     </head>
     <body>
         <div class="app">
             <div class="header">
                 <nav class="navbar navbar-expand-lg ">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="#">
+                        <a class="navbar-brand" href="./kham-pha">
                             <svg class="header__logo" enable-background="new 0 0 512.024 512.024" height="512"
                                  viewBox="0 0 512.024 512.024" width="512" xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -57,25 +57,25 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item">
-                                    <a class="nav-link " aria-current="page" href="${isLogin ? "../personal/tong-quan" : "../login/login"}">Cá Nhân</a>
+                                    <a class="nav-link " aria-current="page" href="${isLogin ? "./personal/tong-quan" : "./login/login"}">Cá Nhân</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link " href="../kham-pha">Khám Phá</a>
+                                    <a class="nav-link " href="./kham-pha">Khám Phá</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="../zing-chart">ZingChart</a>
+                                    <a class="nav-link" href="./zing-chart">ZingChart</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link active" href="#">Top 100</a>
                                 </li>
                             </ul>
                             <div class="d-flex">
-                                <form class="d-flex">
-                                    <input class="form-control me-2" type="search"
+                                <form class="d-flex" action="tim-kiem" method="GET">
+                                    <input class="form-control me-2" type="search" name="search"
                                            placeholder="Nhập Tên ca sĩ, bài hát hoặc MV..." aria-label="Search">
-                                    <button class="btn btn-outline-success" type="submit">Search</button>
+                                    <button class="btn btn-outline-success" type="submit">Tìm Kiếm</button>
                                 </form>
-                                <a href="${isLogin ? "../personal/tong-quan" : "../login/login"}">
+                                <a href="${isLogin ? "./personal/tong-quan" : "./login/login"}">
                                     <?xml version="1.0" encoding="iso-8859-1"?>
                                     <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg
                                         style="height: 40px; width: 40px; fill: #fff; margin-left: 12px;" version="1.1"
@@ -201,7 +201,7 @@
                     </div>
                 </div>
             </div>
-            <%@include file="../footer.jsp" %>
+            <%@include file="./footer.jsp" %>
         </div>
     </body>
 </html>

@@ -98,4 +98,42 @@ public class songDao {
             Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public ArrayList<Song> searchTop4ByName(String search) {
+        ArrayList<Song> list = new ArrayList<>();
+        String sql = "SELECT top 4 IdSong, Name, Singer, Image, Link FROM Song where Name like ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "%" + search + "%");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Song song = new Song(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+                list.add(song);
+            }
+            return list;
+        } catch (Exception ex) {
+            Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public ArrayList<Song> getAllSongOfSearch(String search) {
+        ArrayList<Song> list = new ArrayList<>();
+        String sql = "SELECT IdSong, Name, Singer, Image, Link FROM Song where Name like ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "%" + search + "%");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Song song = new Song(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+                list.add(song);
+            }
+            return list;
+        } catch (Exception ex) {
+            Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

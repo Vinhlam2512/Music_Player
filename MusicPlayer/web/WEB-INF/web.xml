@@ -56,6 +56,10 @@
         <servlet-name>deleteController</servlet-name>
         <servlet-class>controller.deleteController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>searchController</servlet-name>
+        <servlet-class>controller.searchController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>discoverController</servlet-name>
         <url-pattern>/kham-pha</url-pattern>
@@ -85,10 +89,6 @@
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>top100Controller</servlet-name>
-        <url-pattern>/top100/top-100</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>zingChartController</servlet-name>
         <url-pattern>/zing-chart</url-pattern>
     </servlet-mapping>
@@ -99,6 +99,14 @@
     <servlet-mapping>
         <servlet-name>deleteController</servlet-name>
         <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>searchController</servlet-name>
+        <url-pattern>/tim-kiem</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>top100Controller</servlet-name>
+        <url-pattern>/top-100</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

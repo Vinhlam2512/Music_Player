@@ -40,15 +40,7 @@ public class loginFilter implements Filter {
         if (debug) {
             log("loginFilter:DoBeforeProcessing");
         }
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        userDao db = new userDao();
-        User u = db.login(email, password);
-        if (u == null) {
-            String errMessage = "Email hoặc mật khẩu không đúng";
-            request.setAttribute("errMessage", errMessage);
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        }
+        
         
     }
 
@@ -58,23 +50,15 @@ public class loginFilter implements Filter {
             log("loginFilter:DoAfterProcessing");
         }
 
-        // Write code here to process the request and/or response after
-        // the rest of the filter chain is invoked.
-        // For example, a logging filter might log the attributes on the
-        // request object after the request has been processed. 
-        /*
-	for (Enumeration en = request.getAttributeNames(); en.hasMoreElements(); ) {
-	    String name = (String)en.nextElement();
-	    Object value = request.getAttribute(name);
-	    log("attribute: " + name + "=" + value.toString());
-
-	}
-         */
-        // For example, a filter might append something to the response.
-        /*
-	PrintWriter respOut = new PrintWriter(response.getWriter());
-	respOut.println("<P><B>This has been appended by an intrusive filter.</B>");
-         */
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        userDao db = new userDao();
+        User u = db.login(email, password);
+        if (u == null) {
+            String errMessage = "Email hoặc mật khẩu không đúng";
+            request.setAttribute("errMessage", errMessage);
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        }
     }
 
     /**

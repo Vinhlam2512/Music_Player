@@ -63,10 +63,10 @@
                                 </li>
                             </ul>
                             <div class="d-flex">
-                                <form class="d-flex">
-                                    <input class="form-control me-2" type="search"
+                                <form class="d-flex" action="tim-kiem" method="GET">
+                                    <input class="form-control me-2" type="search" name="search"
                                            placeholder="Nhập Tên ca sĩ, bài hát hoặc MV..." aria-label="Search">
-                                    <button class="btn btn-outline-success" type="submit">Search</button>
+                                    <button class="btn btn-outline-success" type="submit">Tìm Kiếm</button>
                                 </form>
                                 <a href="${isLogin ? "./personal/tong-quan" : "./login/login"}">
                                     <?xml version="1.0" encoding="iso-8859-1"?>
@@ -471,14 +471,14 @@
                             <div class="row row-cols-xl-3 mt-5">
                                 <div class="col content_chart  mb-5">
                                     <div class="song_image">
-                                        <a class="rounded" href="./zingChart/zing-chart?idType=1">
+                                        <a class="rounded" href="./zing-chart?idType=1">
                                             <img src="https://zmp3-static.zadn.vn/skins/zmp3-v5.2/images/song-vn-2x.jpg" alt="">
                                         </a>
                                     </div>
                                 </div>
                                 <div class="col content_chart  mb-5">
                                     <div class="song_image">
-                                        <a class="rounded" href="./zingChart/zing-chart?idType=2">
+                                        <a class="rounded" href="./zing-chart?idType=2">
                                             <img src="https://zmp3-static.zadn.vn/skins/zmp3-v5.2/images/web_song_usuk.jpg"
                                                  alt="">
                                         </a>
@@ -486,7 +486,7 @@
                                 </div>
                                 <div class="col content_chart  mb-5">
                                     <div class="song_image">
-                                        <a class="rounded" href="./zingChart/zing-chart?idType=6">
+                                        <a class="rounded" href="./zing-chart?idType=6">
                                             <img src="https://zmp3-static.zadn.vn/skins/zmp3-v5.2/images/web_song_kpop.jpg"
                                                  alt="">
                                         </a>
@@ -501,8 +501,38 @@
     </body>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-
     crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./assets/js/app.js"></script>
+    <script>
+        function insert(idSong) {
+            $.ajax({
+                type: 'POST',
+                url: "./insert",
+                data: {
+                    idSong: idSong,
+                    idUser: ${id}
+                },
+                success: function (resultData) {
+                    console.log("Save Complete");
+                }
+            })
+        }
+    </script>
+    <script>
+        function del(idSong) {
+            $.ajax({
+                type: 'POST',
+                url: "./delete",
+                data: {
+                    idSong: idSong,
+                    idUser: ${id}
+                },
+                success: function (resultData) {
+                    console.log("delete Complete");
+                }
 
+            })
+        }
+    </script>
 </html>

@@ -25,7 +25,7 @@
             <div class="header">
                 <nav class="navbar navbar-expand-lg ">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="#">
+                        <a class="navbar-brand" href="./kham-pha">
                             <svg class="header__logo" enable-background="new 0 0 512.024 512.024" height="512"
                                  viewBox="0 0 512.024 512.024" width="512" xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -57,7 +57,7 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item">
-                                    <a class="nav-link " href="./personal/tong-quan">Cá Nhân</a>
+                                    <a class="nav-link " href="${isLogin ? "./personal/tong-quan" : "./login/login"}">Cá Nhân</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link " href="./kham-pha">Khám Phá</a>
@@ -66,16 +66,16 @@
                                     <a class="nav-link active" href="#">ZingChart</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="./top100/top-100">Top 100</a>
+                                    <a class="nav-link" href="./top-100">Top 100</a>
                                 </li>
                             </ul>
                             <div class="d-flex">
-                                <form class="d-flex">
-                                    <input class="form-control me-2" type="search"
+                                <form class="d-flex" action="tim-kiem" method="GET">
+                                    <input class="form-control me-2" type="search" name="search"
                                            placeholder="Nhập Tên ca sĩ, bài hát hoặc MV..." aria-label="Search">
-                                    <button class="btn btn-outline-success" type="submit">Search</button>
+                                    <button class="btn btn-outline-success" type="submit">Tìm Kiếm</button>
                                 </form>
-                                <a href="">
+                                <a href="${isLogin ? "./personal/tong-quan" : "./login/login"}">
                                     <?xml version="1.0" encoding="iso-8859-1"?>
                                     <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg
                                         style="height: 40px; width: 40px; fill: #fff; margin-left: 12px;" version="1.1"
@@ -149,7 +149,7 @@
                         <div class="chart_content" id="chart_content">
                             <c:forEach items="${list}" var="s" varStatus="loop">
                                 <div class="chart_content-song">
-                                    <div class="content_song">
+                                    <div class="content_song" data-id="${s.getId()}">
                                         <div class="left d-flex justify-content-center align-items-center" style="width: 40%;">
                                             <div class="song-prefix">
                                                 <span class="number" style="${loop.index == 0? "color: #4a90e2" : ""}; ${loop.index == 1? "color: #50e3c2" : ""}; ${loop.index == 2? "color: #e35050" : ""}">${loop.index + 1}</span>
