@@ -21,10 +21,6 @@
         <servlet-class>controller.songsController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>playlistController</servlet-name>
-        <servlet-class>controller.playlistController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>loginController</servlet-name>
         <servlet-class>controller.loginController</servlet-class>
     </servlet>
@@ -35,10 +31,6 @@
     <servlet>
         <servlet-name>logoutController</servlet-name>
         <servlet-class>controller.logoutController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>top100Controller</servlet-name>
-        <servlet-class>controller.top100Controller</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>insertController</servlet-name>
@@ -60,6 +52,18 @@
         <servlet-name>searchController</servlet-name>
         <servlet-class>controller.searchController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>playListController</servlet-name>
+        <servlet-class>controller.playListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>playlistPersonalController</servlet-name>
+        <servlet-class>controller.playlistPersonalController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>loadSongPlaylistController</servlet-name>
+        <servlet-class>controller.loadSongPlaylistController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>discoverController</servlet-name>
         <url-pattern>/kham-pha</url-pattern>
@@ -71,10 +75,6 @@
     <servlet-mapping>
         <servlet-name>songsController</servlet-name>
         <url-pattern>/personal/bai-hat</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>playlistController</servlet-name>
-        <url-pattern>/personal/play-list</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>registerController</servlet-name>
@@ -105,8 +105,16 @@
         <url-pattern>/tim-kiem</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>top100Controller</servlet-name>
-        <url-pattern>/top-100</url-pattern>
+        <servlet-name>playListController</servlet-name>
+        <url-pattern>/play-list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>playlistPersonalController</servlet-name>
+        <url-pattern>/personal/play-list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loadSongPlaylistController</servlet-name>
+        <url-pattern>/loadSongPlaylist</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

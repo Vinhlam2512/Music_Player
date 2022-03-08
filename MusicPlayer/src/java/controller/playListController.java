@@ -5,7 +5,7 @@
  */
 package controller;
 
-import dao.top100Dao;
+import dao.playListDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -13,13 +13,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Top100;
+import model.PlayList;
 
 /**
  *
  * @author VINH
  */
-public class top100Controller extends HttpServlet {
+public class playListController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +38,10 @@ public class top100Controller extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet top100Controller</title>");            
+            out.println("<title>Servlet playListController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet top100Controller at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet playListController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,12 +59,12 @@ public class top100Controller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        top100Dao db = new top100Dao();
-        ArrayList<Top100> ran5 = db.getRan5();
-        ArrayList<Top100> topvn = db.getTopVN();
+        playListDao db = new playListDao();
+        ArrayList<PlayList> ran5 = db.getRan5();
+        ArrayList<PlayList> topVn = db.getPlayListVn();
         request.setAttribute("ran5", ran5);
-        request.setAttribute("topvn", topvn);
-        request.getRequestDispatcher("top100.jsp").forward(request, response);
+        request.setAttribute("topVn", topVn);
+        request.getRequestDispatcher("playList.jsp").forward(request, response);
     }
 
     /**

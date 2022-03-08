@@ -17,7 +17,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <link rel="stylesheet" href="./assets/css/base.css">
-        <link rel="stylesheet" href="./assets/css/top100.css">
+        <link rel="stylesheet" href="./assets/css/playList.css">
         <link rel="stylesheet" href="./assets/css/discover.css">
     </head>
     <body>
@@ -66,7 +66,7 @@
                                     <a class="nav-link" href="./zing-chart">ZingChart</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#">Top 100</a>
+                                    <a class="nav-link active" href="./play-list">Play List</a>
                                 </li>
                             </ul>
                             <div class="d-flex">
@@ -139,14 +139,14 @@
                         </g>
                         </svg>
                     </div>
-                    <div class="content_music">
+                    <div class="content_music" id="content">
                         <p class=" fs-2" style="font-weight: 700; color: #fff">Nổi Bật</p>
                         <div class="row row-cols-xl-5 mt-5">
                             <c:forEach items="${ran5}" var="r">
                                 <div class="col content_song  mb-5">
                                     <div class="song_image">
                                         <a href="">
-                                            <img src="${r.getImage()}" alt="">
+                                            <img src="${r.getLink()}" alt="">
                                         </a>
                                         <div class="song_modal">
                                             <svg class="song_modal-play" height="512" viewBox="0 0 128 128" width="512"
@@ -170,15 +170,15 @@
                         </div>
                     </div>
                     <div class="content_music">
-                        <p class=" fs-2" style="font-weight: 700; color: #fff">Nhạc Việt Nam</p>
+                        <p class="fs-2" style="font-weight: 700; color: #fff">Nhạc Việt Nam</p>
                         <div class="row row-cols-xl-5 mt-5">
-                            <c:forEach items="${topvn}" var="t">
+                            <c:forEach items="${topVn}" var="t">
                                 <div class="col content_song  mb-5">
                                     <div class="song_image">
-                                        <a href="">
-                                            <img src="${t.getImage()}" alt="">
+                                        <a href="#">
+                                            <img src="${t.getLink()}" alt="">
                                         </a>
-                                        <div class="song_modal">
+                                        <div class="song_modal" onclick="loadSongPlaylist(${t.getId()})">
                                             <svg class="song_modal-play" height="512" viewBox="0 0 128 128" width="512"
                                                  xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -204,4 +204,28 @@
             <%@include file="./footer.jsp" %>
         </div>
     </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+    crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./assets/js/app.js"></script>
+    <script>
+    </script>
+    <script>
+        function loadSongPlaylist(id) {
+            $.ajax({
+                type: 'GET',
+                url: "./loadSongPlaylist",
+                data: {
+                    idPlaylist: id,
+                },
+                success: function (resultData) {
+                    $('.content_music').css('display', 'none')
+                    $('.container').html(resultData);
+                }
+            })
+        }
+    </script>
 </html>

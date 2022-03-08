@@ -14,18 +14,19 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class Top100 {
+public class PlayList {
 
+    private int id;
     private String name;
-    private String image;
+    private String link;
 
-    public Top100() {
+    public PlayList() {
     }
 
-    public Top100(String name, String image) {
+    public PlayList(int id, String name, String link) {
+        this.id = id;
         this.name = name;
-        this.image = image;
+        this.link = link;
     }
 
-    
 }

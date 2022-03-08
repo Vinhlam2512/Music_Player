@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author VINH
  */
-public class playlistController extends HttpServlet {
+public class playlistPersonalController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,10 +35,10 @@ public class playlistController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet playlistController</title>");            
+            out.println("<title>Servlet playlistPersonalController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet playlistController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet playlistPersonalController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,7 +56,7 @@ public class playlistController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                request.getRequestDispatcher("playList.jsp").forward(request, response);
+        request.getRequestDispatcher("playList.jsp").forward(request, response);
 
     }
 

@@ -45,7 +45,7 @@
                         <a class="nav-link" href="../zing-chart">ZingChart</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../top-100">Top 100</a>
+                        <a class="nav-link" href="../play-list">Play List</a>
                     </li>
                 </ul>
                 <div class="d-flex">
