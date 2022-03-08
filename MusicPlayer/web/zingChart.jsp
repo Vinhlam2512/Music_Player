@@ -227,7 +227,7 @@
                                                         url: "./insert",
                                                         data: {
                                                             idSong: idSong,
-                                                            idUser: ${id}
+                                                            idUser: ${idUser}
                                                         },
                                                         success: function (resultData) {
                                                             console.log("Save Complete");
@@ -243,7 +243,7 @@
                 url: "./delete",
                 data: {
                     idSong: idSong,
-                    idUser: ${id}
+                    idUser: ${idUser}
                 },
                 success: function (resultData) {
                     console.log("delete Complete");

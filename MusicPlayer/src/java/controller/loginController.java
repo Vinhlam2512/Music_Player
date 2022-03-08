@@ -77,11 +77,11 @@ public class loginController extends HttpServlet {
         String password = request.getParameter("password");
         HttpSession session = request.getSession();
         boolean isLogin = true;
-         userDao db = new userDao();
+        userDao db = new userDao();
         User user = db.getUser(email, password);
         session.setAttribute("isLogin", isLogin);
         session.setAttribute("fullName", user.getFullName());
-        session.setAttribute("id", user.getId());
+        session.setAttribute("idUser", user.getId());
         response.sendRedirect("../kham-pha");
     }
 

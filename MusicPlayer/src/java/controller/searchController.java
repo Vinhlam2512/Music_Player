@@ -61,7 +61,7 @@ public class searchController extends HttpServlet {
             throws ServletException, IOException {
         String search = request.getParameter("search");
         songDao db = new songDao();
-        ArrayList<Song> list = db.searchTop4ByName(search);
+        ArrayList<Song> list = db.searchByName(search);
         request.setAttribute("list", list);
         request.setAttribute("search", search);
         request.getRequestDispatcher("search.jsp").forward(request, response);

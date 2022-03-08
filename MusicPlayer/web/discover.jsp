@@ -59,7 +59,7 @@
                                     <a class="nav-link" href="./zing-chart">ZingChart</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="./top100/top-100">Top 100</a>
+                                    <a class="nav-link" href="./top-100">Top 100</a>
                                 </li>
                             </ul>
                             <div class="d-flex">
@@ -511,7 +511,7 @@
                 url: "./insert",
                 data: {
                     idSong: idSong,
-                    idUser: ${id}
+                    idUser: ${idUser}
                 },
                 success: function (resultData) {
                     console.log("Save Complete");
@@ -526,7 +526,7 @@
                 url: "./delete",
                 data: {
                     idSong: idSong,
-                    idUser: ${id}
+                    idUser: ${idUser}
                 },
                 success: function (resultData) {
                     console.log("delete Complete");

@@ -5,14 +5,17 @@
  */
 package controller;
 
+import dao.songDao;
 import dao.userDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Song;
 import model.User;
 
 /**
@@ -59,7 +62,11 @@ public class overviewController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    
+        HttpSession session = request.getSession();
+        int idUser = Integer.parseInt(session.getAttribute("idUser").toString());
+        songDao db = new songDao();
+        ArrayList<Song> list = db.getFavorSong(idUser);
+        request.setAttribute("list", list);
         request.getRequestDispatcher("overview.jsp").forward(request, response);
     }
 

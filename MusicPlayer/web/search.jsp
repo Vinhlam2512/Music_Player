@@ -68,7 +68,7 @@
                             </li>
                         </ul>
                         <div class="d-flex">
-                            <form class="d-flex" action="search" method="GET">
+                            <form class="d-flex" action="tim-kiem" method="GET">
                                 <input class="form-control me-2" type="search" name="search"
                                        placeholder="Nhập Tên ca sĩ, bài hát hoặc MV..." aria-label="Search">
                                 <button class="btn btn-outline-success" type="submit">Search</button>
@@ -101,7 +101,7 @@
         <div class="content mt-5" style="color: white">
             <div class="container">
                 <ul class="search_header">
-                    <h3>Kết Quả Tìm Kiếm</h3>
+                    <h3>Kết Quả Tìm Kiếm Cho "${search}"</h3>
                 </ul>
                 <div class="song">
                     <div class="search_type d-flex justify-content-between align-items-center">
