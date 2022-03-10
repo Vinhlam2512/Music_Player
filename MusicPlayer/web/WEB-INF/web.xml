@@ -33,20 +33,12 @@
         <servlet-class>controller.logoutController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>insertController</servlet-name>
-        <servlet-class>controller.insertController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>zingChartController</servlet-name>
         <servlet-class>controller.zingChartController</servlet-class>
         <init-param>
             <param-name>idType</param-name>
             <param-value>1</param-value>
         </init-param>
-    </servlet>
-    <servlet>
-        <servlet-name>deleteController</servlet-name>
-        <servlet-class>controller.deleteController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>searchController</servlet-name>
@@ -63,6 +55,14 @@
     <servlet>
         <servlet-name>loadSongPlaylistController</servlet-name>
         <servlet-class>controller.loadSongPlaylistController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateSongController</servlet-name>
+        <servlet-class>controller.updateSongController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updatePlaylistController</servlet-name>
+        <servlet-class>controller.updatePlaylistController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>discoverController</servlet-name>
@@ -93,14 +93,6 @@
         <url-pattern>/zing-chart</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>insertController</servlet-name>
-        <url-pattern>/insert</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>deleteController</servlet-name>
-        <url-pattern>/delete</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>searchController</servlet-name>
         <url-pattern>/tim-kiem</url-pattern>
     </servlet-mapping>
@@ -114,7 +106,15 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>loadSongPlaylistController</servlet-name>
-        <url-pattern>/loadSongPlaylist</url-pattern>
+        <url-pattern>/play-list/all-song</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateSongController</servlet-name>
+        <url-pattern>/update-song</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updatePlaylistController</servlet-name>
+        <url-pattern>/update-playlist</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

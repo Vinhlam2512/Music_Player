@@ -64,7 +64,7 @@ public class playListController extends HttpServlet {
         ArrayList<PlayList> topVn = db.getPlayListVn();
         request.setAttribute("ran5", ran5);
         request.setAttribute("topVn", topVn);
-        request.getRequestDispatcher("playList.jsp").forward(request, response);
+        request.getRequestDispatcher("/play-list/playList.jsp").forward(request, response);
     }
 
     /**

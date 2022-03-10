@@ -89,14 +89,14 @@
                                     </div>
                                 </div>
                                 <div class="col playList-content  mb-5">
-                                    <div class="plasy-list-thumbnail">
+                                    <div class="play-list-thumbnail">
                                         <a href="">
                                             <img src="https://photo-resize-zmp3.zadn.vn/w240_r1x1_webp/cover/6/3/0/d/630d20b0a79917e1545b4e2ada081040.jpg"
                                                  alt="">
                                         </a>
-                                        <div class="plasy-list-modal">
+                                        <div class="play-list-modal">
                                             <a href="" style="height: 100%;width: 100%;display: flex;align-items: center;">
-                                                <svg class="plasy-list-modal-play" fill="white" height="512"
+                                                <svg class="play-list-modal-play" fill="white" height="512"
                                                      viewBox="0 0 128 128" width="512" xmlns="http://www.w3.org/2000/svg">
                                                 <path
                                                     d="m64 17.249a46.75 46.75 0 1 0 46.751 46.751 46.8 46.8 0 0 0 -46.751-46.751zm0 90a43.25 43.25 0 1 1 43.251-43.249 43.3 43.3 0 0 1 -43.251 43.249z">
@@ -107,7 +107,7 @@
                                                 </svg>
                                             </a>
                                             <a href="" style="height: 100%;width: 100%;display: flex;align-items: center;">
-                                                <svg class="plasy-list-modal-play" fill="white" id="Layer_3" height="512"
+                                                <svg class="play-list-modal-play" fill="white" id="Layer_3" height="512"
                                                      viewBox="0 0 32 32" width="512" xmlns="http://www.w3.org/2000/svg"
                                                      data-name="Layer 3">
                                                 <path
@@ -116,26 +116,26 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="plasy-list-des">
-                                        <div class="plasy-list-title">
+                                    <div class="play-list-des">
+                                        <div class="play-list-title">
                                             <a href="" class="text-decoration-none">
                                                 <span>Nhạc HOT 2019</span>
                                             </a>
                                         </div>
-                                        <div class="plasy-list-owner">
+                                        <div class="play-list-owner">
                                             <span>Khắc Việt</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col playList-content  mb-5">
-                                    <div class="plasy-list-thumbnail">
+                                    <div class="play-list-thumbnail">
                                         <a href="">
                                             <img src="https://photo-resize-zmp3.zadn.vn/w240_r1x1_webp/cover/6/3/0/d/630d20b0a79917e1545b4e2ada081040.jpg"
                                                  alt="">
                                         </a>
-                                        <div class="plasy-list-modal">
+                                        <div class="play-list-modal">
                                             <a href="" style="height: 100%;width: 100%;display: flex;align-items: center;">
-                                                <svg class="plasy-list-modal-play" fill="white" height="512"
+                                                <svg class="play-list-modal-play" fill="white" height="512"
                                                      viewBox="0 0 128 128" width="512" xmlns="http://www.w3.org/2000/svg">
                                                 <path
                                                     d="m64 17.249a46.75 46.75 0 1 0 46.751 46.751 46.8 46.8 0 0 0 -46.751-46.751zm0 90a43.25 43.25 0 1 1 43.251-43.249 43.3 43.3 0 0 1 -43.251 43.249z">
@@ -146,7 +146,7 @@
                                                 </svg>
                                             </a>
                                             <a href="" style="height: 100%;width: 100%;display: flex;align-items: center;">
-                                                <svg class="plasy-list-modal-play" fill="white" id="Layer_3" height="512"
+                                                <svg class="play-list-modal-play" fill="white" id="Layer_3" height="512"
                                                      viewBox="0 0 32 32" width="512" xmlns="http://www.w3.org/2000/svg"
                                                      data-name="Layer 3">
                                                 <path
@@ -155,26 +155,26 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="plasy-list-des">
-                                        <div class="plasy-list-title">
+                                    <div class="play-list-des">
+                                        <div class="play-list-title">
                                             <a href="" class="text-decoration-none">
                                                 <span>Nhạc HOT 2019</span>
                                             </a>
                                         </div>
-                                        <div class="plasy-list-owner">
+                                        <div class="play-list-owner">
                                             <span>Khắc Việt</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col playList-content  mb-5">
-                                    <div class="plasy-list-thumbnail">
+                                    <div class="play-list-thumbnail">
                                         <a href="">
                                             <img src="https://photo-resize-zmp3.zadn.vn/w240_r1x1_webp/cover/6/3/0/d/630d20b0a79917e1545b4e2ada081040.jpg"
                                                  alt="">
                                         </a>
-                                        <div class="plasy-list-modal">
+                                        <div class="play-list-modal">
                                             <a href="" style="height: 100%;width: 100%;display: flex;align-items: center;">
-                                                <svg class="plasy-list-modal-play" fill="white" height="512"
+                                                <svg class="play-list-modal-play" fill="white" height="512"
                                                      viewBox="0 0 128 128" width="512" xmlns="http://www.w3.org/2000/svg">
                                                 <path
                                                     d="m64 17.249a46.75 46.75 0 1 0 46.751 46.751 46.8 46.8 0 0 0 -46.751-46.751zm0 90a43.25 43.25 0 1 1 43.251-43.249 43.3 43.3 0 0 1 -43.251 43.249z">
@@ -185,7 +185,7 @@
                                                 </svg>
                                             </a>
                                             <a href="" style="height: 100%;width: 100%;display: flex;align-items: center;">
-                                                <svg class="plasy-list-modal-play" fill="white" id="Layer_3" height="512"
+                                                <svg class="play-list-modal-play" fill="white" id="Layer_3" height="512"
                                                      viewBox="0 0 32 32" width="512" xmlns="http://www.w3.org/2000/svg"
                                                      data-name="Layer 3">
                                                 <path
@@ -194,26 +194,26 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="plasy-list-des">
-                                        <div class="plasy-list-title">
+                                    <div class="play-list-des">
+                                        <div class="play-list-title">
                                             <a href="" class="text-decoration-none">
                                                 <span>Nhạc HOT 2019</span>
                                             </a>
                                         </div>
-                                        <div class="plasy-list-owner">
+                                        <div class="play-list-owner">
                                             <span>Khắc Việt</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col playList-content  mb-5">
-                                    <div class="plasy-list-thumbnail">
+                                    <div class="play-list-thumbnail">
                                         <a href="">
                                             <img src="https://photo-resize-zmp3.zadn.vn/w240_r1x1_webp/cover/6/3/0/d/630d20b0a79917e1545b4e2ada081040.jpg"
                                                  alt="">
                                         </a>
-                                        <div class="plasy-list-modal">
+                                        <div class="play-list-modal">
                                             <a href="" style="height: 100%;width: 100%;display: flex;align-items: center;">
-                                                <svg class="plasy-list-modal-play" fill="white" height="512"
+                                                <svg class="play-list-modal-play" fill="white" height="512"
                                                      viewBox="0 0 128 128" width="512" xmlns="http://www.w3.org/2000/svg">
                                                 <path
                                                     d="m64 17.249a46.75 46.75 0 1 0 46.751 46.751 46.8 46.8 0 0 0 -46.751-46.751zm0 90a43.25 43.25 0 1 1 43.251-43.249 43.3 43.3 0 0 1 -43.251 43.249z">
@@ -224,7 +224,7 @@
                                                 </svg>
                                             </a>
                                             <a href="" style="height: 100%;width: 100%;display: flex;align-items: center;">
-                                                <svg class="plasy-list-modal-play" fill="white" id="Layer_3" height="512"
+                                                <svg class="play-list-modal-play" fill="white" id="Layer_3" height="512"
                                                      viewBox="0 0 32 32" width="512" xmlns="http://www.w3.org/2000/svg"
                                                      data-name="Layer 3">
                                                 <path
@@ -233,26 +233,26 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="plasy-list-des">
-                                        <div class="plasy-list-title">
+                                    <div class="play-list-des">
+                                        <div class="play-list-title">
                                             <a href="" class="text-decoration-none">
                                                 <span>Nhạc HOT 2019</span>
                                             </a>
                                         </div>
-                                        <div class="plasy-list-owner">
+                                        <div class="play-list-owner">
                                             <span>Khắc Việt</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col playList-content  mb-5">
-                                    <div class="plasy-list-thumbnail">
+                                    <div class="play-list-thumbnail">
                                         <a href="">
                                             <img src="https://photo-resize-zmp3.zadn.vn/w240_r1x1_webp/cover/6/3/0/d/630d20b0a79917e1545b4e2ada081040.jpg"
                                                  alt="">
                                         </a>
-                                        <div class="plasy-list-modal">
+                                        <div class="play-list-modal">
                                             <a href="" style="height: 100%;width: 100%;display: flex;align-items: center;">
-                                                <svg class="plasy-list-modal-play" fill="white" height="512"
+                                                <svg class="play-list-modal-play" fill="white" height="512"
                                                      viewBox="0 0 128 128" width="512" xmlns="http://www.w3.org/2000/svg">
                                                 <path
                                                     d="m64 17.249a46.75 46.75 0 1 0 46.751 46.751 46.8 46.8 0 0 0 -46.751-46.751zm0 90a43.25 43.25 0 1 1 43.251-43.249 43.3 43.3 0 0 1 -43.251 43.249z">
@@ -263,7 +263,7 @@
                                                 </svg>
                                             </a>
                                             <a href="" style="height: 100%;width: 100%;display: flex;align-items: center;">
-                                                <svg class="plasy-list-modal-play" fill="white" id="Layer_3" height="512"
+                                                <svg class="play-list-modal-play" fill="white" id="Layer_3" height="512"
                                                      viewBox="0 0 32 32" width="512" xmlns="http://www.w3.org/2000/svg"
                                                      data-name="Layer 3">
                                                 <path
@@ -272,26 +272,26 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="plasy-list-des">
-                                        <div class="plasy-list-title">
+                                    <div class="play-list-des">
+                                        <div class="play-list-title">
                                             <a href="" class="text-decoration-none">
                                                 <span>Nhạc HOT 2019</span>
                                             </a>
                                         </div>
-                                        <div class="plasy-list-owner">
+                                        <div class="play-list-owner">
                                             <span>Khắc Việt</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col playList-content  mb-5">
-                                    <div class="plasy-list-thumbnail">
+                                    <div class="play-list-thumbnail">
                                         <a href="">
                                             <img src="https://photo-resize-zmp3.zadn.vn/w240_r1x1_webp/cover/6/3/0/d/630d20b0a79917e1545b4e2ada081040.jpg"
                                                  alt="">
                                         </a>
-                                        <div class="plasy-list-modal">
+                                        <div class="play-list-modal">
                                             <a href="" style="height: 100%;width: 100%;display: flex;align-items: center;">
-                                                <svg class="plasy-list-modal-play" fill="white" height="512"
+                                                <svg class="play-list-modal-play" fill="white" height="512"
                                                      viewBox="0 0 128 128" width="512" xmlns="http://www.w3.org/2000/svg">
                                                 <path
                                                     d="m64 17.249a46.75 46.75 0 1 0 46.751 46.751 46.8 46.8 0 0 0 -46.751-46.751zm0 90a43.25 43.25 0 1 1 43.251-43.249 43.3 43.3 0 0 1 -43.251 43.249z">
@@ -302,7 +302,7 @@
                                                 </svg>
                                             </a>
                                             <a href="" style="height: 100%;width: 100%;display: flex;align-items: center;">
-                                                <svg class="plasy-list-modal-play" fill="white" id="Layer_3" height="512"
+                                                <svg class="play-list-modal-play" fill="white" id="Layer_3" height="512"
                                                      viewBox="0 0 32 32" width="512" xmlns="http://www.w3.org/2000/svg"
                                                      data-name="Layer 3">
                                                 <path
@@ -311,13 +311,13 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="plasy-list-des">
-                                        <div class="plasy-list-title">
+                                    <div class="play-list-des">
+                                        <div class="play-list-title">
                                             <a href="" class="text-decoration-none">
                                                 <span>Nhạc HOT 2019</span>
                                             </a>
                                         </div>
-                                        <div class="plasy-list-owner">
+                                        <div class="play-list-owner">
                                             <span>Khắc Việt</span>
                                         </div>
                                     </div>

@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dao.playListDao;
 import dao.songDao;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author VINH
  */
-public class insertController extends HttpServlet {
+public class updatePlaylistController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +37,10 @@ public class insertController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet insertController</title>");            
+            out.println("<title>Servlet updatePlaylistController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet insertController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet updatePlaylistController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -71,11 +72,18 @@ public class insertController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String idSong = request.getParameter("idSong");
+        String idPlaylist = request.getParameter("idPlaylist");
         String idUser = request.getParameter("idUser");
+        String type = request.getParameter("type");
         System.out.println(idUser);
-        songDao db = new songDao();
-        db.insertFavorSong(idUser, idSong);
+        System.out.println(idPlaylist);
+        playListDao db = new playListDao();
+        if (type.equals("delete")) {
+            db.deletePlaylistUser(idUser, idPlaylist);
+        }
+        if (type.equals("insert")) {
+            db.insertPlaylistUser(idUser, idPlaylist);
+        }
     }
 
     /**

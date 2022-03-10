@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dao.playListDao;
 import dao.songDao;
 import dao.userDao;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.PlayList;
 import model.Song;
 import model.User;
 
@@ -65,8 +67,11 @@ public class overviewController extends HttpServlet {
         HttpSession session = request.getSession();
         int idUser = Integer.parseInt(session.getAttribute("idUser").toString());
         songDao db = new songDao();
-        ArrayList<Song> list = db.getFavorSong(idUser);
-        request.setAttribute("list", list);
+        playListDao playlisListDao = new playListDao();
+        ArrayList<Song> listFavorSong = db.getFavorSong(idUser);
+        ArrayList<PlayList> listPlaylistUser = db.getPlaylistUser(idUser);
+        request.setAttribute("listFavorSong", listFavorSong);
+        request.setAttribute("listPlaylistUser", listPlaylistUser);
         request.getRequestDispatcher("overview.jsp").forward(request, response);
     }
 

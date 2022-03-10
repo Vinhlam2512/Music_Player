@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.PlayList;
 import model.Song;
 
 /**
@@ -19,11 +20,11 @@ import model.Song;
  * @author VINH
  */
 public class songDao {
-
+    
     private Connection conn;
     private PreparedStatement ps;
     private ResultSet rs;
-
+    
     public ArrayList<Song> getRandom10() {
         ArrayList<Song> list = new ArrayList<>();
         String sql = "SELECT TOP 10 IdSong, Name, Singer, Image, Link FROM Song ORDER BY NEWID()";
@@ -41,7 +42,7 @@ public class songDao {
         }
         return null;
     }
-
+    
     public ArrayList<Song> getTop20VN(String idType) {
         ArrayList<Song> list = new ArrayList<>();
         String sql = "select top 20 IdSong, Name, Singer,Image, Link from Song where IDType = ? ORDER BY NEWID()";
@@ -60,7 +61,7 @@ public class songDao {
         }
         return null;
     }
-
+    
     public static void main(String[] args) {
         songDao db = new songDao();
         ArrayList<Song> list = db.getRandom10();
@@ -68,7 +69,7 @@ public class songDao {
             System.out.println(list.size());
         }
     }
-
+    
     public void insertFavorSong(String idUser, String idSong) {
         String sql = "INSERT INTO [MusicApp].[dbo].[FavorSong]\n"
                 + "           ([IDUser]\n"
@@ -85,7 +86,7 @@ public class songDao {
             Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     public void deleteFavorSong(String idUser, String idSong) {
         String sql = "DELETE FROM FavorSong WHERE IDUser = ? and IDSong = ?";
         try {
@@ -98,7 +99,7 @@ public class songDao {
             Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     public ArrayList<Song> searchByName(String search) {
         ArrayList<Song> list = new ArrayList<>();
         String sql = "SELECT IdSong, Name, Singer, Image, Link FROM Song where Name like ?";
@@ -117,7 +118,7 @@ public class songDao {
         }
         return null;
     }
-
+    
     public ArrayList<Song> getAllSongOfSearch(String search) {
         ArrayList<Song> list = new ArrayList<>();
         String sql = "SELECT IdSong, Name, Singer, Image, Link FROM Song where Name like ?";
@@ -154,6 +155,41 @@ public class songDao {
             Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    
+    public ArrayList getIdFavorSong(String idUser) {
+        ArrayList list = new ArrayList();
+        String sql = "select IDSong from FavorSong where IDUser = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, idUser);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(rs.getInt(1));
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+        
+    }
+    
+    public ArrayList<PlayList> getPlaylistUser(int idUser) {
+        ArrayList<PlayList> list = new ArrayList();
+        String sql = "select pl.* from PlayList pl right join PlayListUser plu on pl.IDPlayList = plu.IDPlayList where plu.IDUser = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, idUser);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new PlayList(rs.getInt(1), rs.getString(2), rs.getString(3)));
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
     }
     
 }

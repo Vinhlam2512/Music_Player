@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author VINH
  */
-public class deleteController extends HttpServlet {
+public class updateSongController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +36,10 @@ public class deleteController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet deleteController</title>");            
+            out.println("<title>Servlet updateSongController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet deleteController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet updateSongController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -71,10 +71,17 @@ public class deleteController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         String idSong = request.getParameter("idSong");
+        String idSong = request.getParameter("idSong");
         String idUser = request.getParameter("idUser");
+        String type = request.getParameter("type");
+        System.out.println(type);
         songDao db = new songDao();
-        db.deleteFavorSong(idUser, idSong);
+        if (type.equals("delete")) {
+            db.deleteFavorSong(idUser, idSong);
+        }
+        if (type.equals("insert")) {
+            db.insertFavorSong(idUser, idSong);
+        }
     }
 
     /**

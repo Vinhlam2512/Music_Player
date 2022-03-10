@@ -201,7 +201,11 @@
                     </div>
                 </div>
             </div>
-            <%@include file="./footer.jsp" %>
+            <footer class="footer">
+                <div class="footer-text">
+                    <p class="text-center mb-0">© 2022 Lâm Vinh. Project PRJ301</p>
+                </div>
+            </footer>
         </div>
     </body>
 
@@ -215,17 +219,7 @@
     </script>
     <script>
         function loadSongPlaylist(id) {
-            $.ajax({
-                type: 'GET',
-                url: "./loadSongPlaylist",
-                data: {
-                    idPlaylist: id,
-                },
-                success: function (resultData) {
-                    $('.content_music').css('display', 'none')
-                    $('.container').html(resultData);
-                }
-            })
+            window.location = 'play-list/all-song?idPlaylist=' + id;
         }
     </script>
 </html>

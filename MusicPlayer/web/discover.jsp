@@ -505,35 +505,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
     <script src="./assets/js/app.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="./assets/js/app.js"></script>
     <script>
-        function insert(idSong) {
+        function updateSong(type, idSong) {
             $.ajax({
                 type: 'POST',
-                url: "./insert",
+                url: "./update-song",
                 data: {
                     idSong: idSong,
-                    idUser: ${idUser}
+                    idUser: ${idUser},
+                    type: type
                 },
                 success: function (resultData) {
-                    console.log("Save Complete");
+                    console.log("update Complete");
                 }
-            })
-        }
-    </script>
-    <script>
-        function del(idSong) {
-            $.ajax({
-                type: 'POST',
-                url: "./delete",
-                data: {
-                    idSong: idSong,
-                    idUser: ${idUser}
-                },
-                success: function (resultData) {
-                    console.log("delete Complete");
-                }
-
             })
         }
     </script>

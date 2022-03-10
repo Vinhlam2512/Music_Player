@@ -58,11 +58,6 @@ public class playListDao {
         return list;
     }
 
-    public static void main(String[] args) {
-        playListDao db = new playListDao();
-        System.out.println(db.getPlayListVn());
-    }
-
     public ArrayList<Song> getSongPlaylist(String idPlaylist) {
         ArrayList<Song> list = new ArrayList<>();
         String sql = "select s.IDSong, s.name, s.singer, s.image, s.link from PlayListSong p left join Song s on p.IdSong = s.IDSong where IDPlayList = ?";
@@ -79,5 +74,56 @@ public class playListDao {
             Logger.getLogger(playListDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
+    }
+
+    public PlayList getPlaylist(String idPlaylist) {
+        String sql = "select * from [PlayList] where IDPlayList = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, idPlaylist);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return new PlayList(rs.getInt(1), rs.getString(2), rs.getString(3));
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(playListDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+
+    public void deletePlaylistUser(String idUser, String idPlaylist) {
+        String sql = "DELETE FROM [PlayListUser] WHERE [IDUser] = ? and [IDPlayList] = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, idUser);
+            ps.setString(2, idPlaylist);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void insertPlaylistUser(String idUser, String idPlaylist) {
+        String sql = "INSERT INTO [MusicApp].[dbo].[PlayListUser]\n"
+                + "           ([IDUser]\n"
+                + "           ,[IDPlayList])\n"
+                + "     VALUES\n"
+                + "           (? ,?)";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, idUser);
+            ps.setString(2, idPlaylist);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public static void main(String[] args) {
+        playListDao db = new playListDao();
+        db.insertPlaylistUser("3", "1");
     }
 }

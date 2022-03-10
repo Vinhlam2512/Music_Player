@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Song;
 
 /**
@@ -46,14 +47,22 @@ public class zingChartController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String idType = request.getParameter("idType");
+        String idUser = "";
+        try {
+            idUser = session.getAttribute("idUser").toString();
+        } catch (Exception e) {
+        }
         System.out.println(idType);
         if (idType == null) {
             idType = this.getInitParameter("idType");
         }
         songDao db = new songDao();
         ArrayList<Song> list = db.getTop20VN(idType);
+        ArrayList listIdFavorSong = db.getIdFavorSong(idUser);
         request.setAttribute("list", list);
+        session.setAttribute("listIdFavorSong", listIdFavorSong);
         request.setAttribute("idType", idType);
         request.getRequestDispatcher("zingChart.jsp").forward(request, response);
     }

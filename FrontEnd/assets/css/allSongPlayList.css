@@ -1,0 +1,93 @@
+
+
+.content_playlist{
+    display: flex;
+    align-items: flex-end;
+}
+.playlist_image {
+    position: relative;
+}
+.playlist_image img {
+    width: 300px;
+    height: 300px;
+}
+.playList_modal {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    border-radius: 5px;
+}
+.playlist_image:hover .modal-play {
+    display: block;
+}
+.playlist_title{
+    margin-bottom: 190px;
+}
+.content_song {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 10px 0;
+    border-radius: 5px;
+}
+
+.song_image {
+    position: relative;
+    margin-left: 10px;
+    height: 100px;
+    width: 100px;
+    cursor: pointer;
+}
+.song_image a {
+    display: block;
+    height: 100%;
+}
+.song_image a img {
+    border-radius: 5px;
+}
+.modal-play {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    border-radius: 5px;
+}
+.modal-play svg {
+    width: 100%;
+    height: 50%;
+    margin-top: 25%;
+}
+
+.song_image:hover .modal-play {
+    display: block;
+}
+.song_des {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10px;
+    height: 100%;
+    margin-top: 28px; */
+    margin-left: 10px;
+    width: 300px;
+}
+.song_des-singer,
+.song_des-title {
+    display: inline-block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+.chart_content-song {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-player);
+}
