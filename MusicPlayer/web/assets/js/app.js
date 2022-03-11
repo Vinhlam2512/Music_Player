@@ -23,7 +23,7 @@ if (playRan != null) {
         app.currentIndex = Math.floor(Math.random() * songs.length) + 1;
         playing_bar.style.display = 'flex';
         footer.style.marginBottom = '100px';
-        document.querySelector('.media-left-ava a img').src =
+        document.querySelector('.media-left-ava button img').src =
                 songs[app.currentIndex].querySelector('.song_image a img').src;
         document.querySelector('.media-title span').innerHTML = songs[
                 app.currentIndex

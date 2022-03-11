@@ -156,3 +156,10 @@
     color: #fff;
     font-weight: var(--fweight-text);
 }
+.right {
+    display: flex;
+    width: 8%;
+}
+.right button {
+    padding: 0 10px;
+}

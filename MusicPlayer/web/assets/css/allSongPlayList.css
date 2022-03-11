@@ -1,5 +1,8 @@
 
-
+.text{
+    color: white;
+    font-weight: var(--fweight-text);
+}
 .content_playlist{
     display: flex;
     align-items: flex-end;

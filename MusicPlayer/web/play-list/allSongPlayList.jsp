@@ -18,7 +18,8 @@
               integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <link rel="stylesheet" href="../assets/css/base.css">
         <link rel="stylesheet" href="../personal/basePersonal.css">
-        <link rel="stylesheet" href="../assets/css/allSongPlayList.css">
+        <link href="../assets/css/allSongPlayList.css" rel="stylesheet" type="text/css"/>
+        
     </head>
     <body>
         <div class="app">
@@ -66,7 +67,7 @@
                                     <a class="nav-link" href="../zing-chart">ZingChart</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#">Play List</a>
+                                    <a class="nav-link active" href="../play-list">Play List</a>
                                 </li>
                             </ul>
                             <div class="d-flex">
@@ -92,8 +93,8 @@
                                     </svg>
                                 </a>
                                 <div class="log">
-                                    <a href="./logout" class="log-out ${isLogin ? "" : "none"}">Đăng Xuất</a>
-                                    <a href="./login/login" class="log-in ${!isLogin ? "" : "none"}">Đăng Nhập</a>
+                                    <a href="../logout" class="log-out ${isLogin ? "" : "none"}">Đăng Xuất</a>
+                                    <a href="../login/login" class="log-in ${!isLogin ? "" : "none"}">Đăng Nhập</a>
                                 </div>
                             </div>
                         </div>
@@ -101,7 +102,7 @@
                 </nav>
             </div>
             <div class="content">
-                <div class="content_song">
+                <div class="content-playlist">
                     <div class="container">
                         <div class="content_playlist">
                             <div class="content_playlist-left">
@@ -111,11 +112,11 @@
                                 </div>
                             </div>
                             <div class="content_song-right ms-4">
-                                <div class="playlist_title">
-                                    <h1>${playlist.getName()}</h1>
+                                <div class="playlist_title text">
+                                    <h1 >${playlist.getName()}</h1>
                                 </div>
                                 <div class="d-flex flex-row align-items-center">
-                                    <button>
+                                    <button style="${isLogin ? "" : "display:none"}">
                                         <svg id="unliked" data-id="0" class="unlike-playing"
                                              onclick="updatePlaylist('insert',${playlist.getId()})" style="height: 35px;width: 40px;"
                                              fill="white" height="480pt" viewBox="0 -20 480 480" width="480pt"
@@ -134,7 +135,7 @@
                                             fill="#f9595f" />
                                         </svg>
                                     </button>
-                                    <div class="play-all" style="margin: 20px;">
+                                    <div class="play-all text" style="margin: 20px;" id="play-ran">
                                         <div class="d-flex rounded-pill">
                                             <svg fill="white" id="Layer_1" height="512" viewBox="0 0 512 512" width="512"
                                                  xmlns="http://www.w3.org/2000/svg" data-name="Layer 1">
@@ -150,7 +151,7 @@
                         </div>
                         <div class="d-flex justify-content-between mb-3 mt-5"
                              style="border-bottom: 1px solid hsla(0,0%,100%,0.05); padding-bottom: 20px">
-                            <span style="width: 10%;">
+                            <span style="width: 10%;" class="text">
                                 BÀI HÁT
                             </span>
                         </div>
@@ -196,7 +197,7 @@
 
                                     </div>
                                     <div class="right me-5 position-relative" style="width: 3%;">
-                                        <button id="add" style="">
+                                        <button id="add" style="${isLogin ? "" : "display:none"}">
                                             <svg onclick="updateSong('insert',${l.getId()})" id="unliked" style="height: 38px; width: 38px; ${listIdFavorSong.contains(l.getId()) ? "display: none" : ""}"
                                                  fill="white" height="480pt" viewBox="0 -20 480 480" width="480pt"
                                                  xmlns="http://www.w3.org/2000/svg">

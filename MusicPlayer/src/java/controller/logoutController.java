@@ -60,7 +60,7 @@ public class logoutController extends HttpServlet {
         HttpSession session = request.getSession();
         boolean isLogin = false;
         session.setAttribute("isLogin", isLogin);
-        request.getRequestDispatcher("./kham-pha").forward(request, response);
+        response.sendRedirect("./kham-pha");
     }
 
     /**
