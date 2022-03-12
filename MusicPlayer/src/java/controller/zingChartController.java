@@ -1,10 +1,11 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package controller;
 
+import dao.playListDao;
 import dao.songDao;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.PlayList;
 import model.Song;
 
 /**
@@ -59,10 +61,13 @@ public class zingChartController extends HttpServlet {
             idType = this.getInitParameter("idType");
         }
         songDao db = new songDao();
+        playListDao pListDao = new playListDao();
         ArrayList<Song> list = db.getTop20VN(idType);
         ArrayList listIdFavorSong = db.getIdFavorSong(idUser);
+        ArrayList<PlayList> playlist = pListDao.getPlaylistUser(idUser);
         request.setAttribute("list", list);
         session.setAttribute("listIdFavorSong", listIdFavorSong);
+        session.setAttribute("playlist", playlist);
         request.setAttribute("idType", idType);
         request.getRequestDispatcher("zingChart.jsp").forward(request, response);
     }

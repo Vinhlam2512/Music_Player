@@ -14,6 +14,7 @@
     --boder-color: hsla(0, 0%, 100%, 0.05);
     --layout-bg: #170f23;
 }
+
 .active,
 .active p {
     color: var(--text-color-hover) !important;
@@ -260,4 +261,20 @@ button{
 
 .mute {
     display: none;
+}
+.modal-body ul{
+    padding-left: 0;
+}
+.modal-body ul li{
+    word-wrap: normal;
+    text-align: center;
+    list-style: none;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 10px 0 ;
+    margin-bottom: 10px;
+}
+.modal-body ul li:hover{
+    color: #fff;
+    background-color: var(--text-color-hover);
 }

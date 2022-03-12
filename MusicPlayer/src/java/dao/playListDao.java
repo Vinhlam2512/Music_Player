@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.PlayList;
+import model.PlaylistUser;
 import model.Song;
 
 /**
@@ -92,7 +93,6 @@ public class playListDao {
         return null;
     }
 
-
     public void deletePlaylistUser(String idUser, String idPlaylist) {
         String sql = "DELETE FROM [PlayListUser] WHERE [IDUser] = ? and [IDPlayList] = ?";
         try {
@@ -122,8 +122,27 @@ public class playListDao {
             Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public static void main(String[] args) {
         playListDao db = new playListDao();
         db.insertPlaylistUser("3", "1");
     }
+
+    public ArrayList<PlayList> getPlaylistUser(String idUser) {
+        String sql = "select pl.* from PlayList pl right join PlayListUser plu on pl.IDPlayList = plu.IDPlayList where plu.IDUser = ?";
+        ArrayList<PlayList> list = new ArrayList<>();
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, idUser);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new PlayList(rs.getInt(1), rs.getString(2), rs.getString(3)));
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(playListDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
 }

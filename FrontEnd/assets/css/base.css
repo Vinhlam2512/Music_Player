@@ -261,3 +261,19 @@ button{
 .mute {
     display: none;
 }
+.modal-body ul{
+    padding-left: 0;
+}
+.modal-body ul li{
+    word-wrap: normal;
+    text-align: center;
+    list-style: none;
+    cursor: pointer;
+    font-size: 20px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+.modal-body ul li:hover{
+    color: #fff;
+    background-color: var(--text-color-hover);
+}

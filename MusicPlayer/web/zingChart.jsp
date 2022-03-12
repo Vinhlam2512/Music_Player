@@ -207,7 +207,7 @@
                                                 fill="#f9595f"></path>
                                             </svg>
                                         </button>
-                                        <button data-bs-toggle="modal" data-bs-target="#exampleModal" style="${isLogin ? "" : "display:none"}">
+                                        <button onclick="addSong(${s.getId()})" data-bs-toggle="modal" data-bs-target="#exampleModal" style="${isLogin ? "" : "display:none"}">
                                             <svg style="height: 35px;width: 40px;" fill="white" id="Layer_1"
                                                  enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512"
                                                  width="512" xmlns="http://www.w3.org/2000/svg">
@@ -233,16 +233,7 @@
                     </div>
                     <div class="modal-body">
                         <ul>
-                            <li>
-                                <span style="word-wrap: normal;">
-                                    1
-                                </span>
-                            </li>
-                            <li>
-                                <span>
-                                    2
-                                </span>
-                            </li>
+                           
                         </ul>
                     </div>
                 </div>
@@ -259,20 +250,31 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./assets/js/app.js" type="text/javascript"></script>
     <script>
-                                                function updateSong(type, idSong) {
-                                                    $.ajax({
-                                                        type: 'POST',
-                                                        url: "./update-song",
-                                                        data: {
-                                                            idSong: idSong,
-                                                            idUser: ${idUser},
-                                                            type: type
-                                                        },
-                                                        success: function (resultData) {
-                                                            console.log("update Complete");
-                                                        }
-                                                    })
-                                                }
+                                    function updateSong(type, idSong) {
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: "./update-song",
+                                            data: {
+                                                idSong: idSong,
+                                                idUser: ${idUser},
+                                                type: type
+                                            },
+                                            success: function (resultData) {
+                                                console.log("update Complete");
+                                            }
+                                        })
+                                    }
+    </script>
+    <script>
+        function addSong(id) {
+            $('.modal-body ul').html(`<c:forEach items="${playlist}" var="pl">
+                                <li onclick="updatePlaylist(${pl.getId()})">
+                                    <span ${id}>
+                                        ${pl.getName()}
+                                    </span>
+                                </li>
+                            </c:forEach>`)
+        }
     </script>
     <script src="./assets/js/like.js" type="text/javascript"></script>
 
