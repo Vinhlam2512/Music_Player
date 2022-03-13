@@ -5,18 +5,22 @@
  */
 package controller;
 
+import dao.playListDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.PlayList;
+import model.Song;
 
 /**
  *
  * @author VINH
  */
-public class playlistPersonalController extends HttpServlet {
+public class loadSongPlaylistUserController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,10 +39,10 @@ public class playlistPersonalController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet playlistPersonalController</title>");
+            out.println("<title>Servlet loadSongPlaylistUserController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet playlistPersonalController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet loadSongPlaylistUserController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,7 +60,14 @@ public class playlistPersonalController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("playList.jsp").forward(request, response);
+        String idPlaylist = request.getParameter("idPlaylist");
+        String idUser = request.getParameter("idUser");
+        playListDao db = new playListDao();
+        ArrayList<Song> listSong = db.getSongPlaylistUser(idPlaylist, idUser);
+        PlayList playlist = db.getPlaylist(idPlaylist);
+        request.setAttribute("listSong", listSong);
+        request.setAttribute("playlist", playlist);
+        request.getRequestDispatcher("allSongPlayList.jsp").forward(request, response);
     }
 
     /**

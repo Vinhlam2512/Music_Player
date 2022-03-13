@@ -51,7 +51,7 @@
                 </button>
 
                 <button data-bs-toggle="modal" data-bs-target="#exampleModal" style="${isLogin ? "" : "display:none"}">
-                    <svg style="height: 35px;width: 40px;" fill="white" id="Layer_1" enable-background="new 0 0 512 512" height="512"
+                    <svg class="addSongPlaylist" data-id="0" onclick="addSong('insert', this.getAttribute('data-id'))" style="height: 35px;width: 40px;" fill="white" id="Layer_1" enable-background="new 0 0 512 512" height="512"
                          viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="m418 256c0 5.523-4.477 10-10 10h-142v142c0 5.523-4.477 10-10 10s-10-4.477-10-10v-142h-142c-5.523 0-10-4.477-10-10s4.477-10 10-10h142v-142c0-5.523 4.477-10 10-10s10 4.477 10 10v142h142c5.523 0 10 4.477 10 10zm94 0c0 141.159-114.841 256-256 256s-256-114.841-256-256 114.841-256 256-256 256 114.841 256 256zm-20 0c0-130.131-105.87-236-236-236s-236 105.869-236 236 105.87 236 236 236 236-105.869 236-236z" />

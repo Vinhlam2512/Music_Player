@@ -64,6 +64,14 @@
         <servlet-name>updatePlaylistController</servlet-name>
         <servlet-class>controller.updatePlaylistController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>updateSongPlaylistController</servlet-name>
+        <servlet-class>controller.updateSongPlaylistController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>loadSongPlaylistUserController</servlet-name>
+        <servlet-class>controller.loadSongPlaylistUserController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>discoverController</servlet-name>
         <url-pattern>/kham-pha</url-pattern>
@@ -116,9 +124,17 @@
         <servlet-name>updatePlaylistController</servlet-name>
         <url-pattern>/update-playlist</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateSongPlaylistController</servlet-name>
+        <url-pattern>/update-song-playlist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loadSongPlaylistUserController</servlet-name>
+        <url-pattern>/personal/play-list/all-song</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
-            60
+            120
         </session-timeout>
     </session-config>
 </web-app>

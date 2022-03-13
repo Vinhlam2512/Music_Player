@@ -90,7 +90,7 @@
                         <div class="list mt-3" id="list">
                             <c:forEach items="${listFavorSong}" var="s">
                                 <div class="chart_content-song">
-                                    <div class="content_song" data-id="">
+                                    <div class="content_song" data-id="${s.getId()}">
                                         <div class="left d-flex justify-content-center align-items-center">
                                             <div class="song_image">
                                                 <a href="#">
@@ -206,7 +206,7 @@
                                                 <img src="${l.getLink()}" alt="">
                                             </a>
                                             <div class="play-list-modal">
-                                                <a href="../play-list/all-song?idPlaylist=${l.getId()}" style="height: 100%;width: 100%;display: flex;align-items: center;">
+                                                <a href="../personal/play-list/all-song?idPlaylist=${l.getId()}&idUser=${idUser}" style="height: 100%;width: 100%;display: flex;align-items: center;">
                                                     <svg class="play-list-modal-play" fill="white" height="512"
                                                          viewBox="0 0 128 128" width="512" xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -229,7 +229,7 @@
                                         </div>
                                         <div class="play-list-des">
                                             <div class="play-list-title">
-                                                <a href="../play-list/all-song?idPlaylist=${l.getId()}" class="text-decoration-none">
+                                                <a href="../personal/play-list/all-song?idPlaylist=${l.getId()}&idUser=${idUser}" class="text-decoration-none">
                                                     <span>${l.getName()}</span>
                                                 </a>
                                             </div>

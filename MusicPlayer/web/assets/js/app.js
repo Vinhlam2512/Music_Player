@@ -5,6 +5,7 @@ var playRan = document.querySelector('#play-ran');
 var playing_bar = document.querySelector('.now-playing');
 var likeBtn = document.querySelector('.like-playing');
 var unlikeBtn = document.querySelector('.unlike-playing');
+var addSongPlaylist = document.querySelector('.addSongPlaylist');
 var playBtn = document.querySelector('.play');
 var pauseBtn = document.querySelector('.pause');
 var repeatBtn = document.querySelector('.repeat');
@@ -34,6 +35,9 @@ if (playRan != null) {
         audio.src = songs[app.currentIndex].querySelector(
                 '.content_song audio'
                 ).src;
+        likeBtn.setAttribute('data-id', songs[app.currentIndex].getAttribute('data-id'));
+        unlikeBtn.setAttribute('data-id', songs[app.currentIndex].getAttribute('data-id'));
+        addSongPlaylist.setAttribute('data-id', songs[app.currentIndex].getAttribute('data-id'));
         setTimeout(() => {
             audio.play();
             playBtn.style.display = 'none';
@@ -66,6 +70,7 @@ const app = {
                 audio.src = songs[i].querySelector('.content_song audio').src;
                 likeBtn.setAttribute('data-id', songs[app.currentIndex].getAttribute('data-id'));
                 unlikeBtn.setAttribute('data-id', songs[app.currentIndex].getAttribute('data-id'));
+                addSongPlaylist.setAttribute('data-id', songs[app.currentIndex].getAttribute('data-id'));
                 setTimeout(() => {
                     audio.play();
                 }, 10);
