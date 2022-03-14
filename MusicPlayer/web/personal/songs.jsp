@@ -49,41 +49,35 @@
                         </li>
                     </ul>
                 </div>
-                <div class="content_song">
-                    <div class="container">
-                        <div class="content_song-title">
-                            <div class="content_song-left">
-                                <span class="fs-2">Bài Hát</span>
-                            </div>
-                            <div class="content_song-right d-flex align-items-center">
-                                <div class="play-all">
-                                    <div class="d-flex rounded-pill">
-                                        <svg fill="white" id="Layer_1" height="512" viewBox="0 0 512 512" width="512"
-                                             xmlns="http://www.w3.org/2000/svg" data-name="Layer 1">
-                                        <path
-                                            d="m468.8 235.007-401.359-231.73a24.2 24.2 0 0 0 -12.087-3.285h-.07a24.247 24.247 0 0 0 -12.094 3.287 24 24 0 0 0 -12.11 20.992v463.456a24.186 24.186 0 0 0 36.36 20.994l401.36-231.731a24.238 24.238 0 0 0 0-41.983z"
-                                            fill-rule="evenodd" />
-                                        </svg>
-                                        <span>Phát Tất Cả</span>
-                                    </div>
+                <div class="container">
+                    <div class="content_song-title">
+                        <div class="content_song-left">
+                            <span class="fs-2">Bài Hát</span>
+                        </div>
+                        <div class="content_song-right d-flex align-items-center">
+                            <div class="play-all">
+                                <div class="d-flex rounded-pill">
+                                    <svg fill="white" id="Layer_1" height="512" viewBox="0 0 512 512" width="512"
+                                         xmlns="http://www.w3.org/2000/svg" data-name="Layer 1">
+                                    <path
+                                        d="m468.8 235.007-401.359-231.73a24.2 24.2 0 0 0 -12.087-3.285h-.07a24.247 24.247 0 0 0 -12.094 3.287 24 24 0 0 0 -12.11 20.992v463.456a24.186 24.186 0 0 0 36.36 20.994l401.36-231.731a24.238 24.238 0 0 0 0-41.983z"
+                                        fill-rule="evenodd" />
+                                    </svg>
+                                    <span>Phát Tất Cả</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-between mb-3 mt-5"
-                             style="border-bottom: 1px solid hsla(0,0%,100%,0.05); padding-bottom: 20px">
-                            <span style="width: 10%;">
-                                BÀI HÁT
-                            </span>
-                        </div>
-                        <div class="list mt-3" id="list">
+                    </div>
+
+                    <div class="list mt-3" id="list" style="height: auto">
+                        <c:forEach items="${listFavorSong}" var="s">
                             <div class="chart_content-song">
-                                <div class="content_song" data-id="">
+                                <div class="content_song" data-id="${s.getId()}" onclick="heartTrigger(${s.getId()})">
                                     <div class="left d-flex justify-content-center align-items-center">
                                         <div class="song_image">
                                             <a href="#">
                                                 <img style="height: 100%; width: 100%"
-                                                     src="https://avatar-ex-swe.nixcdn.com/song/2019/10/18/2/0/b/1/1571381118105_500.jpg                                                                                                                                                                                                                                                                                                                                  "
-                                                     alt="">
+                                                     src="${s.getImage()}" alt="">
                                             </a>
                                             <div class="modal-play">
                                                 <svg fill="white" height="512" viewBox="0 0 128 128" width="512"
@@ -100,33 +94,31 @@
                                         </div>
                                         <div class="song_des">
                                             <div class="song_des-title">
-                                                <span>Kẻ Cắp Gặp Bà Già</span>
+                                                <span>${s.getName()}</span>
                                             </div>
                                             <div class="song_des-singer">
-                                                <span>Hoàng Thùy Linh, Binz</span>
+                                                <span>${s.getSinger()}</span>
                                             </div>
                                         </div>
-                                        <audio
-                                            src="https://c1-ex-swe.nixcdn.com/Sony_Audio67/DiamondCutDiamond-HoangThuyLinhBINZ-6153594.mp3?st=HgV0n0AKipDnVi3K9wAEiQ&amp;e=1645983339&amp;t=1645896925336                                                                                                                                                                                                                                                                "
-                                            __idm_id__="7249921"></audio>
+                                        <audio src="${s.getLink()}"></audio>
                                     </div>
                                     <div class="song_content">
                                         <span>
-                                            Kẻ Cắp Gặp Bà Già (Single)
+                                            ${s.getName()} (Single)
                                         </span>
                                     </div>
 
                                 </div>
                                 <div class="right me-5 position-relative" style="width: 3%;">
                                     <button id="add" style="">
-                                        <svg onclick="insert(23)" id="unliked" style="height: 38px; width: 38px;"
+                                        <svg onclick="updateSong('insert',${s.getId()})" id="unliked" style="height: 38px; width: 38px; display: none"
                                              fill="white" height="480pt" viewBox="0 -20 480 480" width="480pt"
                                              xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="m348 0c-43 .0664062-83.28125 21.039062-108 56.222656-24.71875-35.183594-65-56.1562498-108-56.222656-70.320312 0-132 65.425781-132 140 0 72.679688 41.039062 147.535156 118.6875 216.480469 35.976562 31.882812 75.441406 59.597656 117.640625 82.625 2.304687 1.1875 5.039063 1.1875 7.34375 0 42.183594-23.027344 81.636719-50.746094 117.601563-82.625 77.6875-68.945313 118.726562-143.800781 118.726562-216.480469 0-74.574219-61.679688-140-132-140zm-108 422.902344c-29.382812-16.214844-224-129.496094-224-282.902344 0-66.054688 54.199219-124 116-124 41.867188.074219 80.460938 22.660156 101.03125 59.128906 1.539062 2.351563 4.160156 3.765625 6.96875 3.765625s5.429688-1.414062 6.96875-3.765625c20.570312-36.46875 59.164062-59.054687 101.03125-59.128906 61.800781 0 116 57.945312 116 124 0 153.40625-194.617188 266.6875-224 282.902344zm0 0">
                                         </path>
                                         </svg>
-                                        <svg onclick="del(23)" id="liked" style="height: 38px; width: 38px; display: none"
+                                        <svg onclick="updateSong('delete',${s.getId()})" id="liked" style="height: 38px; width: 38px; "
                                              fill="ping" height="480pt" viewBox="0 0 512 512" width="480pt"
                                              xmlns="http://www.w3.org/2000/svg" data-name="Layer 1">
                                         <path
@@ -136,7 +128,7 @@
                                     </button>
                                 </div>
                             </div>
-                        </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
@@ -145,8 +137,47 @@
     </body>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../assets/js/like.js" type="text/javascript"></script>
     <script src="../assets/js/app.js"></script>
-
+    <script>
+                                            var likeBtn = document.querySelector('.like-playing');
+                                            var unlikeBtn = document.querySelector('.unlike-playing');
+                                            function updateSong(type, idSong) {
+                                                $.ajax({
+                                                    type: 'POST',
+                                                    url: "../update-song",
+                                                    data: {
+                                                        idSong: idSong,
+                                                        idUser: ${idUser},
+                                                        type: type
+                                                    },
+                                                    success: function (resultData) {
+                                                        if (type === 'insert') {
+                                                            likeBtn.style.display = 'block';
+                                                            unlikeBtn.style.display = 'none';
+                                                        } else {
+                                                            likeBtn.style.display = 'none';
+                                                            unlikeBtn.style.display = 'block';
+                                                        }
+                                                        console.log("update Complete");
+                                                    }
+                                                })
+                                            }
+    </script>
+    <script>
+        var arr = ${listIdFavorSong};
+        function heartTrigger(id) {
+            if (arr.includes(id)) {
+                console.log(arr.includes(id));
+                likeBtn.style.display = 'block';
+                unlikeBtn.style.display = 'none';
+            } else {
+                likeBtn.style.display = 'none';
+                unlikeBtn.style.display = 'block';
+            }
+        }
+    </script>
 </html>
 
 

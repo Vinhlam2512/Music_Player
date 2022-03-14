@@ -179,8 +179,8 @@ public class playListDao {
         }
         return list;
     }
-    
-     public void deleteSongToPlaylist(String idPlaylist, String idSong) {
+
+    public void deleteSongToPlaylist(String idPlaylist, String idSong) {
         String sql = "DELETE FROM [PlayListSongUser] WHERE IDPlayList = ? and IDSong = ?";
         try {
             conn = new DBContext().getConnection();
@@ -208,6 +208,42 @@ public class playListDao {
         } catch (Exception ex) {
             Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public ArrayList<PlayList> getRandom5() {
+        ArrayList<PlayList> list = new ArrayList<>();
+        String sql = "SELECT TOP 5 * FROM PlayList ORDER BY NEWID()";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                PlayList pl = new PlayList(rs.getInt(1), rs.getString(2), rs.getString(3));
+                list.add(pl);
+            }
+            return list;
+        } catch (Exception ex) {
+            Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public ArrayList<PlayList> getTop100() {
+        ArrayList<PlayList> list = new ArrayList<>();
+        String sql = "SELECT TOP 5 * FROM PlayList ORDER BY NEWID()";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                PlayList pl = new PlayList(rs.getInt(1), rs.getString(2), rs.getString(3));
+                list.add(pl);
+            }
+            return list;
+        } catch (Exception ex) {
+            Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
 }

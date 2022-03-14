@@ -217,126 +217,31 @@
                     <p class="text-center fs-2" style="font-weight: 700;">Top 100</p>
                     <div class="container">
                         <div class="row row-cols-xl-5 mt-5">
-                            <div class="col content_song100  mb-5">
-                                <div class="song_image">
-                                    <a href="">
-                                        <img src="https://photo-resize-zmp3.zadn.vn/w320_r1x1_webp/cover/3/a/4/5/3a452e5000ff30df7ffc8c9a575c8ebe.jpg"
-                                             alt="">
-                                    </a>
-                                    <div class="song_modal">
-                                        <svg class="song_modal-play" height="512" viewBox="0 0 128 128" width="512"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="m64 17.249a46.75 46.75 0 1 0 46.751 46.751 46.8 46.8 0 0 0 -46.751-46.751zm0 90a43.25 43.25 0 1 1 43.251-43.249 43.3 43.3 0 0 1 -43.251 43.249z" />
-                                        <path
-                                            d="m87.1 60.582-31.786-18.353a3.945 3.945 0 0 0 -5.914 3.417v36.706a3.937 3.937 0 0 0 5.918 3.417l31.782-18.354a3.946 3.946 0 0 0 0-6.833zm-1.75 3.8-31.785 18.355a.446.446 0 0 1 -.668-.385v-36.706a.425.425 0 0 1 .223-.386.448.448 0 0 1 .223-.064.438.438 0 0 1 .222.064l31.789 18.353a.446.446 0 0 1 0 .771z" />
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="song_des">
-                                    <div class="song_des-title">
+                            <c:forEach items="${playLists1}" var="pl1">
+                                <div class="col content_song100  mb-5">
+                                    <div class="song_image">
                                         <a href="">
-                                            <span>Top 100 Nhạc Trẻ Việt Nam</span>
+                                            <img src="${pl1.getLink()}" alt="">
                                         </a>
+                                        <div class="song_modal">
+                                            <svg class="song_modal-play" height="512" viewBox="0 0 128 128" width="512"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="m64 17.249a46.75 46.75 0 1 0 46.751 46.751 46.8 46.8 0 0 0 -46.751-46.751zm0 90a43.25 43.25 0 1 1 43.251-43.249 43.3 43.3 0 0 1 -43.251 43.249z" />
+                                            <path
+                                                d="m87.1 60.582-31.786-18.353a3.945 3.945 0 0 0 -5.914 3.417v36.706a3.937 3.937 0 0 0 5.918 3.417l31.782-18.354a3.946 3.946 0 0 0 0-6.833zm-1.75 3.8-31.785 18.355a.446.446 0 0 1 -.668-.385v-36.706a.425.425 0 0 1 .223-.386.448.448 0 0 1 .223-.064.438.438 0 0 1 .222.064l31.789 18.353a.446.446 0 0 1 0 .771z" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="song_des">
+                                        <div class="song_des-title">
+                                            <a href="">
+                                                <span>${pl1.getName()}</span>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col content_song100  mb-5">
-                                <div class="song_image">
-                                    <a href="">
-                                        <img src="https://photo-resize-zmp3.zadn.vn/w320_r1x1_webp/cover/6/0/6/4/606430a29783ea7f864de569bb8a45d0.jpg"
-                                             alt="">
-                                    </a>
-                                    <div class="song_modal">
-                                        <svg class="song_modal-play" height="512" viewBox="0 0 128 128" width="512"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="m64 17.249a46.75 46.75 0 1 0 46.751 46.751 46.8 46.8 0 0 0 -46.751-46.751zm0 90a43.25 43.25 0 1 1 43.251-43.249 43.3 43.3 0 0 1 -43.251 43.249z" />
-                                        <path
-                                            d="m87.1 60.582-31.786-18.353a3.945 3.945 0 0 0 -5.914 3.417v36.706a3.937 3.937 0 0 0 5.918 3.417l31.782-18.354a3.946 3.946 0 0 0 0-6.833zm-1.75 3.8-31.785 18.355a.446.446 0 0 1 -.668-.385v-36.706a.425.425 0 0 1 .223-.386.448.448 0 0 1 .223-.064.438.438 0 0 1 .222.064l31.789 18.353a.446.446 0 0 1 0 .771z" />
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="song_des">
-                                    <div class="song_des-title">
-                                        <a href="">
-                                            <span>Top 100 Pop Âu Mỹ</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col content_song100  mb-5">
-                                <div class="song_image">
-                                    <a href="">
-                                        <img src="	https://photo-resize-zmp3.zadn.vn/w320_r1x1_webp/cover/e/9/6/0/e960f9baa048d3c936227656025547e5.jpg"
-                                             alt="">
-                                    </a>
-                                    <div class="song_modal">
-                                        <svg class="song_modal-play" height="512" viewBox="0 0 128 128" width="512"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="m64 17.249a46.75 46.75 0 1 0 46.751 46.751 46.8 46.8 0 0 0 -46.751-46.751zm0 90a43.25 43.25 0 1 1 43.251-43.249 43.3 43.3 0 0 1 -43.251 43.249z" />
-                                        <path
-                                            d="m87.1 60.582-31.786-18.353a3.945 3.945 0 0 0 -5.914 3.417v36.706a3.937 3.937 0 0 0 5.918 3.417l31.782-18.354a3.946 3.946 0 0 0 0-6.833zm-1.75 3.8-31.785 18.355a.446.446 0 0 1 -.668-.385v-36.706a.425.425 0 0 1 .223-.386.448.448 0 0 1 .223-.064.438.438 0 0 1 .222.064l31.789 18.353a.446.446 0 0 1 0 .771z" />
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="song_des">
-                                    <div class="song_des-title">
-                                        <a href="">
-                                            <span>Top 100 Nhạc Hàn Quốc</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col content_song100  mb-5">
-                                <div class="song_image">
-                                    <a href="">
-                                        <img src="	https://photo-resize-zmp3.zadn.vn/w320_r1x1_webp/cover/b/1/9/d/b19dfb219496701f565185704dfa868c.jpg"
-                                             alt="">
-                                    </a>
-                                    <div class="song_modal">
-                                        <svg class="song_modal-play" height="512" viewBox="0 0 128 128" width="512"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="m64 17.249a46.75 46.75 0 1 0 46.751 46.751 46.8 46.8 0 0 0 -46.751-46.751zm0 90a43.25 43.25 0 1 1 43.251-43.249 43.3 43.3 0 0 1 -43.251 43.249z" />
-                                        <path
-                                            d="m87.1 60.582-31.786-18.353a3.945 3.945 0 0 0 -5.914 3.417v36.706a3.937 3.937 0 0 0 5.918 3.417l31.782-18.354a3.946 3.946 0 0 0 0-6.833zm-1.75 3.8-31.785 18.355a.446.446 0 0 1 -.668-.385v-36.706a.425.425 0 0 1 .223-.386.448.448 0 0 1 .223-.064.438.438 0 0 1 .222.064l31.789 18.353a.446.446 0 0 1 0 .771z" />
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="song_des">
-                                    <div class="song_des-title">
-                                        <a href="">
-                                            <span>Top 100 Nhạc Rap Việt</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col content_song100  mb-5">
-                                <div class="song_image">
-                                    <a href="">
-                                        <img src="https://photo-resize-zmp3.zadn.vn/w320_r1x1_webp/cover/8/b/f/a/8bfaeb3f9508550126393e28944318c1.jpg"
-                                             alt="">
-                                    </a>
-                                    <div class="song_modal">
-                                        <svg class="song_modal-play" height="512" viewBox="0 0 128 128" width="512"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="m64 17.249a46.75 46.75 0 1 0 46.751 46.751 46.8 46.8 0 0 0 -46.751-46.751zm0 90a43.25 43.25 0 1 1 43.251-43.249 43.3 43.3 0 0 1 -43.251 43.249z" />
-                                        <path
-                                            d="m87.1 60.582-31.786-18.353a3.945 3.945 0 0 0 -5.914 3.417v36.706a3.937 3.937 0 0 0 5.918 3.417l31.782-18.354a3.946 3.946 0 0 0 0-6.833zm-1.75 3.8-31.785 18.355a.446.446 0 0 1 -.668-.385v-36.706a.425.425 0 0 1 .223-.386.448.448 0 0 1 .223-.064.438.438 0 0 1 .222.064l31.789 18.353a.446.446 0 0 1 0 .771z" />
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="song_des">
-                                    <div class="song_des-title">
-                                        <a href="">
-                                            <span>Top 100 Nhạc Hoa Ngữ</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                            </c:forEach>
                         </div>
                     </div>
                     <div class="content_music">

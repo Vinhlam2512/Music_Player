@@ -10,31 +10,31 @@
     </filter-mapping>
     <servlet>
         <servlet-name>discoverController</servlet-name>
-        <servlet-class>controller.discoverController</servlet-class>
+        <servlet-class>controller.user.discoverController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>overviewController</servlet-name>
-        <servlet-class>controller.overviewController</servlet-class>
+        <servlet-class>controller.user.overviewController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>songsController</servlet-name>
-        <servlet-class>controller.songsController</servlet-class>
+        <servlet-class>controller.user.songsController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>loginController</servlet-name>
-        <servlet-class>controller.loginController</servlet-class>
+        <servlet-class>controller.user.loginController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>registerController</servlet-name>
-        <servlet-class>controller.registerController</servlet-class>
+        <servlet-class>controller.user.registerController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>logoutController</servlet-name>
-        <servlet-class>controller.logoutController</servlet-class>
+        <servlet-class>controller.user.logoutController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>zingChartController</servlet-name>
-        <servlet-class>controller.zingChartController</servlet-class>
+        <servlet-class>controller.user.zingChartController</servlet-class>
         <init-param>
             <param-name>idType</param-name>
             <param-value>1</param-value>
@@ -42,35 +42,43 @@
     </servlet>
     <servlet>
         <servlet-name>searchController</servlet-name>
-        <servlet-class>controller.searchController</servlet-class>
+        <servlet-class>controller.user.searchController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>playListController</servlet-name>
-        <servlet-class>controller.playListController</servlet-class>
+        <servlet-class>controller.user.playListController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>playlistPersonalController</servlet-name>
-        <servlet-class>controller.playlistPersonalController</servlet-class>
+        <servlet-class>controller.user.playlistPersonalController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>loadSongPlaylistController</servlet-name>
-        <servlet-class>controller.loadSongPlaylistController</servlet-class>
+        <servlet-class>controller.user.loadSongPlaylistController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>updateSongController</servlet-name>
-        <servlet-class>controller.updateSongController</servlet-class>
+        <servlet-class>controller.user.updateSongController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>updatePlaylistController</servlet-name>
-        <servlet-class>controller.updatePlaylistController</servlet-class>
+        <servlet-class>controller.user.updatePlaylistController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>updateSongPlaylistController</servlet-name>
-        <servlet-class>controller.updateSongPlaylistController</servlet-class>
+        <servlet-class>controller.user.updateSongPlaylistController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>loadSongPlaylistUserController</servlet-name>
-        <servlet-class>controller.loadSongPlaylistUserController</servlet-class>
+        <servlet-class>controller.user.loadSongPlaylistUserController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>adminLoginController</servlet-name>
+        <servlet-class>controller.admin.adminLoginController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>dashboardController</servlet-name>
+        <servlet-class>controller.admin.dashboardController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>discoverController</servlet-name>
@@ -131,6 +139,14 @@
     <servlet-mapping>
         <servlet-name>loadSongPlaylistUserController</servlet-name>
         <url-pattern>/personal/play-list/all-song</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminLoginController</servlet-name>
+        <url-pattern>/admin/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>dashboardController</servlet-name>
+        <url-pattern>/dash-board</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
