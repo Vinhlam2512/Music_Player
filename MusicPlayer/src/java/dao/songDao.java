@@ -21,27 +21,27 @@ import model.Song;
  */
 public class songDao {
 
-        private Connection conn;
-        private PreparedStatement ps;
-        private ResultSet rs;
+    private Connection conn;
+    private PreparedStatement ps;
+    private ResultSet rs;
 
-        public ArrayList<Song> getRandom10() {
-            ArrayList<Song> list = new ArrayList<>();
-            String sql = "SELECT TOP 10 IdSong, Name, Singer, Image, Link FROM Song ORDER BY NEWID()";
-            try {
-                conn = new DBContext().getConnection();
-                ps = conn.prepareStatement(sql);
-                rs = ps.executeQuery();
-                while (rs.next()) {
-                    Song song = new Song(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
-                    list.add(song);
-                }
-                return list;
-            } catch (Exception ex) {
-                Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
+    public ArrayList<Song> getRandom10() {
+        ArrayList<Song> list = new ArrayList<>();
+        String sql = "SELECT TOP 10 IdSong, Name, Singer, Image, Link FROM Song ORDER BY NEWID()";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Song song = new Song(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+                list.add(song);
             }
-            return null;
+            return list;
+        } catch (Exception ex) {
+            Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
+    }
 
     public ArrayList<Song> getTop20VN(String idType) {
         ArrayList<Song> list = new ArrayList<>();
@@ -61,8 +61,6 @@ public class songDao {
         }
         return null;
     }
-
-
 
     public void insertFavorSong(String idUser, String idSong) {
         String sql = "INSERT INTO [MusicApp].[dbo].[FavorSong]\n"
@@ -241,13 +239,32 @@ public class songDao {
         }
         return list;
     }
-    
-    public static void main(String[] args) {
-        songDao db = new songDao();
-        ArrayList<Song> list = db.get10Song(10, 3);
-        for (Song s : list) {
-            System.out.println(s.getName());
+
+    public void addSong(String type, String name, String singer, String image, String link) {
+        String sql = "INSERT INTO [MusicApp].[dbo].[Song]\n"
+                + "           ([IDType]\n"
+                + "           ,[Name]\n"
+                + "           ,[Singer]\n"
+                + "           ,[Image]\n"
+                + "           ,[Link])\n"
+                + "     VALUES\n"
+                + "           (?, ?, ?, ?, ?)";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, type);
+            ps.setString(2, name);
+            ps.setString(3, singer);
+            ps.setString(4, image);
+            ps.setString(5, link);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            Logger.getLogger(userDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+    public static void main(String[] args) {
+        songDao db = new songDao();
+        db.addSong("1", "Nụ Cười Em Là Nắng", "Nụ Cười Em Là Nắng", "Nụ Cười Em Là Nắng", "Nụ Cười Em Là Nắng");
+    }
 }

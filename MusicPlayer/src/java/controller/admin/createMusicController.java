@@ -5,6 +5,7 @@
  */
 package controller.admin;
 
+import dao.songDao;
 import dao.typeDao;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -81,7 +82,8 @@ public class createMusicController extends HttpServlet {
         String type = request.getParameter("type");
         String image = request.getParameter("image");
         String link = request.getParameter("link");
-        
+        songDao db = new songDao();
+        db.addSong(type, name, singer, image, link);
     }
 
     /**

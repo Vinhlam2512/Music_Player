@@ -206,17 +206,16 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Add Song Via Link</h6>
                                 </div>
                                 <div class="card-body">
-                                    <form action="add-music">
+                                    <form action="add-music" method="POST">
                                         <label for="name">Name of Song</label>
                                         <input type="text" class="form-control" id="name" name="name" placeholder="Input name of songs:">
                                         <label for="singer">Singer</label>
                                         <input type="text" class="form-control" id="singer" name="singer" placeholder="Input name of singer:">
-                                        <label for="type">Type: <select >
+                                        <label for="type">Type: <select name="type">
                                                 <c:forEach items="${list}" var="l">
                                                     <option value="${l.getId()}">${l.getName()}</option>
                                                 </c:forEach>
-                                            </select></label>
-                                        <input type="text" class="form-control" id="type" name="type" placeholder="Input type of song">
+                                            </select></label><br>
                                         <label for="image">Image</label>
                                         <input type="text" class="form-control" id="image" name="image" placeholder="Input link image:">
                                         <label for="link">Link audio</label>
