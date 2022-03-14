@@ -1,5 +1,9 @@
 
-<%@include file="admin/header.jsp" %>
+
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="./header.jsp" %>
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -9,7 +13,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="./dash-board">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -21,7 +25,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="./dash-board">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -46,8 +50,8 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                      data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="utilities-color.html">Add Music</a>
-                        <a class="collapse-item" href="utilities-other.html">Add Playlist</a>
+                        <a class="collapse-item" href="./add-music">Add Music</a>
+                        <a class="collapse-item" href="./add-playlist">Add Playlist</a>
                     </div>
                 </div>
             </li>
@@ -84,7 +88,7 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="./all-song">
                     <i class="fas fa-fw fa-table"></i>
                     <span>All Songs</span></a>
             </li>
@@ -283,24 +287,24 @@
                                     <h6 class="m-0 font-weight-bold text-primary">All Type Of Song</h6>
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="small font-weight-bold">Nh?c Vi?t Nam<span class="float-right">60%</span>
+                                    <h4 class="small font-weight-bold">Nhạc Việt Nam<span class="float-right">60%</span>
                                     </h4>
                                     <div class="progress mb-4">
                                         <div class="progress-bar bg-danger" role="progressbar" style="width: 60%"
                                              aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Nh?c �u M?<span class="float-right">20%</span>
+                                    <h4 class="small font-weight-bold">Nhạc Âu Mỹ<span class="float-right">20%</span>
                                     </h4>
                                     <div class="progress mb-4">
                                         <div class="progress-bar bg-warning" role="progressbar" style="width: 20%"
                                              aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Nh?c Hoa<span class="float-right">15%</span></h4>
+                                    <h4 class="small font-weight-bold">Nhạc Hoa<span class="float-right">15%</span></h4>
                                     <div class="progress mb-4">
                                         <div class="progress-bar" role="progressbar" style="width: 15%"
                                              aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Nh?c H�n Qu?c<span class="float-right">5%</span>
+                                    <h4 class="small font-weight-bold">Nhạc Hàn Quốc<span class="float-right">5%</span>
                                     </h4>
                                     <div class="progress mb-4">
                                         <div class="progress-bar bg-info" role="progressbar" style="width: 5%"
@@ -432,7 +436,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">�</span>
+                        <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>

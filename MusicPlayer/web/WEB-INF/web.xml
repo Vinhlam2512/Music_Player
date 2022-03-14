@@ -80,6 +80,18 @@
         <servlet-name>dashboardController</servlet-name>
         <servlet-class>controller.admin.dashboardController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>createMusicController</servlet-name>
+        <servlet-class>controller.admin.createMusicController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>createPlaylistController</servlet-name>
+        <servlet-class>controller.admin.createPlaylistController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>allSongController</servlet-name>
+        <servlet-class>controller.admin.allSongController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>discoverController</servlet-name>
         <url-pattern>/kham-pha</url-pattern>
@@ -146,7 +158,19 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>dashboardController</servlet-name>
-        <url-pattern>/dash-board</url-pattern>
+        <url-pattern>/admin/dash-board</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>createMusicController</servlet-name>
+        <url-pattern>/admin/add-music</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>createPlaylistController</servlet-name>
+        <url-pattern>/admin/add-playlist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>allSongController</servlet-name>
+        <url-pattern>/admin/all-song</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
