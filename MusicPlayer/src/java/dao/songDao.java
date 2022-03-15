@@ -27,13 +27,13 @@ public class songDao {
 
     public ArrayList<Song> getRandom10() {
         ArrayList<Song> list = new ArrayList<>();
-        String sql = "SELECT TOP 10 IdSong, Name, Singer, Image, Link FROM Song ORDER BY NEWID()";
+        String sql = "SELECT TOP 10 * FROM Song ORDER BY NEWID()";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Song song = new Song(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+                Song song = new Song(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
                 list.add(song);
             }
             return list;
@@ -45,14 +45,14 @@ public class songDao {
 
     public ArrayList<Song> getTop20VN(String idType) {
         ArrayList<Song> list = new ArrayList<>();
-        String sql = "select top 20 IdSong, Name, Singer,Image, Link from Song where IDType = ? ORDER BY NEWID()";
+        String sql = "select top 20 * from Song where IDType = ? ORDER BY NEWID()";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, idType);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Song song = new Song(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+                Song song = new Song(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
                 list.add(song);
             }
             return list;
@@ -94,14 +94,15 @@ public class songDao {
 
     public ArrayList<Song> searchByName(String search) {
         ArrayList<Song> list = new ArrayList<>();
-        String sql = "SELECT IdSong, Name, Singer, Image, Link FROM Song where Name like ?";
+        String sql = "SELECT * FROM Song where Name like ? or Singer like ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, "%" + search + "%");
+            ps.setString(2, "%" + search + "%");
             rs = ps.executeQuery();
             while (rs.next()) {
-                Song song = new Song(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+                Song song = new Song(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
                 list.add(song);
             }
             return list;
@@ -113,14 +114,14 @@ public class songDao {
 
     public ArrayList<Song> getAllSongOfSearch(String search) {
         ArrayList<Song> list = new ArrayList<>();
-        String sql = "SELECT IdSong, Name, Singer, Image, Link FROM Song where Name like ?";
+        String sql = "SELECT * Song where Name like ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, "%" + search + "%");
             rs = ps.executeQuery();
             while (rs.next()) {
-                Song song = new Song(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+                Song song = new Song(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
                 list.add(song);
             }
             return list;
@@ -132,14 +133,14 @@ public class songDao {
 
     public ArrayList<Song> getFavorSong(int idUser) {
         ArrayList<Song> list = new ArrayList<>();
-        String sql = "select s.IDSong, s.Name, s.Singer, s.Image, s.Link from song s left join FavorSong f on s.IDSong = f.IDSong where f.IDSong is not null and f.IDUser = ?";
+        String sql = "select s.* from song s left join FavorSong f on s.IDSong = f.IDSong where f.IDSong is not null and f.IDUser = ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setInt(1, idUser);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Song song = new Song(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+                Song song = new Song(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
                 list.add(song);
             }
             return list;
@@ -186,13 +187,13 @@ public class songDao {
 
     public ArrayList<Song> getAllSong() {
         ArrayList<Song> list = new ArrayList<>();
-        String sql = "select IdSong, Name, Singer,Image, Link from Song";
+        String sql = "select * from Song";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Song song = new Song(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5).trim());
+                Song song = new Song(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
                 list.add(song);
             }
             return list;
@@ -219,7 +220,7 @@ public class songDao {
 
     public ArrayList<Song> get10Song(int pageSize, int index) {
         ArrayList<Song> list = new ArrayList<Song>();
-        String sql = "Select IdSong, Name, Singer,Image, Link from (select ROW_NUMBER() over(order by IdSong) as id, *  from song ) as x where x.id between ?*? -(?-1) and ?*?";
+        String sql = "Select IDSong, IDType, Name, Singer, Image, Link from (select ROW_NUMBER() over(order by IdSong) as id, *  from song ) as x where x.id between ?*? -(?-1) and ?*?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
@@ -230,7 +231,7 @@ public class songDao {
             ps.setInt(5, index);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Song song = new Song(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5).trim());
+                Song song = new Song(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
                 list.add(song);
             }
 
@@ -266,5 +267,22 @@ public class songDao {
     public static void main(String[] args) {
         songDao db = new songDao();
         db.addSong("1", "Nụ Cười Em Là Nắng", "Nụ Cười Em Là Nắng", "Nụ Cười Em Là Nắng", "Nụ Cười Em Là Nắng");
+    }
+
+    public ArrayList<Song> getSongById(String id) {
+        ArrayList<Song> list = new ArrayList<Song>();
+        String sql = "select * from Song where id = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, id);
+            if (rs.next()) {
+                Song song = new Song(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+                list.add(song);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(userDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
     }
 }

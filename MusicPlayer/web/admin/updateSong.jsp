@@ -2,15 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="./header.jsp" %>
-<style>
-    #dataTable tr td{
-        white-space: nowrap; overflow: hidden !important; text-overflow: ellipsis;
-    }
-    #dataTable tr button{
-        background-color: transparent;
-        border: none;
-    }
-</style>
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -59,6 +50,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="./add-music">Add Music</a>
                         <a class="collapse-item" href="./add-playlist">Add Playlist</a>
+                        <a class="collapse-item" href="./update-song">Update Music</a>
                     </div>
                 </div>
             </li>
@@ -197,52 +189,77 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                                                                                   href="https://datatables.net">official DataTables documentation</a>.</p>
+                    <h1 class="h3 mb-1 text-gray-800">Color Utilities</h1>
+                    <p class="mb-4">Bootstrap's default utility classes can be found on the official <a
+                            href="https://getbootstrap.com/docs">Bootstrap Documentation</a> page. The custom utilities
+                        below were created to extend this theme past the default utility classes built into Bootstrap's
+                        framework.</p>
 
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-                        </div>
-                        <div style="padding: 0.75rem 1.25rem">
-                            <label>Search:<input oninput="searchSong(this)" style="width: 400px;" type="text" class="form-control form-control-sm"></label>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <tr class="text-center">
-                                        <th style=" width: 25%">Name</th>
-                                        <th style=" width: 25%">Singer</th>
-                                        <th style=" width: 15%">Image</th>
-                                        <th style=" width: 5%">Song</th>
-                                        <th style=" width: 25%">Options</th>
-                                        <th style=" width: 5%"></th>
-                                    </tr>
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- First Column -->
+                        <div class="col-lg-6">
+
+                            <!-- Custom Text Color Utilities -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Update Song</h6>
+                                </div>
+                                <div class="card-body">
                                     <c:forEach items="${list}" var="l">
-                                        <tr class="text-center">
-                                            <td>${l.getName()}</td>
-                                            <td>${l.getSinger()}</td>
-                                            <td><img src="${l.getImage()}" style="width: 100px; height: 100px"></td>
-                                            <td><button onclick="preview(this.getAttribute('data-src'))" data-src="${l.getLink()}">Preview</button>
-                                            </td>
-                                            <th><button onclick="update(${l.getId()})">Update</button><button>Delete</button></th>
-                                            <th><button>Add</button></th>
-                                        </tr>
+                                        <form action="add-music" method="POST">
+                                            <label for="name">Name of Song</label>
+                                            <input type="text" class="form-control" id="name" name="name" placeholder="Input name of songs:" value="${l.getName()}">
+                                            <label for="singer">Singer</label>
+                                            <input type="text" class="form-control" id="singer" name="singer" placeholder="Input name of singer:" value="${l.getSinger()}">
+                                            <label for="type">Type: <select name="type">
+                                                    <c:forEach items="${listType}" var="listType">
+                                                        <option ${listType.getId() == l.getIdType() ? 'selected' : ''} value="${listType.getId()}">${listType.getName()}</option>
+                                                    </c:forEach>
+                                                </select></label><br>
+                                            <label for="image">Image</label>
+                                            <input type="text" class="form-control" id="image" name="image" placeholder="Input link image:" value="${l.getImage()}">
+                                            <label for="link">Link audio</label>
+                                            <input type="text" class="form-control" id="link" name="link" placeholder="Input link audio:" value="${l.getlink()}">
+                                            <input type="submit" class="btn btn-primary" value="UPDATE">
+                                        </form>
                                     </c:forEach>
-                                    <audio src=""></audio>
-                                </table>
+                                </div>
                             </div>
-                            <nav aria-label="Page navigation example" id="paginaton">
-                                <ul class="pagination">
-                                    <c:forEach begin="1" end="${pageNumber}" var="i">
-                                        <li class="page-item"><a class="page-link" href="all-song?index=${i}" style="${i == index ? "background-color: red" : ""}">${i}</a></li>
-                                        </c:forEach>
-                                </ul>
-                            </nav>
+
                         </div>
+
+                        <!-- Second Column -->
+                        <div class="col-lg-6">
+
+                            <!-- Background Gradient Utilities -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Add Song Via File
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <form action="">
+                                        <label for="name">Name of Song</label>
+                                        <input disabled type="text" class="form-control" id="name" name="name"
+                                               placeholder="Input name of songs:">
+                                        <label for="singer">Singer</label>
+                                        <input disabled type="text" class="form-control" id="singer" name="singer"
+                                               placeholder="Input name of singer:">
+                                        <label for="image">Image</label>
+                                        <input disabled type="file" class="form-control" id="image" name="image"
+                                               placeholder="Input link image:">
+                                        <label for="link">Link audio</label>
+                                        <input disabled type="file" class="form-control" id="link" name="link"
+                                               placeholder="Input link audio:">
+                                        <input disabled type="submit" class="btn btn-primary" value="ADD">
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+
                     </div>
 
                 </div>
@@ -301,69 +318,6 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
-    <script>
-                                                var audio = document.querySelector('audio');
-                                                function preview(src) {
-                                                    console.log('Preview');
-                                                    audio.setAttribute('src', src);
-                                                    audio.play();
-                                                    setTimeout(function () {
-                                                        audio.pause();
-                                                    }, 20000);
-                                                }
-    </script>
-    <script>
-        function searchSong(e) {
-            $.ajax({
-                type: 'GET',
-                url: "./searchAjax",
-                data: {
-                    search: e.value,
-                },
-                success: function (resultData) {
-                    if (e.value != '') {
-                        $('#dataTable').html(resultData);
-                        $('#paginaton').css('display', 'none');
-                    }else{
-                        $('#dataTable').html(`<tr class="text-center">
-                                        <th style=" width: 25%">Name</th>
-                                        <th style=" width: 25%">Singer</th>
-                                        <th style=" width: 15%">Image</th>
-                                        <th style=" width: 5%">Song</th>
-                                        <th style=" width: 25%">Options</th>
-                                        <th style=" width: 5%"></th>
-                                    </tr>
-                                    <c:forEach items="${list}" var="l">
-                                        <tr class="text-center">
-                                            <td>${l.getName()}</td>
-                                            <td>${l.getSinger()}</td>
-                                            <td><img src="${l.getImage()}" style="width: 100px; height: 100px"></td>
-                                            <td><button onclick="preview(this.getAttribute('data-src'))" data-src="${l.getLink()}">Preview</button>
-                                            </td>
-                                            <th><button onclick="update()">Update</button><button>Delete</button></th>
-                                            <th><button>Add</button></th>
-                                        </tr>
-                                    </c:forEach>
-                                    <audio src=""></audio>`);
-                            $('#paginaton').css('display', 'block');
-                    }
-                    console.log("search Complete");
-                }
-            });
-        }
-    </script>
-    <<script>
-        function update(id){
-            window.location.href='./update-song?id=' +id;
-        }
-    </script>
 
 </body>
 

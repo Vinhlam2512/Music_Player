@@ -5,19 +5,21 @@
  */
 package controller.admin;
 
-import dao.playListDao;
+import dao.songDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Song;
 
 /**
  *
  * @author VINH
  */
-public class createPlaylistController extends HttpServlet {
+public class searchAjax extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,16 +32,15 @@ public class createPlaylistController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet createPlaylistController</title>");            
+            out.println("<title>Servlet searchAjax</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet createPlaylistController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet searchAjax at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,7 +58,31 @@ public class createPlaylistController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("createPlaylist.jsp").forward(request, response);
+        String search = request.getParameter("search");
+        songDao db = new songDao();
+        ArrayList<Song> list = db.searchByName(search);
+        PrintWriter out = response.getWriter();
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        out.println(" <tr class=\"text-center\">\n"
+                + "                                        <th style=\" width: 25%\">Name</th>\n"
+                + "                                        <th style=\" width: 25%\">Singer</th>\n"
+                + "                                        <th style=\" width: 15%\">Image</th>\n"
+                + "                                        <th style=\" width: 5%\">Song</th>\n"
+                + "                                        <th style=\" width: 25%\">Options</th>\n"
+                + "                                        <th style=\" width: 5%\"></th>\n"
+                + "                                    </tr>");
+        for (Song s : list) {
+            out.println("<tr class=\"text-center\">\n"
+                    + "                                            <td>" + s.getName() + "</td>\n"
+                    + "                                            <td>" + s.getSinger() + "</td>\n"
+                    + "                                            <td><img src=\"" + s.getImage() + "\" style=\"width: 100px; height: 100px\"></td>\n"
+                    + "                                            <td><button onclick=\"preview(this.getAttribute('data-src'))\" data-src=\"" + s.getLink() + "\">Preview</button>\n"
+                    + "                                            </td>\n"
+                    + "                                            <th><button onclick=\"update()\">Update</button><button>Delete</button></th>\n"
+                    + "                                            <th><button>Add</button></th>\n"
+                    + "                                        </tr>");
+        }
     }
 
     /**
@@ -71,10 +96,7 @@ public class createPlaylistController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String name = request.getParameter("name");
-        String image = request.getParameter("image");
-        playListDao db = new playListDao();
-        db.addPlaylist(name, image);
+
     }
 
     /**

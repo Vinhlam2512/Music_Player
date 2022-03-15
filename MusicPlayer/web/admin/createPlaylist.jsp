@@ -125,17 +125,17 @@
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
                             <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
+                                 aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
                                         <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
+                                               placeholder="Search for..." aria-label="Search"
+                                               aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -152,13 +152,13 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
@@ -203,16 +203,17 @@
                             <!-- Custom Text Color Utilities -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Custom Text Color Utilities</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Add Playlist Via Link</h6>
                                 </div>
+                                
                                 <div class="card-body">
-                                     <form action="">
+                                    <form action="">
                                         <label for="name">Name of Playlist</label>
                                         <input type="text" class="form-control" id="name" name="name"
-                                            placeholder="Input name of playplist:">
+                                               placeholder="Input name of playplist:">
                                         <label for="image">Image</label>
                                         <input type="text" class="form-control" id="image" name="image"
-                                            placeholder="Input link image:">
+                                               placeholder="Input link image:">
                                         <input type="submit" class="btn btn-primary" value="ADD">
                                     </form>
                                 </div>
@@ -226,24 +227,18 @@
                             <!-- Background Gradient Utilities -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Custom Background Gradient Utilities
+                                    <h6 class="m-0 font-weight-bold text-primary">Add Playlist Via File
                                     </h6>
                                 </div>
                                 <div class="card-body">
                                     <form action="">
-                                        <label for="name">Name of Song</label>
-                                        <input disabled type="text" class="form-control" id="name" name="name"
-                                            placeholder="Input name of songs:">
-                                        <label for="singer">Singer</label>
-                                        <input disabled type="text" class="form-control" id="singer" name="singer"
-                                            placeholder="Input name of singer:">
+                                        <label for="name">Name of Playlist</label>
+                                        <input type="text" class="form-control" id="name" name="name"
+                                               placeholder="Input name of playplist:">
                                         <label for="image">Image</label>
-                                        <input disabled type="file" class="form-control" id="image" name="image"
-                                            placeholder="Input link image:">
-                                        <label for="link">Link audio</label>
-                                        <input disabled type="file" class="form-control" id="link" name="link"
-                                            placeholder="Input link audio:">
-                                        <input disabled type="submit" class="btn btn-primary" value="ADD">
+                                        <input type="text" class="form-control" id="image" name="image"
+                                               placeholder="Input link image:">
+                                        <input type="submit" class="btn btn-primary" value="ADD">
                                     </form>
                                 </div>
                             </div>
@@ -281,7 +276,7 @@
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

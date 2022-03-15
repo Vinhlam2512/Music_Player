@@ -92,6 +92,14 @@
         <servlet-name>allSongController</servlet-name>
         <servlet-class>controller.admin.allSongController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>searchAjax</servlet-name>
+        <servlet-class>controller.admin.searchAjax</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateSongsController</servlet-name>
+        <servlet-class>controller.admin.updateSongsController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>discoverController</servlet-name>
         <url-pattern>/kham-pha</url-pattern>
@@ -171,6 +179,14 @@
     <servlet-mapping>
         <servlet-name>allSongController</servlet-name>
         <url-pattern>/admin/all-song</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>searchAjax</servlet-name>
+        <url-pattern>/admin/searchAjax</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateSongsController</servlet-name>
+        <url-pattern>/admin/update-song</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

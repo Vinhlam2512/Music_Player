@@ -50,6 +50,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="./add-music">Add Music</a>
                         <a class="collapse-item" href="./add-playlist">Add Playlist</a>
+                        <a class="collapse-item" href="./update-song">Update Music</a>
                     </div>
                 </div>
             </li>
@@ -219,7 +220,8 @@
                                         <label for="image">Image</label>
                                         <input type="text" class="form-control" id="image" name="image" placeholder="Input link image:">
                                         <label for="link">Link audio</label>
-                                        <input type="text" class="form-control" id="link" name="link" placeholder="Input link audio:">                                        <input type="submit" class="btn btn-primary" value="ADD">
+                                        <input type="text" class="form-control" id="link" name="link" placeholder="Input link audio:">
+                                        <input type="submit" class="btn btn-primary" value="ADD">
                                     </form>
                                 </div>
                             </div>

@@ -5,19 +5,23 @@
  */
 package controller.admin;
 
-import dao.playListDao;
+import dao.songDao;
+import dao.typeDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Song;
+import model.Type;
 
 /**
  *
  * @author VINH
  */
-public class createPlaylistController extends HttpServlet {
+public class updateSongsController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +40,10 @@ public class createPlaylistController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet createPlaylistController</title>");            
+            out.println("<title>Servlet updateSongsController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet createPlaylistController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet updateSongsController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,7 +61,14 @@ public class createPlaylistController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("createPlaylist.jsp").forward(request, response);
+        String id = request.getParameter("id");
+        typeDao db = new typeDao();
+        ArrayList<Type> listType = db.getAllType();
+        songDao song = new songDao();
+        ArrayList<Song> list = song.getSongById(id);
+        request.setAttribute("list", list);
+        request.setAttribute("listType", listType);
+        request.getRequestDispatcher("updateSong.jsp").forward(request, response);
     }
 
     /**
@@ -71,10 +82,7 @@ public class createPlaylistController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String name = request.getParameter("name");
-        String image = request.getParameter("image");
-        playListDao db = new playListDao();
-        db.addPlaylist(name, image);
+        processRequest(request, response);
     }
 
     /**
