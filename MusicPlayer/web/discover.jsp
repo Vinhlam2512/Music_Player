@@ -223,7 +223,7 @@
                                         <a href="">
                                             <img src="${pl1.getLink()}" alt="">
                                         </a>
-                                        <div class="song_modal">
+                                        <div onclick="loadSongPlaylist(${pl1.getId()})" class="song_modal">
                                             <svg class="song_modal-play" height="512" viewBox="0 0 128 128" width="512"
                                                  xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -235,7 +235,7 @@
                                     </div>
                                     <div class="song_des">
                                         <div class="song_des-title">
-                                            <a href="">
+                                            <a href="play-list/all-song?idPlaylist=${pl1.getId()}">
                                                 <span>${pl1.getName()}</span>
                                             </a>
                                         </div>
@@ -248,126 +248,31 @@
                         <p class="text-center fs-2" style="font-weight: 700;">Play List Nổi Bật</p>
                         <div class="container">
                             <div class="row row-cols-xl-5 mt-5">
-                                <div class="col content_song-list  mb-5">
-                                    <div class="song_image">
-                                        <a href="">
-                                            <img src="https://photo-resize-zmp3.zadn.vn/w320_r1x1_webp/cover/b/c/e/5/bce5608f53f03a26db4c4e6e8372812b.jpg"
-                                                 alt="">
-                                        </a>
-                                        <div class="song_modal">
-                                            <svg class="song_modal-play" height="512" viewBox="0 0 128 128" width="512"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="m64 17.249a46.75 46.75 0 1 0 46.751 46.751 46.8 46.8 0 0 0 -46.751-46.751zm0 90a43.25 43.25 0 1 1 43.251-43.249 43.3 43.3 0 0 1 -43.251 43.249z" />
-                                            <path
-                                                d="m87.1 60.582-31.786-18.353a3.945 3.945 0 0 0 -5.914 3.417v36.706a3.937 3.937 0 0 0 5.918 3.417l31.782-18.354a3.946 3.946 0 0 0 0-6.833zm-1.75 3.8-31.785 18.355a.446.446 0 0 1 -.668-.385v-36.706a.425.425 0 0 1 .223-.386.448.448 0 0 1 .223-.064.438.438 0 0 1 .222.064l31.789 18.353a.446.446 0 0 1 0 .771z" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div class="song_des">
-                                        <div class="song_des-title">
+                                <c:forEach items="${playLists2}" var="pl2">
+                                    <div class="col content_song-list  mb-5">
+                                        <div class="song_image">
                                             <a href="">
-                                                <span>V-Pop Tháng 3</span>
+                                                <img src="${pl2.getLink()}" alt="">
                                             </a>
+                                            <div onclick="loadSongPlaylist(${pl2.getId()})" class="song_modal">
+                                                <svg class="song_modal-play" height="512" viewBox="0 0 128 128" width="512"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="m64 17.249a46.75 46.75 0 1 0 46.751 46.751 46.8 46.8 0 0 0 -46.751-46.751zm0 90a43.25 43.25 0 1 1 43.251-43.249 43.3 43.3 0 0 1 -43.251 43.249z" />
+                                                <path
+                                                    d="m87.1 60.582-31.786-18.353a3.945 3.945 0 0 0 -5.914 3.417v36.706a3.937 3.937 0 0 0 5.918 3.417l31.782-18.354a3.946 3.946 0 0 0 0-6.833zm-1.75 3.8-31.785 18.355a.446.446 0 0 1 -.668-.385v-36.706a.425.425 0 0 1 .223-.386.448.448 0 0 1 .223-.064.438.438 0 0 1 .222.064l31.789 18.353a.446.446 0 0 1 0 .771z" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="song_des">
+                                            <div class="song_des-title">
+                                                <a href="play-list/all-song?idPlaylist=${pl2.getId()}">
+                                                    <span>${pl2.getName()}</span>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col content_song-list  mb-5">
-                                    <div class="song_image">
-                                        <a href="">
-                                            <img src="	https://photo-resize-zmp3.zadn.vn/w320_r1x1_webp/cover/b/6/0/5/b60587151852850f6ccaca47932eee50.jpg"
-                                                 alt="">
-                                        </a>
-                                        <div class="song_modal">
-                                            <svg class="song_modal-play" height="512" viewBox="0 0 128 128" width="512"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="m64 17.249a46.75 46.75 0 1 0 46.751 46.751 46.8 46.8 0 0 0 -46.751-46.751zm0 90a43.25 43.25 0 1 1 43.251-43.249 43.3 43.3 0 0 1 -43.251 43.249z" />
-                                            <path
-                                                d="m87.1 60.582-31.786-18.353a3.945 3.945 0 0 0 -5.914 3.417v36.706a3.937 3.937 0 0 0 5.918 3.417l31.782-18.354a3.946 3.946 0 0 0 0-6.833zm-1.75 3.8-31.785 18.355a.446.446 0 0 1 -.668-.385v-36.706a.425.425 0 0 1 .223-.386.448.448 0 0 1 .223-.064.438.438 0 0 1 .222.064l31.789 18.353a.446.446 0 0 1 0 .771z" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div class="song_des">
-                                        <div class="song_des-title">
-                                            <a href="">
-                                                <span>US-UK Tháng 3</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col content_song-list  mb-5">
-                                    <div class="song_image">
-                                        <a href="">
-                                            <img src="	https://photo-resize-zmp3.zadn.vn/w320_r1x1_webp/cover/1/2/f/f/12ff46b19408e567c4d753dad7f3c20b.jpg"
-                                                 alt="">
-                                        </a>
-                                        <div class="song_modal">
-                                            <svg class="song_modal-play" height="512" viewBox="0 0 128 128" width="512"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="m64 17.249a46.75 46.75 0 1 0 46.751 46.751 46.8 46.8 0 0 0 -46.751-46.751zm0 90a43.25 43.25 0 1 1 43.251-43.249 43.3 43.3 0 0 1 -43.251 43.249z" />
-                                            <path
-                                                d="m87.1 60.582-31.786-18.353a3.945 3.945 0 0 0 -5.914 3.417v36.706a3.937 3.937 0 0 0 5.918 3.417l31.782-18.354a3.946 3.946 0 0 0 0-6.833zm-1.75 3.8-31.785 18.355a.446.446 0 0 1 -.668-.385v-36.706a.425.425 0 0 1 .223-.386.448.448 0 0 1 .223-.064.438.438 0 0 1 .222.064l31.789 18.353a.446.446 0 0 1 0 .771z" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div class="song_des">
-                                        <div class="song_des-title">
-                                            <a href="">
-                                                <span>C-Pop Tháng 3</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col content_song-list  mb-5">
-                                    <div class="song_image">
-                                        <a href="">
-                                            <img src="https://photo-resize-zmp3.zadn.vn/w320_r1x1_webp/cover/d/1/6/0/d160b50784baf05665d0b25fbf39200e.jpg"
-                                                 alt="">
-                                        </a>
-                                        <div class="song_modal">
-                                            <svg class="song_modal-play" height="512" viewBox="0 0 128 128" width="512"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="m64 17.249a46.75 46.75 0 1 0 46.751 46.751 46.8 46.8 0 0 0 -46.751-46.751zm0 90a43.25 43.25 0 1 1 43.251-43.249 43.3 43.3 0 0 1 -43.251 43.249z" />
-                                            <path
-                                                d="m87.1 60.582-31.786-18.353a3.945 3.945 0 0 0 -5.914 3.417v36.706a3.937 3.937 0 0 0 5.918 3.417l31.782-18.354a3.946 3.946 0 0 0 0-6.833zm-1.75 3.8-31.785 18.355a.446.446 0 0 1 -.668-.385v-36.706a.425.425 0 0 1 .223-.386.448.448 0 0 1 .223-.064.438.438 0 0 1 .222.064l31.789 18.353a.446.446 0 0 1 0 .771z" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div class="song_des">
-                                        <div class="song_des-title">
-                                            <a href="">
-                                                <span>Những Bài Hát Hay Nhất Của Ngô Kiến Huy</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col content_song-list  mb-5">
-                                    <div class="song_image">
-                                        <a href="">
-                                            <img src="https://photo-resize-zmp3.zadn.vn/w320_r1x1_webp/cover/5/b/2/9/5b29641d33e2f951d1be311669653e9f.jpg"
-                                                 alt="">
-                                        </a>
-                                        <div class="song_modal">
-                                            <svg class="song_modal-play" height="512" viewBox="0 0 128 128" width="512"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="m64 17.249a46.75 46.75 0 1 0 46.751 46.751 46.8 46.8 0 0 0 -46.751-46.751zm0 90a43.25 43.25 0 1 1 43.251-43.249 43.3 43.3 0 0 1 -43.251 43.249z" />
-                                            <path
-                                                d="m87.1 60.582-31.786-18.353a3.945 3.945 0 0 0 -5.914 3.417v36.706a3.937 3.937 0 0 0 5.918 3.417l31.782-18.354a3.946 3.946 0 0 0 0-6.833zm-1.75 3.8-31.785 18.355a.446.446 0 0 1 -.668-.385v-36.706a.425.425 0 0 1 .223-.386.448.448 0 0 1 .223-.064.438.438 0 0 1 .222.064l31.789 18.353a.446.446 0 0 1 0 .771z" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div class="song_des">
-                                        <div class="song_des-title">
-                                            <a href="">
-                                                <span>Top Hits V-Pop</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                                </c:forEach>
                             </div>
                         </div>
                     </div>
@@ -424,6 +329,11 @@
                     console.log("update Complete");
                 }
             })
+        }
+    </script>
+    <script>
+        function loadSongPlaylist(id) {
+            window.location = 'play-list/all-song?idPlaylist=' + id;
         }
     </script>
 </html>

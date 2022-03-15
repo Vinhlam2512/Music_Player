@@ -5,14 +5,19 @@
  */
 package controller.user;
 
+import dao.playListDao;
+import dao.songDao;
 import dao.userDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.PlayList;
+import model.Song;
 import model.User;
 
 /**
@@ -78,7 +83,13 @@ public class loginController extends HttpServlet {
         HttpSession session = request.getSession();
         boolean isLogin = true;
         userDao db = new userDao();
+        songDao sogDb = new songDao();
+        playListDao plDb = new playListDao();
         User user = db.getUser(email, password);
+        ArrayList listIdFavorSong = sogDb.getIdFavorSong(user.getId());
+        ArrayList listIdPlaylist = plDb.getIdPlaylist(user.getId());
+        session.setAttribute("listIdFavorSong", listIdFavorSong);
+        session.setAttribute("listIdPlaylist", listIdPlaylist);
         session.setAttribute("isLogin", isLogin);
         session.setAttribute("fullName", user.getFullName());
         session.setAttribute("idUser", user.getId());

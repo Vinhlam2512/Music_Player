@@ -15,9 +15,9 @@
         <script src="https://kit.fontawesome.com/b758da46dd.js" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <link rel="stylesheet" href="./assets/css/base.css">
         <link rel="stylesheet" href="./assets/css/overview.css">
-        <link rel="stylesheet" href="./assets/css/search.css">
+        <link rel="stylesheet" href="./assets/css/base.css">
+        <link rel="stylesheet" href="./assets/css/playList.css">
     </head>
     <body>
         <div class="header">
@@ -107,7 +107,7 @@
                     <div class="search_type d-flex justify-content-between align-items-center">
                         <div class="search_type-des"><span class="fs-2">Bài Hát</span></div>
                     </div>
-                    <c:forEach items="${list}" var="l">
+                    <c:forEach items="${listSongs}" var="l">
                         <div class="chart_content-song">
                             <div class="content_song" data-id="${l.getId()}">
                                 <div class="left d-flex justify-content-center align-items-center">
@@ -174,37 +174,35 @@
                         </div>
                     </div>
                     <div class="row row-cols-5">
-                        <div class="col playList-content  mb-5">
-                            <div class="plasy-list-thumbnail">
-                                <a href="">
-                                    <img src="https://photo-resize-zmp3.zadn.vn/w240_r1x1_webp/cover/6/3/0/d/630d20b0a79917e1545b4e2ada081040.jpg"
-                                         alt="">
-                                </a>
-                                <div class="plasy-list-modal">
-                                    <a href="" style="height: 100%;width: 100%;display: flex;align-items: center;">
-                                        <svg class="plasy-list-modal-play" fill="white" height="512"
-                                             viewBox="0 0 128 128" width="512" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="m64 17.249a46.75 46.75 0 1 0 46.751 46.751 46.8 46.8 0 0 0 -46.751-46.751zm0 90a43.25 43.25 0 1 1 43.251-43.249 43.3 43.3 0 0 1 -43.251 43.249z">
-                                        </path>
-                                        <path
-                                            d="m87.1 60.582-31.786-18.353a3.945 3.945 0 0 0 -5.914 3.417v36.706a3.937 3.937 0 0 0 5.918 3.417l31.782-18.354a3.946 3.946 0 0 0 0-6.833zm-1.75 3.8-31.785 18.355a.446.446 0 0 1 -.668-.385v-36.706a.425.425 0 0 1 .223-.386.448.448 0 0 1 .223-.064.438.438 0 0 1 .222.064l31.789 18.353a.446.446 0 0 1 0 .771z">
-                                        </path>
-                                        </svg>
+                        <c:forEach items="${listPlaylist}" var="l">
+                            <div class="col playList-content  mb-5">
+                                <div class="play-list-thumbnail">
+                                    <a href="">
+                                        <img src="${l.getLink()}" alt="">
                                     </a>
+                                    <div class="play-list-modal">
+                                        <a href="play-list/all-song?idPlaylist=${l.getId()}" style="height: 100%;width: 100%;display: flex;align-items: center;">
+                                            <svg class="play-list-modal-play" fill="white" height="512"
+                                                 viewBox="0 0 128 128" width="512" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="m64 17.249a46.75 46.75 0 1 0 46.751 46.751 46.8 46.8 0 0 0 -46.751-46.751zm0 90a43.25 43.25 0 1 1 43.251-43.249 43.3 43.3 0 0 1 -43.251 43.249z">
+                                            </path>
+                                            <path
+                                                d="m87.1 60.582-31.786-18.353a3.945 3.945 0 0 0 -5.914 3.417v36.706a3.937 3.937 0 0 0 5.918 3.417l31.782-18.354a3.946 3.946 0 0 0 0-6.833zm-1.75 3.8-31.785 18.355a.446.446 0 0 1 -.668-.385v-36.706a.425.425 0 0 1 .223-.386.448.448 0 0 1 .223-.064.438.438 0 0 1 .222.064l31.789 18.353a.446.446 0 0 1 0 .771z">
+                                            </path>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="play-list-des">
+                                    <div class="play-list-title">
+                                        <a href="play-list/all-song?idPlaylist=${l.getId()}" class="text-decoration-none">
+                                            <span>${l.getName()}</span>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="plasy-list-des">
-                                <div class="plasy-list-title">
-                                    <a href="" class="text-decoration-none">
-                                        <span>Nhạc HOT 2019</span>
-                                    </a>
-                                </div>
-                                <div class="plasy-list-owner">
-                                    <span>Khắc Việt</span>
-                                </div>
-                            </div>
-                        </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
@@ -217,13 +215,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./assets/js/app.js"></script>
     <script>
-                                        $(".search_header li ").click(function () {
-                                            if ($(this).hasClass("active-search")) {
-                                                $(".search_header li").removeClass("active-search");
-                                            } else {
-                                                $(".search_header li").removeClass("active-search");
-                                                $(this).addClass("active-search");
-                                            }
-                                        });
+                                            $(".search_header li ").click(function () {
+                                                if ($(this).hasClass("active-search")) {
+                                                    $(".search_header li").removeClass("active-search");
+                                                } else {
+                                                    $(".search_header li").removeClass("active-search");
+                                                    $(this).addClass("active-search");
+                                                }
+                                            });
     </script>
 </html>

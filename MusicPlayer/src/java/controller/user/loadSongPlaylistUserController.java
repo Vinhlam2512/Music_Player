@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.PlayList;
 import model.Song;
 
@@ -60,8 +61,9 @@ public class loadSongPlaylistUserController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String idPlaylist = request.getParameter("idPlaylist");
-        String idUser = request.getParameter("idUser");
+        String idUser = session.getAttribute("idUser").toString();
         playListDao db = new playListDao();
         ArrayList<Song> listSong = db.getSongPlaylistUser(idPlaylist, idUser);
         PlayList playlist = db.getPlaylist(idPlaylist);

@@ -49,7 +49,7 @@
                     </li>
                 </ul>
                 <div class="d-flex">
-                    <form class="d-flex" action="tim-kiem" method="GET">
+                    <form class="d-flex" action="../tim-kiem" method="GET">
                         <input class="form-control me-2" type="search" name="search"
                                placeholder="Nhập Tên ca sĩ, bài hát hoặc MV..." aria-label="Search">
                             <button class="btn btn-outline-success" type="submit">Tìm Kiếm</button>

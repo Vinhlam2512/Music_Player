@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="../assets/css/base.css">
         <link rel="stylesheet" href="../personal/basePersonal.css">
         <link href="../assets/css/allSongPlayList.css" rel="stylesheet" type="text/css"/>
-        
+
     </head>
     <body>
         <div class="app">
@@ -158,7 +158,7 @@
                         <div class="list mt-3" id="list">
                             <c:forEach items="${listSong}" var="l">
                                 <div class="chart_content-song">
-                                    <div class="content_song" data-id="">
+                                    <div class="content_song" data-id="${l.getId()}">
                                         <div class="left d-flex justify-content-center align-items-center">
                                             <div class="song_image">
                                                 <a href="#">

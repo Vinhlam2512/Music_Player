@@ -5,6 +5,7 @@
  */
 package controller.user;
 
+import dao.playListDao;
 import dao.songDao;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.PlayList;
 import model.Song;
 
 /**
@@ -61,9 +63,12 @@ public class searchController extends HttpServlet {
             throws ServletException, IOException {
         String search = request.getParameter("search");
         songDao db = new songDao();
-        ArrayList<Song> list = db.searchByName(search);
-        request.setAttribute("list", list);
+        playListDao pListDao = new playListDao();
+        ArrayList<Song> listSongs = db.searchByName(search);
+        ArrayList<PlayList> listPlaylist = pListDao.searchByName(search);
+        request.setAttribute("listSongs", listSongs);
         request.setAttribute("search", search);
+        request.setAttribute("listPlaylist", listPlaylist);
         request.getRequestDispatcher("search.jsp").forward(request, response);
     }
 

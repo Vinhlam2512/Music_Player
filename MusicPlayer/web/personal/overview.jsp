@@ -90,7 +90,7 @@
                         <div class="list mt-3" id="list">
                             <c:forEach items="${listFavorSong}" var="s">
                                 <div class="chart_content-song">
-                                    <div class="content_song" data-id="${s.getId()}">
+                                    <div class="content_song" data-id="${s.getId()}" onclick="heartTrigger(${s.getId()})">
                                         <div class="left d-flex justify-content-center align-items-center">
                                             <div class="song_image">
                                                 <a href="#">
@@ -129,15 +129,15 @@
 
                                     </div>
                                     <div class="right me-5 position-relative" style="width: 3%;">
-                                        <button id="add" style="">
-                                            <svg onclick="updateSong('insert',${l.getId()})" id="unliked" style="height: 38px; width: 38px; display: none"
+                                        <button id='' style="${isLogin ? "" : "display:none"}" >
+                                            <svg onclick="updateSong('insert', ${s.getId()})" class="unliked" id="unliked" data-id="${s.getId()}"  style="height: 38px; width: 38px; ${listIdFavorSong.contains(s.getId()) ? "display: none" : ""}"
                                                  fill="white" height="480pt" viewBox="0 -20 480 480" width="480pt"
                                                  xmlns="http://www.w3.org/2000/svg">
                                             <path
                                                 d="m348 0c-43 .0664062-83.28125 21.039062-108 56.222656-24.71875-35.183594-65-56.1562498-108-56.222656-70.320312 0-132 65.425781-132 140 0 72.679688 41.039062 147.535156 118.6875 216.480469 35.976562 31.882812 75.441406 59.597656 117.640625 82.625 2.304687 1.1875 5.039063 1.1875 7.34375 0 42.183594-23.027344 81.636719-50.746094 117.601563-82.625 77.6875-68.945313 118.726562-143.800781 118.726562-216.480469 0-74.574219-61.679688-140-132-140zm-108 422.902344c-29.382812-16.214844-224-129.496094-224-282.902344 0-66.054688 54.199219-124 116-124 41.867188.074219 80.460938 22.660156 101.03125 59.128906 1.539062 2.351563 4.160156 3.765625 6.96875 3.765625s5.429688-1.414062 6.96875-3.765625c20.570312-36.46875 59.164062-59.054687 101.03125-59.128906 61.800781 0 116 57.945312 116 124 0 153.40625-194.617188 266.6875-224 282.902344zm0 0">
                                             </path>
                                             </svg>
-                                            <svg onclick="updateSong('delete',${l.getId()})" id="liked" style="height: 38px; width: 38px; "
+                                            <svg onclick="updateSong('delete', ${s.getId()})" class="liked" id="liked" data-id="${s.getId()}" style="height: 38px; width: 38px;${listIdFavorSong.contains(s.getId()) ? " " : "display: none"}"
                                                  fill="ping" height="480pt" viewBox="0 0 512 512" width="480pt"
                                                  xmlns="http://www.w3.org/2000/svg" data-name="Layer 1">
                                             <path
@@ -250,20 +250,28 @@
     <script src="../assets/js/like.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-                                                function updateSong(type, idSong) {
-                                                    $.ajax({
-                                                        type: 'POST',
-                                                        url: "../update-song",
-                                                        data: {
-                                                            idSong: idSong,
-                                                            idUser: ${idUser},
-                                                            type: type
-                                                        },
-                                                        success: function (resultData) {
-                                                            console.log("Update Song Complete");
-                                                        }
-                                                    })
-                                                }
+                                                    function updateSong(type, idSong) {
+                                                        $.ajax({
+                                                            type: 'POST',
+                                                            url: "../update-song",
+                                                            data: {
+                                                                idSong: idSong,
+                                                                idUser: ${idUser},
+                                                                type: type
+                                                            },
+                                                            success: function (resultData) {
+                                                                if (type === 'insert') {
+                                                                    likeBtn.style.display = 'block';
+                                                                    unlikeBtn.style.display = 'none';
+
+                                                                } else {
+                                                                    likeBtn.style.display = 'none';
+                                                                    unlikeBtn.style.display = 'block';
+                                                                }
+                                                                console.log("update Complete");
+                                                            }
+                                                        })
+                                                    }
     </script>
     <script>
         function updatePlaylist(type, idPlaylist) {
@@ -279,6 +287,31 @@
                     console.log("Update Playlist Complete");
                 }
             })
+        }
+    </script>
+    <script>
+        var arr = ${listIdFavorSong};
+        function heartTrigger(id) {
+            if (arr.includes(id)) {
+                console.log(arr.includes(id));
+                likeBtn.style.display = 'block';
+                unlikeBtn.style.display = 'none';
+            } else {
+                likeBtn.style.display = 'none';
+                unlikeBtn.style.display = 'block';
+            }
+        }
+    </script>
+    <script>
+        function trigger(type, id) {
+            console.log($('.liked[data-id=' + id + ']'))
+            if (type == 'unlike') {
+                $('.unliked[data-id=' + id + ']').css('display', 'none')
+                $('.liked[data-id=' + id + ']').css('display', 'block')
+            } else {
+                $('.unliked[data-id=' + id + ']').css('display', 'block')
+                $('.liked[data-id=' + id + ']').css('display', 'none')
+            }
         }
     </script>
 </html>

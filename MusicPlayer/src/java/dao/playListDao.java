@@ -61,7 +61,7 @@ public class playListDao {
 
     public ArrayList<Song> getSongPlaylist(String idPlaylist) {
         ArrayList<Song> list = new ArrayList<>();
-        String sql = "select s.IDSong, s.name, s.singer, s.image, s.link from PlayListSong p left join Song s on p.IdSong = s.IDSong where IDPlayList = ?";
+        String sql = "select s.* from PlayListSong p left join Song s on p.IdSong = s.IDSong where IDPlayList = ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
@@ -79,7 +79,7 @@ public class playListDao {
 
     public ArrayList<Song> getSongPlaylistUser(String idPlaylist, String idUser) {
         ArrayList<Song> list = new ArrayList<>();
-        String sql = "select s.IDSong, s.name, s.singer, s.image, s.link from Song s right join \n"
+        String sql = "select s.* from Song s right join \n"
                 + "(select plsu.* from PlayListUser plu left join PlayListSongUser plsu on plu.IDPlayList = ? where plu.IDUser=?) \n"
                 + "as x on s.IDSong = x.IDSong";
         try {
@@ -116,6 +116,18 @@ public class playListDao {
 
     public void deletePlaylistUser(String idUser, String idPlaylist) {
         String sql = "DELETE FROM [PlayListUser] WHERE [IDUser] = ? and [IDPlayList] = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, idUser);
+            ps.setString(2, idPlaylist);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+     public void deleteSongPlaylistUser(String idUser, String idPlaylist) {
+        String sql = "DELETE FROM [PlayListSongUser] WHERE [IDUser] = ? and [IDPlayList] = ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
@@ -230,7 +242,7 @@ public class playListDao {
 
     public ArrayList<PlayList> getTop100() {
         ArrayList<PlayList> list = new ArrayList<>();
-        String sql = "SELECT TOP 5 * FROM PlayList ORDER BY NEWID()";
+        String sql = "SELECT * FROM PlayList where Name like '%100%'";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
@@ -259,6 +271,42 @@ public class playListDao {
         } catch (Exception ex) {
             Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public ArrayList<PlayList> searchByName(String search) {
+         ArrayList<PlayList> list = new ArrayList<>();
+        String sql = "SELECT * FROM PlayList where Name like ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "%" + search + "%");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                PlayList pl = new PlayList(rs.getInt(1), rs.getString(2), rs.getString(3));
+                list.add(pl);
+            }
+            return list;
+        } catch (Exception ex) {
+            Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public ArrayList getIdPlaylist(int id) {
+         ArrayList list = new ArrayList();
+        String sql = "select [IDPlayList] from [PlayListUser] where IDUser = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(rs.getInt(1));
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
     }
 
 }

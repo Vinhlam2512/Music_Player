@@ -148,7 +148,7 @@
                                         <a href="">
                                             <img src="${r.getLink()}" alt="">
                                         </a>
-                                        <div class="song_modal">
+                                        <div class="song_modal" onclick="loadSongPlaylist(${r.getId()})">
                                             <svg class="song_modal-play" height="512" viewBox="0 0 128 128" width="512"
                                                  xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -160,7 +160,7 @@
                                     </div>
                                     <div class="song_des">
                                         <div class="song_des-title">
-                                            <a href="">
+                                            <a href="play-list/all-song?idPlaylist=${r.getId()}">
                                                 <span>${r.getName()}</span>
                                             </a>
                                         </div>
@@ -190,7 +190,7 @@
                                     </div>
                                     <div class="song_des">
                                         <div class="song_des-title">
-                                            <a href="">
+                                            <a href="play-list/all-song?idPlaylist=${t.getId()}">
                                                 <span>${t.getName()}</span>
                                             </a>
                                         </div>
@@ -208,7 +208,7 @@
             </footer>
         </div>
     </body>
-
+    
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
     crossorigin="anonymous"></script>

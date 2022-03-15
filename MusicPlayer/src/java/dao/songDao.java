@@ -150,13 +150,13 @@ public class songDao {
         return null;
     }
 
-    public ArrayList getIdFavorSong(String idUser) {
+    public ArrayList getIdFavorSong(int idUser) {
         ArrayList list = new ArrayList();
         String sql = "select IDSong from FavorSong where IDUser = ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, idUser);
+            ps.setInt(1, idUser);
             rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(rs.getInt(1));
