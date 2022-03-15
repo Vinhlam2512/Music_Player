@@ -309,4 +309,17 @@ public class songDao {
             Logger.getLogger(userDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public void deleteSong(String id) {
+        String sql = "DELETE FROM [MusicApp].[dbo].[Song]\n"
+                + "      WHERE IDSong = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, id);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            Logger.getLogger(userDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

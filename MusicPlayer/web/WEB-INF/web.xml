@@ -100,6 +100,10 @@
         <servlet-name>updateSongsController</servlet-name>
         <servlet-class>controller.admin.updateSongsController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>deleteSongController</servlet-name>
+        <servlet-class>controller.admin.deleteSongController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>discoverController</servlet-name>
         <url-pattern>/kham-pha</url-pattern>
@@ -187,6 +191,10 @@
     <servlet-mapping>
         <servlet-name>updateSongsController</servlet-name>
         <url-pattern>/admin/update-song</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteSongController</servlet-name>
+        <url-pattern>/admin/delete-song</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

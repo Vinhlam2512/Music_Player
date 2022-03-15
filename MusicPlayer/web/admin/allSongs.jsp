@@ -228,7 +228,7 @@
                                             <td><img src="${l.getImage()}" style="width: 100px; height: 100px"></td>
                                             <td><button onclick="preview(this.getAttribute('data-src'))" data-src="${l.getLink()}">Preview</button>
                                             </td>
-                                            <th><button onclick="update(${l.getId()})">Update</button><button>Delete</button></th>
+                                            <th><button onclick="update(${l.getId()})">Update</button><button onclick="isConfirm(${l.getId()})">Delete</button></th>
                                             <th><button>Add</button></th>
                                         </tr>
                                     </c:forEach>
@@ -331,7 +331,7 @@
                     if (e.value != '') {
                         $('#dataTable').html(resultData);
                         $('#paginaton').css('display', 'none');
-                    }else{
+                    } else {
                         $('#dataTable').html(`<tr class="text-center">
                                         <th style=" width: 25%">Name</th>
                                         <th style=" width: 25%">Singer</th>
@@ -340,19 +340,19 @@
                                         <th style=" width: 25%">Options</th>
                                         <th style=" width: 5%"></th>
                                     </tr>
-                                    <c:forEach items="${list}" var="l">
+        <c:forEach items="${list}" var="l">
                                         <tr class="text-center">
                                             <td>${l.getName()}</td>
                                             <td>${l.getSinger()}</td>
                                             <td><img src="${l.getImage()}" style="width: 100px; height: 100px"></td>
                                             <td><button onclick="preview(this.getAttribute('data-src'))" data-src="${l.getLink()}">Preview</button>
                                             </td>
-                                            <th><button onclick="update(${l.getId()})">Update</button><button>Delete</button></th>
+                                            <th><button onclick="update(${l.getId()})">Update</button><button onclick="isConfirm(${l.getId()})">Delete</button></th>
                                             <th><button>Add</button></th>
                                         </tr>
-                                    </c:forEach>
+        </c:forEach>
                                     <audio src=""></audio>`);
-                            $('#paginaton').css('display', 'block');
+                        $('#paginaton').css('display', 'block');
                     }
                     console.log("search Complete");
                 }
@@ -360,8 +360,16 @@
         }
     </script>
     <<script>
-        function update(id){
-            window.location.href='./update-song?id=' +id;
+        function update(id) {
+            window.location.href = './update-song?id=' + id;
+        }
+    </script>
+    <script>
+        function isConfirm(id) {
+            var check = confirm("Do you want to delete?");
+            if (check === true) {
+                window.location.href = "./delete-song?id=" + id;
+            }
         }
     </script>
 
