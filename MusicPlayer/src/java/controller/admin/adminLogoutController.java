@@ -5,7 +5,6 @@
  */
 package controller.admin;
 
-import dao.adminDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,13 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Admin;
 
 /**
  *
  * @author VINH
  */
-public class adminLoginController extends HttpServlet {
+public class adminLogoutController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +36,10 @@ public class adminLoginController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet adminLoginController</title>");            
+            out.println("<title>Servlet adminLogoutController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet adminLoginController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet adminLogoutController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -76,22 +74,7 @@ public class adminLoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        session.getAttribute("islogin");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        adminDao db = new adminDao();
-        Admin ad = db.login(email, password);
-        if(ad != null){
-            session.setAttribute("islogin", true);
-            session.setAttribute("name", ad.getName());
-            response.sendRedirect("./dash-board");
-        }else{
-            session.setAttribute("islogin", false);
-            String mess = "Email or Password is invalid";
-            request.setAttribute("mess", mess);
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        }
+        processRequest(request, response);
     }
 
     /**

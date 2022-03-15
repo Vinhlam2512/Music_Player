@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,7 +36,7 @@ public class dashboardController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet dashboardController</title>");            
+            out.println("<title>Servlet dashboardController</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet dashboardController at " + request.getContextPath() + "</h1>");
@@ -56,7 +57,13 @@ public class dashboardController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("dashboard.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        boolean isLogin = (boolean) session.getAttribute("islogin");
+        if (isLogin == false) {
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        } else {
+            request.getRequestDispatcher("dashboard.jsp").forward(request, response);
+        }
     }
 
     /**

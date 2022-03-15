@@ -11,20 +11,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Admin;
 import model.User;
 
 /**
  *
  * @author VINH
  */
-public class userDao {
-
+public class adminDao {
     private Connection conn;
     private PreparedStatement ps;
     private ResultSet rs;
 
-    public User login(String email, String password) {
-        String sql = "select * from [user] where Email = ? and PassWord = ?";
+    public Admin login(String email, String password) {
+        String sql = "select * from [Admin] where Email = ? and PassWord = ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
@@ -32,7 +32,7 @@ public class userDao {
             ps.setString(2, password);
             rs = ps.executeQuery();
             while (rs.next()) {
-                return new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
+                return new Admin(rs.getString(1), rs.getString(2), rs.getString(3));
             }
         } catch (Exception ex) {
             Logger.getLogger(userDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -41,7 +41,7 @@ public class userDao {
     }
 
     public void register(String fullName, String email, String password) {
-        String sql = "INSERT INTO [MusicApp].[dbo].[User]\n"
+        String sql = "INSERT INTO [MusicApp].[dbo].[Admin]\n"
                 + "           ([FullName]\n"
                 + "           ,[Email]\n"
                 + "           ,[PassWord])\n"
@@ -60,27 +60,11 @@ public class userDao {
             Logger.getLogger(userDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
- 
-    public User getUser(String email, String password) {
-        String sql = "select * from [user] where Email= ? and PassWord= ? ";
-        try {
-            conn = new DBContext().getConnection();
-            ps = conn.prepareStatement(sql);
-            ps.setString(1, email);
-            ps.setString(2, password);
-            rs = ps.executeQuery();
-             while (rs.next()) {
-                return new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(userDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
-   public static void main(String[] args) {
-        userDao db = new userDao();
-        System.out.println(db.getUser("lamvinh@gmail.com", "123456"));
+    
+    public static void main(String[] args) {
+        adminDao db = new adminDao();
+        Admin ad = db.login("admin@gmail.com", "123456");
+        System.out.println(ad.getEmail());
     }
 
 }

@@ -104,6 +104,14 @@
         <servlet-name>deleteSongController</servlet-name>
         <servlet-class>controller.admin.deleteSongController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>adminLogoutController</servlet-name>
+        <servlet-class>controller.admin.adminLogoutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>adminRegisterController</servlet-name>
+        <servlet-class>controller.admin.adminRegisterController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>discoverController</servlet-name>
         <url-pattern>/kham-pha</url-pattern>
@@ -195,6 +203,14 @@
     <servlet-mapping>
         <servlet-name>deleteSongController</servlet-name>
         <url-pattern>/admin/delete-song</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminLogoutController</servlet-name>
+        <url-pattern>/admin/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminRegisterController</servlet-name>
+        <url-pattern>/admin/register</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

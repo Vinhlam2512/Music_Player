@@ -68,7 +68,7 @@ public class playListDao {
             ps.setString(1, idPlaylist);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Song song = new Song(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+                Song song = new Song(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
                 list.add(song);
             }
         } catch (Exception ex) {
@@ -89,7 +89,7 @@ public class playListDao {
             ps.setString(2, idUser);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Song song = new Song(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+                Song song = new Song(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
                 list.add(song);
             }
         } catch (Exception ex) {
@@ -244,6 +244,21 @@ public class playListDao {
             Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    public void addPlaylist(String name, String image) {
+        String sql = "INSERT INTO [MusicApp].[dbo].[PlayList]\n"
+                + "           ([Name]\n"
+                + "           ,[Image])\n"
+                + "     VALUES\n"
+                + "           (?, ?)";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

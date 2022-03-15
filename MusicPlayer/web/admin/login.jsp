@@ -31,7 +31,7 @@
                     <input id="password" name="password" type="password" placeholder="Nhập mật khẩu" class="form-control">
                     <span class="form-message"></span>
                 </div>
-                <span class="form-message">${errMessage}</span>
+                <span class="form-message">${mess}</span>
                 <button class="form-submit">Đăng nhập</button>
                 <div class="register">
                     <span>Bạn chưa có tài khoản?<a href="./register.jsp"> Đăng Kí</a></span>
