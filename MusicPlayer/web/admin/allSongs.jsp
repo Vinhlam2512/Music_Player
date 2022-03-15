@@ -347,7 +347,7 @@
                                             <td><img src="${l.getImage()}" style="width: 100px; height: 100px"></td>
                                             <td><button onclick="preview(this.getAttribute('data-src'))" data-src="${l.getLink()}">Preview</button>
                                             </td>
-                                            <th><button onclick="update()">Update</button><button>Delete</button></th>
+                                            <th><button onclick="update(${l.getId()})">Update</button><button>Delete</button></th>
                                             <th><button>Add</button></th>
                                         </tr>
                                     </c:forEach>

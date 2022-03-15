@@ -208,7 +208,7 @@
                                 </div>
                                 <div class="card-body">
                                     <c:forEach items="${list}" var="l">
-                                        <form action="add-music" method="POST">
+                                        <form action="update-song?id=${l.getId()}" method="POST">
                                             <label for="name">Name of Song</label>
                                             <input type="text" class="form-control" id="name" name="name" placeholder="Input name of songs:" value="${l.getName()}">
                                             <label for="singer">Singer</label>
@@ -221,7 +221,7 @@
                                             <label for="image">Image</label>
                                             <input type="text" class="form-control" id="image" name="image" placeholder="Input link image:" value="${l.getImage()}">
                                             <label for="link">Link audio</label>
-                                            <input type="text" class="form-control" id="link" name="link" placeholder="Input link audio:" value="${l.getlink()}">
+                                            <input type="text" class="form-control" id="link" name="link" placeholder="Input link audio:" value="${l.getLink()}">
                                             <input type="submit" class="btn btn-primary" value="UPDATE">
                                         </form>
                                     </c:forEach>

@@ -79,7 +79,7 @@ public class searchAjax extends HttpServlet {
                     + "                                            <td><img src=\"" + s.getImage() + "\" style=\"width: 100px; height: 100px\"></td>\n"
                     + "                                            <td><button onclick=\"preview(this.getAttribute('data-src'))\" data-src=\"" + s.getLink() + "\">Preview</button>\n"
                     + "                                            </td>\n"
-                    + "                                            <th><button onclick=\"update()\">Update</button><button>Delete</button></th>\n"
+                    + "                                            <th><button onclick=\"update("+ s.getId() + ")\">Update</button><button>Delete</button></th>\n"
                     + "                                            <th><button>Add</button></th>\n"
                     + "                                        </tr>");
         }

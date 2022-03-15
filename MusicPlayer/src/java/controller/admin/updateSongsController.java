@@ -82,7 +82,15 @@ public class updateSongsController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String id = request.getParameter("id");
+        String type = request.getParameter("type");
+        String name = request.getParameter("name");
+        String singer = request.getParameter("singer");
+        String image = request.getParameter("image");
+        String link = request.getParameter("link");
+        songDao db = new songDao();
+        db.updateSong(id, type, name, singer, image, link);
+        response.sendRedirect("./all-song");
     }
 
     /**

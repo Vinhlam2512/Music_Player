@@ -264,18 +264,14 @@ public class songDao {
         }
     }
 
-    public static void main(String[] args) {
-        songDao db = new songDao();
-        db.addSong("1", "Nụ Cười Em Là Nắng", "Nụ Cười Em Là Nắng", "Nụ Cười Em Là Nắng", "Nụ Cười Em Là Nắng");
-    }
-
     public ArrayList<Song> getSongById(String id) {
         ArrayList<Song> list = new ArrayList<Song>();
-        String sql = "select * from Song where id = ?";
+        String sql = "select * from Song where IDSong = ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, id);
+            rs = ps.executeQuery();
             if (rs.next()) {
                 Song song = new Song(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
                 list.add(song);
@@ -284,5 +280,33 @@ public class songDao {
             Logger.getLogger(userDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
+    }
+
+    public static void main(String[] args) {
+        songDao db = new songDao();
+        System.out.println(db.getSongById("1"));;
+    }
+
+    public void updateSong(String id, String type, String name, String singer, String image, String link) {
+        String sql = "UPDATE [MusicApp].[dbo].[Song]\n"
+                + "   SET [IDType] = ?\n"
+                + "      ,[Name] = ?\n"
+                + "      ,[Singer] = ?\n"
+                + "      ,[Image] = ?\n"
+                + "      ,[Link] = ?\n"
+                + " WHERE IDSong = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(6, id);
+            ps.setString(1, type);
+            ps.setString(2, name);
+            ps.setString(3, singer);
+            ps.setString(4, image);
+            ps.setString(5, link);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            Logger.getLogger(userDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
