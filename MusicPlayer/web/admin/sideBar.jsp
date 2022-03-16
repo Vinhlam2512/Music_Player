@@ -52,6 +52,11 @@
             <i class="fas fa-fw fa-table"></i>
             <span>All Songs</span></a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="./all-playlist">
+            <i class="fas fa-fw fa-table"></i>
+            <span>All Playlist</span></a>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

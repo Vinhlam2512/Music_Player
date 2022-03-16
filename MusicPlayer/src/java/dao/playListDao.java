@@ -387,4 +387,41 @@ public class playListDao {
         }
     }
 
+    public int getTotal() {
+        String sql = "select COUNT(*) from PlayList";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
+    public ArrayList<PlayList> get5Playlist(int pageSize, int index) {
+        ArrayList<PlayList> list = new ArrayList<PlayList>();
+        String sql = "Select IDPlayList, Name, Image from (select ROW_NUMBER() over(order by IDPlayList) as id, *  from PlayList ) as x where x.id between ?*? -(?-1) and ?*?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, pageSize);
+            ps.setInt(2, index);
+            ps.setInt(3, pageSize);
+            ps.setInt(4, pageSize);
+            ps.setInt(5, index);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                PlayList pl = new PlayList(rs.getInt(1), rs.getString(2), rs.getString(3));
+                list.add(pl);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(userDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
 }

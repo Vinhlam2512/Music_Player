@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Song;
 import model.Type;
 
@@ -61,10 +62,16 @@ public class createMusicController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        typeDao db = new typeDao();
-        ArrayList<Type> list = db.getAllType();
-        request.setAttribute("list", list);
-        request.getRequestDispatcher("createSong.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        boolean isLogin = (boolean) session.getAttribute("islogin");
+        if (isLogin == false) {
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        } else {
+            typeDao db = new typeDao();
+            ArrayList<Type> list = db.getAllType();
+            request.setAttribute("list", list);
+            request.getRequestDispatcher("createSong.jsp").forward(request, response);
+        }
     }
 
     /**

@@ -116,6 +116,10 @@
         <servlet-name>createPlaylistPersonalController</servlet-name>
         <servlet-class>controller.user.createPlaylistPersonalController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>allPlaylistController</servlet-name>
+        <servlet-class>controller.admin.allPlaylistController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>discoverController</servlet-name>
         <url-pattern>/kham-pha</url-pattern>
@@ -219,6 +223,10 @@
     <servlet-mapping>
         <servlet-name>createPlaylistPersonalController</servlet-name>
         <url-pattern>/personal/create-playlist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>allPlaylistController</servlet-name>
+        <url-pattern>/admin/all-playlist</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -5,21 +5,22 @@
  */
 package controller.admin;
 
-import dao.adminDao;
+import dao.playListDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Admin;
+import model.PlayList;
 
 /**
  *
  * @author VINH
  */
-public class adminLoginController extends HttpServlet {
+public class allPlaylistController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +39,10 @@ public class adminLoginController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet adminLoginController</title>");            
+            out.println("<title>Servlet allPlaylistController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet adminLoginController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet allPlaylistController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,10 +60,32 @@ public class adminLoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        boolean islogin = false;
         HttpSession session = request.getSession();
-        session.setAttribute("islogin", islogin);
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+        boolean isLogin = (boolean) session.getAttribute("islogin");
+        if (isLogin == false) {
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        } else {
+            playListDao db = new playListDao();
+            int index = 1;
+            int pageSize = 5;
+            int total = db.getTotal();
+            int pageNumber = total / pageSize;
+            if (total % pageSize != 0) {
+                pageNumber++;
+            }
+            try {
+                index = Integer.parseInt(request.getParameter("index"));
+            } catch (Exception e) {
+            }
+            System.out.println(total);
+            System.out.println(pageNumber);
+            ArrayList<PlayList> list = db.get5Playlist(pageSize, index);
+            request.setAttribute("list", list);
+            request.setAttribute("index", index);
+            request.setAttribute("pageNumber", pageNumber);
+            request.getRequestDispatcher("allPlaylist.jsp").forward(request, response);
+        }
+
     }
 
     /**
@@ -76,21 +99,7 @@ public class adminLoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        adminDao db = new adminDao();
-        Admin ad = db.login(email, password);
-        if(ad != null){
-            session.setAttribute("islogin", true);
-            session.setAttribute("name", ad.getName());
-            response.sendRedirect("./dash-board");
-        }else{
-            session.setAttribute("islogin", false);
-            String mess = "Email or Password is invalid";
-            request.setAttribute("mess", mess);
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        }
+        processRequest(request, response);
     }
 
     /**

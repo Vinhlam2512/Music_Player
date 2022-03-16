@@ -66,6 +66,7 @@ public class updateSongsController extends HttpServlet {
         ArrayList<Type> listType = db.getAllType();
         songDao song = new songDao();
         ArrayList<Song> list = song.getSongById(id);
+        System.out.println(list.size() == 0);
         request.setAttribute("list", list);
         request.setAttribute("listType", listType);
         request.getRequestDispatcher("updateSong.jsp").forward(request, response);

@@ -8,7 +8,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-         <%@include file="./sideBar.jsp" %>
+        <%@include file="./sideBar.jsp" %>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -43,6 +43,13 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Update Song</h6>
                                 </div>
                                 <div class="card-body">
+                                    <c:if test="${list.size() == 0}">
+                                        <form action="update-song?id=${l.getId()}" method="GET">
+                                            <label for="id">Input ID Song You Want To Update:</label>
+                                            <input type="text" class="form-control" id="id" name="id" placeholder="Input id of songs:" >
+                                            <input type="submit" class="btn btn-primary" value="SEARCH">
+                                        </form>
+                                    </c:if>
                                     <c:forEach items="${list}" var="l">
                                         <form action="update-song?id=${l.getId()}" method="POST">
                                             <label for="name">Name of Song</label>
