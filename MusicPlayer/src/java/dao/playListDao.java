@@ -324,4 +324,67 @@ public class playListDao {
         return list;
     }
 
+//    public void createPlaylist(String name, String image) {
+//        String sql = "INSERT INTO [MusicApp].[dbo].[PlayList]\n"
+//                + "           ([Name]\n"
+//                + "           ,[Image])\n"
+//                + "     VALUES\n"
+//                + "           (?, ?)";
+//        try {
+//            conn = new DBContext().getConnection();
+//            ps = conn.prepareStatement(sql);
+//            ps.setString(1, name);
+//            ps.setString(2, image);
+//            ps.executeUpdate();
+//        } catch (Exception ex) {
+//            Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+    public ArrayList<PlayList> getAllPlaylist() {
+        ArrayList list = new ArrayList();
+        String sql = "select * from PlayList";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new PlayList(rs.getInt(1), rs.getString(2), rs.getString(3)));
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+    public void deleteSonginPlaylist(String idPlaylist, String idSong) {
+        String sql = "DELETE FROM [MusicApp].[dbo].[PlayListSong]\n"
+                + "       WHERE IDSong = ? and IDPlayList = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, idSong);
+            ps.setString(2, idPlaylist);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void inserSongToPlaylist(String idPlaylist, String idSong) {
+        String sql = "INSERT INTO [MusicApp].[dbo].[PlayListSong]\n"
+                + "           ([IDPlayList]\n"
+                + "           ,[IDSong])\n"
+                + "     VALUES\n"
+                + "           (?, ?)";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, idPlaylist);
+            ps.setString(2, idSong);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

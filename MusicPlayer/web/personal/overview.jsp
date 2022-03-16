@@ -245,11 +245,19 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Playlist</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Create Playlist</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
-
+                        <div class="modal-body text-center">
+                            <form action="create-playlist" method="POST">
+                                Name:
+                                <input type="text" name="name" placeholder="Input name of playlist">
+                                <br>
+                                Image:  
+                                <input type="text" name="image" placeholder="Input link of image playlist" class="mt-1">
+                                <br>
+                                <input type="submit" value="CREATE" class="mt-2">
+                            </form>
                         </div>
                     </div>
                 </div>

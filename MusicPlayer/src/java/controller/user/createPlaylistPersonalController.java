@@ -3,25 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.admin;
+package controller.user;
 
 import dao.playListDao;
-import dao.songDao;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.PlayList;
-import model.Song;
 
 /**
  *
  * @author VINH
  */
-public class allSongController extends HttpServlet {
+public class createPlaylistPersonalController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +36,10 @@ public class allSongController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet allSongController</title>");
+            out.println("<title>Servlet createPlaylistPersonalController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet allSongController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet createPlaylistPersonalController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,26 +57,7 @@ public class allSongController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        songDao db = new songDao();
-        playListDao plListDao = new playListDao();
-        int index = 1;
-        int pageSize = 10;
-        int total = db.getTotal();
-        int pageNumber = total / pageSize;
-        if (total % pageSize != 0) {
-            pageNumber++;
-        }
-        try {
-            index = Integer.parseInt(request.getParameter("index"));
-        } catch (Exception e) {
-        }
-        ArrayList<Song> list = db.get10Song(pageSize, index);
-        ArrayList<PlayList> playlist = plListDao.getAllPlaylist();
-        request.setAttribute("playlist", playlist);
-        request.setAttribute("list", list);
-        request.setAttribute("index", index);
-        request.setAttribute("pageNumber", pageNumber);
-        request.getRequestDispatcher("allSongs.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -94,7 +71,10 @@ public class allSongController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String name = request.getParameter("name");
+        String image = request.getParameter("image");
+        playListDao db = new playListDao();
+        db.createPlaylist(name, image);
     }
 
     /**

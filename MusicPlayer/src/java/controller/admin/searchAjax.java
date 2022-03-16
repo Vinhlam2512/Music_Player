@@ -69,8 +69,8 @@ public class searchAjax extends HttpServlet {
                 + "                                        <th style=\" width: 25%\">Singer</th>\n"
                 + "                                        <th style=\" width: 15%\">Image</th>\n"
                 + "                                        <th style=\" width: 5%\">Song</th>\n"
-                + "                                        <th style=\" width: 25%\">Options</th>\n"
-                + "                                        <th style=\" width: 5%\"></th>\n"
+                + "                                        <th style=\" width: 20%\">Options</th>\n"
+                + "                                        <th style=\" width: 10%\">Playlist</th>\n"
                 + "                                    </tr>");
         for (Song s : list) {
             out.println("<tr class=\"text-center\">\n"
@@ -79,8 +79,11 @@ public class searchAjax extends HttpServlet {
                     + "                                            <td><img src=\"" + s.getImage() + "\" style=\"width: 100px; height: 100px\"></td>\n"
                     + "                                            <td><button onclick=\"preview(this.getAttribute('data-src'))\" data-src=\"" + s.getLink() + "\">Preview</button>\n"
                     + "                                            </td>\n"
-                    + "                                            <th><button onclick=\"update("+ s.getId() + ")\">Update</button><button onclick=\"isConfirm("+ s.getId() + ")\">Delete</button></th>\n"
-                    + "                                            <th><button>Add</button></th>\n"
+                    + "                                            <th><button onclick=\"update(" + s.getId() + ")\">Update</button><button onclick=\"isConfirm(" + s.getId() + ")\">Delete</button></th>\n"
+                    + "                                            <th>\n"
+                    + "                                                <button onclick=\"addSong('insert', " + s.getId() + ")\" data-bs-toggle=\"modal\" data-bs-target=\"#exampleModal\">Add</button>\n"
+                    + "                                                <button onclick=\"addSong('delete', " + s.getId() + ")\" data-bs-toggle=\"modal\" data-bs-target=\"#exampleModal\">Delete</button>\n"
+                    + "                                            </th>"
                     + "                                        </tr>");
         }
     }
