@@ -118,7 +118,7 @@
                                 <div class="d-flex flex-row align-items-center">
                                     <button style="${isLogin ? "" : "display:none"}">
                                         <svg id="unliked" data-id="0" class="unlike-playing"
-                                             onclick="updatePlaylist('insert',${playlist.getId()})" style="height: 35px;width: 40px;"
+                                             onclick="updatePlaylist('insert',${playlist.getId()})" style="height: 35px;width: 40px; display: none"
                                              fill="white" height="480pt" viewBox="0 -20 480 480" width="480pt"
                                              xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -127,7 +127,7 @@
                                         </svg>
                                         <svg id="liked" data-id="0" class="like-playing"
                                              onclick="updatePlaylist('delete',${playlist.getId()})" id="Layer_1"
-                                             style="height: 45px;width: 40px; display: none" fill="ping" height="480pt"
+                                             style="height: 45px;width: 40px; " fill="ping" height="480pt"
                                              viewBox="0 0 512 512" width="480pt" xmlns="http://www.w3.org/2000/svg"
                                              data-name="Layer 1">
                                         <path
@@ -197,15 +197,15 @@
 
                                     </div>
                                     <div class="right me-5 position-relative" style="width: 3%;">
-                                        <button id="add" style="${isLogin ? "" : "display:none"}">
-                                            <svg onclick="updateSong('insert',${l.getId()})" id="unliked" style="height: 38px; width: 38px; ${listIdPlaylist.contains(l.getId()) ? "display: none" : ""}"
+                                        <button id='' style="${isLogin ? "" : "display:none"}" >
+                                            <svg onclick="updateSong('insert', ${l.getId()})" class="unliked" id="unliked" data-id="${l.getId()}"  style="height: 38px; width: 38px; ${listIdFavorSong.contains(l.getId()) ? "display: none" : ""}"
                                                  fill="white" height="480pt" viewBox="0 -20 480 480" width="480pt"
                                                  xmlns="http://www.w3.org/2000/svg">
                                             <path
                                                 d="m348 0c-43 .0664062-83.28125 21.039062-108 56.222656-24.71875-35.183594-65-56.1562498-108-56.222656-70.320312 0-132 65.425781-132 140 0 72.679688 41.039062 147.535156 118.6875 216.480469 35.976562 31.882812 75.441406 59.597656 117.640625 82.625 2.304687 1.1875 5.039063 1.1875 7.34375 0 42.183594-23.027344 81.636719-50.746094 117.601563-82.625 77.6875-68.945313 118.726562-143.800781 118.726562-216.480469 0-74.574219-61.679688-140-132-140zm-108 422.902344c-29.382812-16.214844-224-129.496094-224-282.902344 0-66.054688 54.199219-124 116-124 41.867188.074219 80.460938 22.660156 101.03125 59.128906 1.539062 2.351563 4.160156 3.765625 6.96875 3.765625s5.429688-1.414062 6.96875-3.765625c20.570312-36.46875 59.164062-59.054687 101.03125-59.128906 61.800781 0 116 57.945312 116 124 0 153.40625-194.617188 266.6875-224 282.902344zm0 0">
                                             </path>
                                             </svg>
-                                            <svg onclick="updateSong('delete',${l.getId()})" id="liked" style="height: 38px; width: 38px; ${listIdPlaylist.contains(l.getId()) ? "" : "display: none"}"
+                                            <svg onclick="updateSong('delete', ${l.getId()})" class="liked" id="liked" data-id="${l.getId()}" style="height: 38px; width: 38px;${listIdFavorSong.contains(l.getId()) ? " " : "display: none"}"
                                                  fill="ping" height="480pt" viewBox="0 0 512 512" width="480pt"
                                                  xmlns="http://www.w3.org/2000/svg" data-name="Layer 1">
                                             <path
@@ -244,7 +244,15 @@
                                                             type: type
                                                         },
                                                         success: function (resultData) {
-                                                            console.log("Update Song Complete");
+                                                            if (type === 'insert') {
+                                                                likeBtn.style.display = 'block';
+                                                                unlikeBtn.style.display = 'none';
+
+                                                            } else {
+                                                                likeBtn.style.display = 'none';
+                                                                unlikeBtn.style.display = 'block';
+                                                            }
+                                                            console.log("update Complete");
                                                         }
                                                     })
                                                 }
@@ -253,7 +261,7 @@
         function updatePlaylist(type, idPlaylist) {
             $.ajax({
                 type: 'POST',
-                url: "../update-playlist",
+                url: "../../update-playlist",
                 data: {
                     idPlaylist: idPlaylist,
                     idUser: ${idUser},
@@ -277,6 +285,18 @@
             } else {
                 likeBtn.style.display = 'none';
                 unlikeBtn.style.display = 'block';
+            }
+        }
+    </script>
+    <script>
+        function trigger(type, id) {
+            console.log($('.liked[data-id=' + id + ']'))
+            if (type === 'unlike') {
+                $('.unliked[data-id=' + id + ']').css('display', 'none')
+                $('.liked[data-id=' + id + ']').css('display', 'block')
+            } else {
+                $('.unliked[data-id=' + id + ']').css('display', 'block')
+                $('.liked[data-id=' + id + ']').css('display', 'none')
             }
         }
     </script>

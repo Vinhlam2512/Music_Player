@@ -86,8 +86,8 @@ public class loginController extends HttpServlet {
         songDao sogDb = new songDao();
         playListDao plDb = new playListDao();
         User user = db.getUser(email, password);
-        ArrayList listIdFavorSong = sogDb.getIdFavorSong(user.getId());
-        ArrayList listIdPlaylist = plDb.getIdPlaylist(user.getId());
+        ArrayList listIdFavorSong = sogDb.getIdFavorSong(String.valueOf(user.getId()));
+        ArrayList listIdPlaylist = plDb.getIdPlaylist(String.valueOf(user.getId()));
         session.setAttribute("listIdFavorSong", listIdFavorSong);
         session.setAttribute("listIdPlaylist", listIdPlaylist);
         session.setAttribute("isLogin", isLogin);

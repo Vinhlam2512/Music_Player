@@ -75,7 +75,7 @@
                                     </div>
                                 </div>
                                 <div class="play-all">
-                                    <div class="d-flex rounded-pill">
+                                    <div class="d-flex rounded-pill" id="play-ran">
                                         <svg fill="white" id="Layer_1" height="512" viewBox="0 0 512 512" width="512"
                                              xmlns="http://www.w3.org/2000/svg" data-name="Layer 1">
                                         <path
@@ -155,7 +155,7 @@
                                     <span class="fs-2">Playlist</span>
                                 </div>
                                 <div class="playList_nav-showAll d-flex ">
-                                    <a href="./playList.html" style="color:white" class="text-decoration-none">
+                                    <a href="./play-list" style="color:white" class="text-decoration-none">
                                         <span>Tất Cả</span>
                                     </a>
                                     <?xml version="1.0" encoding="iso-8859-1"?>
@@ -173,7 +173,7 @@
                             </div>
                             <div class="row row-cols-5">
                                 <div class="col playList-content  mb-5">
-                                    <div class="playList-create">
+                                    <div class="playList-create" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         <a href="" class="playList-create-btn">
                                             <svg style="height: 100%;width: 100%" fill="white" id="Layer_1"
                                                  enable-background="new 0 0 64 64" height="512" viewBox="0 0 64 64"
@@ -206,7 +206,7 @@
                                                 <img src="${l.getLink()}" alt="">
                                             </a>
                                             <div class="play-list-modal">
-                                                <a href="../personal/play-list/all-song?idPlaylist=${l.getId()}&idUser=${idUser}" style="height: 100%;width: 100%;display: flex;align-items: center;">
+                                                <a href="../personal/play-list/all-song?idPlaylist=${l.getId()}" style="height: 100%;width: 100%;display: flex;align-items: center;">
                                                     <svg class="play-list-modal-play" fill="white" height="512"
                                                          viewBox="0 0 128 128" width="512" xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -217,7 +217,7 @@
                                                     </path>
                                                     </svg>
                                                 </a>
-                                                <button onclick="updatePlaylist('delete', ${l.getId()})" style="height: 100%;width: 100%;display: flex;align-items: center;">
+                                                <button onclick="updatePlaylist('delete', ${l.getId()})"  style="height: 100%;width: 100%;display: flex;align-items: center;">
                                                     <svg class="play-list-modal-play" fill="white" id="Layer_3" height="512"
                                                          viewBox="0 0 32 32" width="512" xmlns="http://www.w3.org/2000/svg"
                                                          data-name="Layer 3">
@@ -229,7 +229,7 @@
                                         </div>
                                         <div class="play-list-des">
                                             <div class="play-list-title">
-                                                <a href="../personal/play-list/all-song?idPlaylist=${l.getId()}&idUser=${idUser}" class="text-decoration-none">
+                                                <a href="../personal/play-list/all-song?idPlaylist=${l.getId()}" class="text-decoration-none">
                                                     <span>${l.getName()}</span>
                                                 </a>
                                             </div>
@@ -241,6 +241,20 @@
                     </div>
                 </div>
             </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Playlist</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <%@include file="../footer.jsp" %>
         </div>
     </body>
@@ -284,6 +298,7 @@
                     type: type
                 },
                 success: function (resultData) {
+                    location.reload();
                     console.log("Update Playlist Complete");
                 }
             })

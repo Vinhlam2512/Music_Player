@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -71,16 +72,18 @@ public class updateSongPlaylistController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String idSong = request.getParameter("idSong");
         String idPlaylist = request.getParameter("idPlaylist");
         String type = request.getParameter("type");
+        String idUser = session.getAttribute("idUser").toString();
         System.out.println(type);
         playListDao db = new playListDao();
         if (type.equals("delete")) {
-            db.deleteSongToPlaylist(idPlaylist, idSong);
+            db.deleteSongToPlaylist(idPlaylist, idSong, idUser);
         }
         if (type.equals("insert")) {
-            db.inserSongToPlaylist(idPlaylist, idSong);
+            db.inserSongToPlaylist(idPlaylist, idSong, idUser);
         }
     }
 

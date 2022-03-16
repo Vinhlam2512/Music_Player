@@ -8,10 +8,12 @@ package controller.user;
 import dao.songDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -71,6 +73,7 @@ public class updateSongController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String idSong = request.getParameter("idSong");
         String idUser = request.getParameter("idUser");
         String type = request.getParameter("type");
@@ -82,6 +85,9 @@ public class updateSongController extends HttpServlet {
         if (type.equals("insert")) {
             db.insertFavorSong(idUser, idSong);
         }
+        ArrayList listIdFavorSong = db.getIdFavorSong(idUser);
+        session.setAttribute("listIdFavorSong", listIdFavorSong);
+
     }
 
     /**

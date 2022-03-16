@@ -102,7 +102,7 @@
                 </nav>
             </div>
             <div class="content">
-                <div class="content-playlist">
+                <div class="content-playlist mt-5">
                     <div class="container">
                         <div class="content_playlist">
                             <div class="content_playlist-left">

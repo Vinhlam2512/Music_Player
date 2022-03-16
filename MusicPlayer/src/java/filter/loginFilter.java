@@ -77,6 +77,7 @@ public class loginFilter implements Filter {
         if (debug) {
             log("loginFilter:doFilter()");
         }
+        
 
         doBeforeProcessing(request, response);
 

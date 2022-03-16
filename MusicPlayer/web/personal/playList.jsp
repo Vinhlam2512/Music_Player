@@ -64,6 +64,33 @@
                             </div>
                         </div>
                         <div class="row row-cols-5">
+                            <div class="col playList-content  mb-5">
+                                <div class="playList-create" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <a href="" class="playList-create-btn">
+                                        <svg style="height: 100%;width: 100%" fill="white" id="Layer_1"
+                                             enable-background="new 0 0 64 64" height="512" viewBox="0 0 64 64"
+                                             width="512" xmlns="http://www.w3.org/2000/svg">
+                                        <g>
+                                        <g>
+                                        <g>
+                                        <path
+                                            d="m32.5 62c-1.1 0-2-.9-2-2v-55c0-1.1.9-2 2-2s2 .9 2 2v55c0 1.1-.9 2-2 2z" />
+                                        </g>
+                                        </g>
+                                        </g>
+                                        <g>
+                                        <g>
+                                        <g>
+                                        <path
+                                            d="m60 34.5h-55c-1.1 0-2-.9-2-2s.9-2 2-2h55c1.1 0 2 .9 2 2s-.9 2-2 2z" />
+                                        </g>
+                                        </g>
+                                        </g>
+                                        </svg>
+                                    </a>
+                                    <span>Tạo PlayList Mới</span>
+                                </div>
+                            </div>
                             <c:forEach items="${listPlaylistUser}" var="l">
                                 <div class="col playList-content  mb-5">
                                     <div class="play-list-thumbnail">
@@ -82,7 +109,7 @@
                                                 </path>
                                                 </svg>
                                             </a>
-                                            <button onclick="updatePlaylist('delete', ${l.getId()})" style="height: 100%;width: 100%;display: flex;align-items: center;">
+                                            <button onclick="updatePlaylist('delete', ${l.getId()})"  style="height: 100%;width: 100%;display: flex;align-items: center;">
                                                 <svg class="play-list-modal-play" fill="white" id="Layer_3" height="512"
                                                      viewBox="0 0 32 32" width="512" xmlns="http://www.w3.org/2000/svg"
                                                      data-name="Layer 3">
@@ -121,4 +148,21 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./assets/js/app.js"></script>
+     <script>
+        function updatePlaylist(type, idPlaylist) {
+            $.ajax({
+                type: 'POST',
+                url: "../update-playlist",
+                data: {
+                    idPlaylist: idPlaylist,
+                    idUser: ${idUser},
+                    type: type
+                },
+                success: function (resultData) {
+                    location.reload();
+                    console.log("Update Playlist Complete");
+                }
+            })
+        }
+    </script>
 </html>

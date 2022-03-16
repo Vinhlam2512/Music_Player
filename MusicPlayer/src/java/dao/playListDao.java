@@ -79,14 +79,12 @@ public class playListDao {
 
     public ArrayList<Song> getSongPlaylistUser(String idPlaylist, String idUser) {
         ArrayList<Song> list = new ArrayList<>();
-        String sql = "select s.* from Song s right join \n"
-                + "(select plsu.* from PlayListUser plu left join PlayListSongUser plsu on plu.IDPlayList = ? where plu.IDUser=?) \n"
-                + "as x on s.IDSong = x.IDSong";
+        String sql = "select s.* from PlayListSongUser p left join Song s on p.IDSong = s.IDSong where p.IDUser = ? and p.IDPlayList = ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, idPlaylist);
-            ps.setString(2, idUser);
+            ps.setString(1, idUser);
+            ps.setString(2, idPlaylist);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Song song = new Song(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
@@ -126,44 +124,53 @@ public class playListDao {
             Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-     public void deleteSongPlaylistUser(String idUser, String idPlaylist) {
-        String sql = "DELETE FROM [PlayListSongUser] WHERE [IDUser] = ? and [IDPlayList] = ?";
-        try {
-            conn = new DBContext().getConnection();
-            ps = conn.prepareStatement(sql);
-            ps.setString(1, idUser);
-            ps.setString(2, idPlaylist);
-            ps.executeUpdate();
-        } catch (Exception ex) {
-            Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
+//    public void deleteSongPlaylistUser(String idUser, String idPlaylist) {
+//        String sql = "delete from [PlayListSongUser]\n"
+//                + "  where IDPlayList IN \n"
+//                + "  (select IDPlayList from PlayListSongUser where IDUser = ? and IDPlayList = ?)";
+//        try {
+//            conn = new DBContext().getConnection();
+//            ps = conn.prepareStatement(sql);
+//            ps.setString(1, idUser);
+//            ps.setString(2, idPlaylist);
+//            ps.executeUpdate();
+//        } catch (Exception ex) {
+//            Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
     public void insertPlaylistUser(String idUser, String idPlaylist) {
-        String sql = "INSERT INTO [MusicApp].[dbo].[PlayListUser]\n"
-                + "           ([IDUser]\n"
-                + "           ,[IDPlayList])\n"
+        String sql = "If Not Exists(select * from PlayListUser where IDPlayList = ? and IDUser = ?)\n"
+                + "   Begin\n"
+                + " INSERT INTO [MusicApp].[dbo].[PlayListUser]\n"
+                + "           ([IDPlayList]\n"
+                + "           ,[IDUser])\n"
                 + "     VALUES\n"
-                + "           (? ,?)";
+                + "           (?, ?)\n"
+                + "\n"
+                + " end";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, idUser);
-            ps.setString(2, idPlaylist);
+            ps.setString(1, idPlaylist);
+            ps.setString(2, idUser);
+            ps.setString(3, idPlaylist);
+            ps.setString(4, idUser);
             ps.executeUpdate();
-            copyListSongPlaylisy(idUser);
+            copyListSongPlaylist(idPlaylist, idUser);
         } catch (Exception ex) {
             Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public void copyListSongPlaylisy(String idUser) {
-        String sql = "INSERT INTO PlayListSongUser\n"
-                + "SELECT * FROM PlayListSong pls where pls.IDPlayList  = (select IDPlayList from PlayListUser where IDUser = ?)";
+    public void copyListSongPlaylist(String idPlaylist, String idUser) {
+        String sql = "insert into PlayListSongUser\n"
+                + "select plu.IDUser, pls.* from PlayListUser plu left join PlayListSong pls on plu.IDPlayList = pls.IDPlayList where plu.IDUser = ? and pls.IDPlayList = ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, idUser);
+            ps.setString(2, idPlaylist);
             ps.executeUpdate();
         } catch (Exception ex) {
             Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -192,7 +199,7 @@ public class playListDao {
         return list;
     }
 
-    public void deleteSongToPlaylist(String idPlaylist, String idSong) {
+    public void deleteSongToPlaylist(String idPlaylist, String idSong, String idUser) {
         String sql = "DELETE FROM [PlayListSongUser] WHERE IDPlayList = ? and IDSong = ?";
         try {
             conn = new DBContext().getConnection();
@@ -205,17 +212,25 @@ public class playListDao {
         }
     }
 
-    public void inserSongToPlaylist(String idPlaylist, String idSong) {
-        String sql = "INSERT INTO [MusicApp].[dbo].[PlayListSongUser]\n"
-                + "           ([IDPlayList]\n"
+    public void inserSongToPlaylist(String idPlaylist, String idSong, String idUser) {
+        String sql = "if not exists (select * from PlayListSongUser where IDUser = ? and IDPlayList = ? and IDSong = ?)\n"
+                + "begin\n"
+                + "INSERT INTO [MusicApp].[dbo].[PlayListSongUser]\n"
+                + "           ([IDUser]\n"
+                + "           ,[IDPlayList]\n"
                 + "           ,[IDSong])\n"
                 + "     VALUES\n"
-                + "           (?,?)";
+                + "           (?, ?, ?)\n"
+                + "end";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, idPlaylist);
-            ps.setString(2, idSong);
+            ps.setString(1, idUser);
+            ps.setString(2, idPlaylist);
+            ps.setString(3, idSong);
+            ps.setString(4, idUser);
+            ps.setString(5, idPlaylist);
+            ps.setString(6, idSong);
             ps.executeUpdate();
         } catch (Exception ex) {
             Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -274,7 +289,7 @@ public class playListDao {
     }
 
     public ArrayList<PlayList> searchByName(String search) {
-         ArrayList<PlayList> list = new ArrayList<>();
+        ArrayList<PlayList> list = new ArrayList<>();
         String sql = "SELECT * FROM PlayList where Name like ?";
         try {
             conn = new DBContext().getConnection();
@@ -292,13 +307,13 @@ public class playListDao {
         return null;
     }
 
-    public ArrayList getIdPlaylist(int id) {
-         ArrayList list = new ArrayList();
+    public ArrayList getIdPlaylist(String id) {
+        ArrayList list = new ArrayList();
         String sql = "select [IDPlayList] from [PlayListUser] where IDUser = ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, id);
+            ps.setString(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(rs.getInt(1));

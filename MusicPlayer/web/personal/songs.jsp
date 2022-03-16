@@ -56,7 +56,7 @@
                         </div>
                         <div class="content_song-right d-flex align-items-center">
                             <div class="play-all">
-                                <div class="d-flex rounded-pill">
+                                <div class="d-flex rounded-pill" id="play-ran">
                                     <svg fill="white" id="Layer_1" height="512" viewBox="0 0 512 512" width="512"
                                          xmlns="http://www.w3.org/2000/svg" data-name="Layer 1">
                                     <path
