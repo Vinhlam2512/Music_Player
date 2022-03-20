@@ -107,10 +107,14 @@
                                             ${s.getName()} (Single)
                                         </span>
                                     </div>
-
                                 </div>
-                                <div class="right me-5 position-relative" style="width: 3%;">
-                                    <button id='' style="${isLogin ? "" : "display:none"}" >
+                                <style>
+                                    .right button {
+                                        padding: 0 10px;
+                                    }
+                                </style>
+                                <div class="right me-3 position-relative" style="display: flex;width: 10%;">
+                                    <button id=''>
                                         <svg onclick="updateSong('insert', ${s.getId()})" class="unliked" id="unliked" data-id="${s.getId()}"  style="height: 38px; width: 38px; ${listIdFavorSong.contains(s.getId()) ? "display: none" : ""}"
                                              fill="white" height="480pt" viewBox="0 -20 480 480" width="480pt"
                                              xmlns="http://www.w3.org/2000/svg">
@@ -126,12 +130,39 @@
                                             fill="#f9595f"></path>
                                         </svg>
                                     </button>
+                                    <button onclick="addSong('insert', ${s.getId()})" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <svg style="height: 35px;width: 40px;" fill="white" id="Layer_1"
+                                             enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512"
+                                             width="512" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="m418 256c0 5.523-4.477 10-10 10h-142v142c0 5.523-4.477 10-10 10s-10-4.477-10-10v-142h-142c-5.523 0-10-4.477-10-10s4.477-10 10-10h142v-142c0-5.523 4.477-10 10-10s10 4.477 10 10v142h142c5.523 0 10 4.477 10 10zm94 0c0 141.159-114.841 256-256 256s-256-114.841-256-256 114.841-256 256-256 256 114.841 256 256zm-20 0c0-130.131-105.87-236-236-236s-236 105.869-236 236 105.87 236 236 236 236-105.869 236-236z">
+                                        </path>
+                                        </svg>
+                                    </button>
                                 </div>
                             </div>
                         </c:forEach>
                     </div>
                 </div>
             </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="color: #333">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Playlist</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <ul>
+                                <c:forEach items="${playlist}" var="pl">
+                                    <li data-id = ${pl.getId()}>
+                                        <span>${pl.getName()}</span>
+                                    </li></c:forEach>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             <%@include file="../footer.jsp" %>
         </div>
     </body>
@@ -141,30 +172,30 @@
     <script src="../assets/js/like.js" type="text/javascript"></script>
     <script src="../assets/js/app.js"></script>
     <script>
-                                            var likeBtn = document.querySelector('.like-playing');
-                                            var unlikeBtn = document.querySelector('.unlike-playing');
-                                            function updateSong(type, idSong) {
-                                                $.ajax({
-                                                    type: 'POST',
-                                                    url: "../update-song",
-                                                    data: {
-                                                        idSong: idSong,
-                                                        idUser: ${idUser},
-                                                        type: type
-                                                    },
-                                                    success: function (resultData) {
-                                                        if (type === 'insert') {
-                                                            likeBtn.style.display = 'block';
-                                                            unlikeBtn.style.display = 'none';
+                                        var likeBtn = document.querySelector('.like-playing');
+                                        var unlikeBtn = document.querySelector('.unlike-playing');
+                                        function updateSong(type, idSong) {
+                                            $.ajax({
+                                                type: 'POST',
+                                                url: "../update-song",
+                                                data: {
+                                                    idSong: idSong,
+                                                    idUser: ${idUser},
+                                                    type: type
+                                                },
+                                                success: function (resultData) {
+                                                    if (type === 'insert') {
+                                                        likeBtn.style.display = 'block';
+                                                        unlikeBtn.style.display = 'none';
 
-                                                        } else {
-                                                            likeBtn.style.display = 'none';
-                                                            unlikeBtn.style.display = 'block';
-                                                        }
-                                                        console.log("update Complete");
+                                                    } else {
+                                                        likeBtn.style.display = 'none';
+                                                        unlikeBtn.style.display = 'block';
                                                     }
-                                                })
-                                            }
+                                                    console.log("update Complete");
+                                                }
+                                            })
+                                        }
     </script>
     <script>
         var arr = ${listIdFavorSong};

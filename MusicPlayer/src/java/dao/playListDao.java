@@ -120,25 +120,26 @@ public class playListDao {
             ps.setString(1, idUser);
             ps.setString(2, idPlaylist);
             ps.executeUpdate();
+            deleteSongPlaylistUser(idUser, idPlaylist);
         } catch (Exception ex) {
             Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-//    public void deleteSongPlaylistUser(String idUser, String idPlaylist) {
-//        String sql = "delete from [PlayListSongUser]\n"
-//                + "  where IDPlayList IN \n"
-//                + "  (select IDPlayList from PlayListSongUser where IDUser = ? and IDPlayList = ?)";
-//        try {
-//            conn = new DBContext().getConnection();
-//            ps = conn.prepareStatement(sql);
-//            ps.setString(1, idUser);
-//            ps.setString(2, idPlaylist);
-//            ps.executeUpdate();
-//        } catch (Exception ex) {
-//            Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
+    public void deleteSongPlaylistUser(String idUser, String idPlaylist) {
+        String sql = "DELETE FROM [MusicApp].[dbo].[PlayListSongUser]\n"
+                + "      where IDUser = ? and IDPlayList = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, idUser);
+            ps.setString(2, idPlaylist);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public void insertPlaylistUser(String idUser, String idPlaylist) {
         String sql = "If Not Exists(select * from PlayListUser where IDPlayList = ? and IDUser = ?)\n"
                 + "   Begin\n"
@@ -422,6 +423,38 @@ public class playListDao {
             Logger.getLogger(userDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
+    }
+
+    public ArrayList<PlayList> getPlaylistById(String id) {
+        ArrayList<PlayList> list = new ArrayList<PlayList>();
+        String sql = "select * from PlayList where IDPlayList =?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                PlayList pl = new PlayList(rs.getInt(1), rs.getString(2), rs.getString(3));
+                list.add(pl);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(userDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+    public void deletePlaylist(String id) {
+        String sql = "  delete from PlayList where IDPlayList =?\n"
+                + "  delete from PlayListSong where IDPlayList = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, id);
+            ps.setString(2, id);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            Logger.getLogger(userDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

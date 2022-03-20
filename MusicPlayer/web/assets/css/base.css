@@ -162,15 +162,15 @@ button{
     font-weight: var(--fweight-text);
 }
 .media-right {
-      margin-right: 40px;
+    margin-right: 40px;
     display: flex;
     align-items: center;
     height: 80px;
 }
 .media-right button {
-       background-color: transparent;
+    background-color: transparent;
     border: none;
-     width: 50px; 
+    width: 50px; 
     height: 50px;
     margin-left: 10px;
 }

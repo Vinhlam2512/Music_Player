@@ -67,15 +67,17 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <tr class="text-center">
+                                        <th style=" width: 5%">ID</th>
                                         <th style=" width: 25%">Name</th>
                                         <th style=" width: 25%">Singer</th>
                                         <th style=" width: 15%">Image</th>
                                         <th style=" width: 5%">Song</th>
-                                        <th style=" width: 20%">Options</th>
+                                        <th style=" width: 15%">Options</th>
                                         <th style=" width: 10%">Playlist</th>
                                     </tr>
                                     <c:forEach items="${list}" var="l">
                                         <tr class="text-center">
+                                            <td>${l.getId()}</td>
                                             <td>${l.getName()}</td>
                                             <td>${l.getSinger()}</td>
                                             <td><img src="${l.getImage()}" style="width: 100px; height: 100px"></td>
@@ -100,7 +102,6 @@
                             </nav>
                         </div>
                     </div>
-
                 </div>
                 <!-- /.container-fluid -->
 
@@ -216,15 +217,17 @@
                             $('#paginaton').css('display', 'none');
                         } else {
                             $('#dataTable').html(`<tr class="text-center">
-                                            <th style=" width: 25%">Name</th>
-                                            <th style=" width: 25%">Singer</th>
-                                            <th style=" width: 15%">Image</th>
-                                            <th style=" width: 5%">Song</th>
-                                            <th style=" width: 25%">Options</th>
-                                            <th style=" width: 5%"></th>
+                                            <th style=" width: 5%">ID</th>
+                                        <th style=" width: 25%">Name</th>
+                                        <th style=" width: 25%">Singer</th>
+                                        <th style=" width: 15%">Image</th>
+                                        <th style=" width: 5%">Song</th>
+                                        <th style=" width: 15%">Options</th>
+                                        <th style=" width: 10%">Playlist</th>
                                         </tr>
             <c:forEach items="${list}" var="l">
                                             <tr class="text-center">
+                                                <td>${l.getId()}</td>
                                                 <td>${l.getName()}</td>
                                                 <td>${l.getSinger()}</td>
                                                 <td><img src="${l.getImage()}" style="width: 100px; height: 100px"></td>

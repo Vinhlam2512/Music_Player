@@ -67,38 +67,36 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <tr class="text-center">
-                                        <th style=" width: 40%">Name</th>
+                                        <th style=" width: 10%">ID</th>   
+                                        <th style=" width: 30%">Name</th>
                                         <th style=" width: 25%">Image</th>
                                         <th style=" width: 20%">Options</th>
                                         <th style=" width: 15%">Playlist</th>
                                     </tr>
                                     <c:forEach items="${list}" var="l">
                                         <tr class="text-center">
+                                            <td>${l.getId()}</td>
                                             <td>${l.getName()}</td>
                                             <td><img src="${l.getLink()}" style="width: 100px; height: 100px"></td>
                                             <th><button onclick="update(${l.getId()})">Update</button><button onclick="isConfirm(${l.getId()})">Delete</button></th>
                                             <th>
                                                 <button onclick="addSong('insert', ${l.getId()})" data-bs-toggle="modal" data-bs-target="#exampleModal">Add</button>
-                                                <button onclick="addSong('delete', ${l.getId()})" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
+                                                <button onclick="showList(${l.getId()})" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
                                             </th>
                                         </tr>
                                     </c:forEach>
-                                    <audio src=""></audio>
                                 </table>
                             </div>
                             <nav aria-label="Page navigation example" id="paginaton">
                                 <ul class="pagination">
                                     <c:forEach begin="1" end="${pageNumber}" var="i">
                                         <li class="page-item"><a class="page-link" href="all-playlist?index=${i}" style="${i == index ? "background-color: red" : ""}">${i}</a></li>
-                                    </c:forEach>
+                                        </c:forEach>
                                 </ul>
                             </nav>
                         </div>
                     </div>
-
                 </div>
-                <!-- /.container-fluid -->
-
             </div>
             <!-- End of Main Content -->
 
@@ -135,16 +133,15 @@
         </div>
         <!-- End of Page Wrapper -->
         <script>
-            function addSong(type, idSong) {
+            function addSong(type, idPlaylist) {
                 var li = document.querySelectorAll('.modal-body ul li');
                 for (let i = 0; i < li.length; i++) {
                     li[i].onclick = function () {
                         $.ajax({
                             type: 'POST',
-                            url: "./update-song-playlist",
+                            url: "./update-playlist-song",
                             data: {
-                                idSong: idSong,
-                                idPlaylist: li[i].getAttribute('data-id'),
+                                idPlaylist idPlaylist,
                                 type: type,
                             },
                             success: function (resultData) {
@@ -153,6 +150,23 @@
                         })
                     }
                 }
+            }
+
+        </script>
+        <script>
+            function showList(idPlaylist) {
+                var ul = document.querySelectorAll('.modal-body ul');
+                $.ajax({
+                    type: 'POST',
+                    url: "./update-playlist-song",
+                    data: {
+                        idPlaylist idPlaylist
+                    },
+                    success: function (resultData) {
+                        ul.innerHTML = resultData;
+                        alert("Inner SuccessFul");
+                    }                                              
+                })
             }
 
         </script>
@@ -187,20 +201,9 @@
         <!-- Page level custom scripts -->
         <script src="js/demo/datatables-demo.js"></script>
         <script>
-            var audio = document.querySelector('audio');
-            function preview(src) {
-                console.log('Preview');
-                audio.setAttribute('src', src);
-                audio.play();
-                setTimeout(function () {
-                    audio.pause();
-                }, 20000);
-            }
-        </script>
-        <script>
             function searchSong(e) {
                 $.ajax({
-                    type: 'GET',
+                    type: 'POST',
                     url: "./searchAjax",
                     data: {
                         search: e.value,
@@ -211,22 +214,24 @@
                             $('#paginaton').css('display', 'none');
                         } else {
                             $('#dataTable').html(`<tr class="text-center">
-                                            <th style=" width: 25%">Name</th>
-                                            <th style=" width: 25%">Singer</th>
-                                            <th style=" width: 15%">Image</th>
-                                            <th style=" width: 5%">Song</th>
-                                            <th style=" width: 25%">Options</th>
-                                            <th style=" width: 5%"></th>
+                                           <th style=" width: 10%">ID</th>   
+                                        <th style=" width: 30%">Name</th>
+                                        <th style=" width: 25%">Image</th>
+                                        <th style=" width: 20%">Options</th>
+                                        <th style=" width: 15%">Playlist</th>
                                         </tr>
             <c:forEach items="${list}" var="l">
                                             <tr class="text-center">
-                                                <td>${l.getName()}</td>
-                                                <td>${l.getSinger()}</td>
-                                                <td><img src="${l.getImage()}" style="width: 100px; height: 100px"></td>
-                                                <td><button onclick="preview(this.getAttribute('data-src'))" data-src="${l.getLink()}">Preview</button>
-                                                </td>
-                                                <th><button onclick="update(${l.getId()})">Update</button><button onclick="isConfirm(${l.getId()})">Delete</button></th>
-                                                <th><button>Add</button></th>
+                                                <tr class="text-center">
+                                            <td>${l.getId()}</td>
+                                            <td>${l.getName()}</td>
+                                            <td><img src="${l.getLink()}" style="width: 100px; height: 100px"></td>
+                                            <th><button onclick="update(${l.getId()})">Update</button><button onclick="isConfirm(${l.getId()})">Delete</button></th>
+                                            <th>
+                                                <button onclick="addSong('insert', ${l.getId()})" data-bs-toggle="modal" data-bs-target="#exampleModal">Add</button>
+                                                <button onclick="addSong('delete', ${l.getId()})" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
+                                            </th>
+                                        </tr>
                                             </tr>
             </c:forEach>
                                         <audio src=""></audio>`);
@@ -239,14 +244,14 @@
         </script>
         <<script>
             function update(id) {
-                window.location.href = './update-song?id=' + id;
+                window.location.href = './update-playlist?id=' + id;
             }
         </script>
         <script>
             function isConfirm(id) {
                 var check = confirm("Do you want to delete?");
                 if (check === true) {
-                    window.location.href = "./delete-song?id=" + id;
+                    window.location.href = "./delete-playlist?id=" + id;
                 }
             }
         </script>

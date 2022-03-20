@@ -128,8 +128,8 @@
                                         </div>
 
                                     </div>
-                                    <div class="right me-5 position-relative" style="width: 3%;">
-                                        <button id='' style="${isLogin ? "" : "display:none"}" >
+                                    <div class="right me-3 position-relative" style=" display: flex; width: 10%">
+                                        <button id=''>
                                             <svg onclick="updateSong('insert', ${s.getId()})" class="unliked" id="unliked" data-id="${s.getId()}"  style="height: 38px; width: 38px; ${listIdFavorSong.contains(s.getId()) ? "display: none" : ""}"
                                                  fill="white" height="480pt" viewBox="0 -20 480 480" width="480pt"
                                                  xmlns="http://www.w3.org/2000/svg">
@@ -143,6 +143,15 @@
                                             <path
                                                 d="m449.28 121.43a115.2 115.2 0 0 0 -137.89-35.75c-21.18 9.14-40.07 24.55-55.39 45-15.32-20.5-34.21-35.91-55.39-45a115.2 115.2 0 0 0 -137.89 35.75c-16.5 21.62-25.22 48.64-25.22 78.13 0 42.44 25.31 89 75.22 138.44 40.67 40.27 88.73 73.25 113.75 89.32a54.78 54.78 0 0 0 59.06 0c25-16.07 73.08-49.05 113.75-89.32 49.91-49.42 75.22-96 75.22-138.44 0-29.49-8.72-56.51-25.22-78.13z"
                                                 fill="#f9595f"></path>
+                                            </svg>
+                                        </button>
+                                        <button onclick="addSong('insert', ${s.getId()})" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            <svg style="height: 35px;width: 40px;" fill="white" id="Layer_1"
+                                                 enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512"
+                                                 width="512" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="m418 256c0 5.523-4.477 10-10 10h-142v142c0 5.523-4.477 10-10 10s-10-4.477-10-10v-142h-142c-5.523 0-10-4.477-10-10s4.477-10 10-10h142v-142c0-5.523 4.477-10 10-10s10 4.477 10 10v142h142c5.523 0 10 4.477 10 10zm94 0c0 141.159-114.841 256-256 256s-256-114.841-256-256 114.841-256 256-256 256 114.841 256 256zm-20 0c0-130.131-105.87-236-236-236s-236 105.869-236 236 105.87 236 236 236 236-105.869 236-236z">
+                                            </path>
                                             </svg>
                                         </button>
                                     </div>
@@ -199,6 +208,11 @@
                                         <span>Tạo PlayList Mới</span>
                                     </div>
                                 </div>
+                                <style>
+                                    .right button {
+                                        padding: 0 10px;
+                                    }
+                                </style>
                                 <c:forEach items="${listPlaylistUser}" var="l">
                                     <div class="col playList-content  mb-5">
                                         <div class="play-list-thumbnail">
@@ -245,19 +259,17 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Create Playlist</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Playlist</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body text-center">
-                            <form action="create-playlist" method="POST">
-                                Name:
-                                <input type="text" name="name" placeholder="Input name of playlist">
-                                <br>
-                                Image:  
-                                <input type="text" name="image" placeholder="Input link of image playlist" class="mt-1">
-                                <br>
-                                <input type="submit" value="CREATE" class="mt-2">
-                            </form>
+                        <div class="modal-body">
+                            <ul>
+                                <c:forEach items="${playlist}" var="pl">
+                                    <li data-id = ${pl.getId()}>
+                                        <span>${pl.getName()}</span>
+                                    </li>
+                                </c:forEach>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -270,6 +282,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
     <script src="../assets/js/app.js" type="text/javascript"></script>
     <script src="../assets/js/like.js" type="text/javascript"></script>
+    <script src="../assets/js/modal.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
                                                     function updateSong(type, idSong) {

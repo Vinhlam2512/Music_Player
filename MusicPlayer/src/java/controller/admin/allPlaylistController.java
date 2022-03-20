@@ -6,6 +6,7 @@
 package controller.admin;
 
 import dao.playListDao;
+import dao.songDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.PlayList;
+import model.Song;
 
 /**
  *
@@ -61,11 +63,17 @@ public class allPlaylistController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        boolean isLogin = (boolean) session.getAttribute("islogin");
+        boolean isLogin = false;
+        try {
+            isLogin = (boolean) session.getAttribute("islogin");
+        } catch (Exception e) {
+        }
         if (isLogin == false) {
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
             playListDao db = new playListDao();
+            
+
             int index = 1;
             int pageSize = 5;
             int total = db.getTotal();

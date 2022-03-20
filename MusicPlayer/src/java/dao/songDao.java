@@ -322,4 +322,22 @@ public class songDao {
             Logger.getLogger(userDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public ArrayList<Song> getPlaylistSong(String idPlaylist) {
+        String sql = "select * from PlayListSong p left join Song s on p.IDSong = s.IDSong where p.IDPlayList = ?";
+        ArrayList<Song> list = new ArrayList<Song>();
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, idPlaylist);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                Song song = new Song(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+                list.add(song);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(userDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
 }

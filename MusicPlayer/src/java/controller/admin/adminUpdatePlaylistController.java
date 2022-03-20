@@ -6,7 +6,6 @@
 package controller.admin;
 
 import dao.playListDao;
-import dao.songDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -14,15 +13,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import model.PlayList;
-import model.Song;
 
 /**
  *
  * @author VINH
  */
-public class allSongController extends HttpServlet {
+public class adminUpdatePlaylistController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,10 +38,10 @@ public class allSongController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet allSongController</title>");
+            out.println("<title>Servlet adminUpdatePlaylistController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet allSongController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet adminUpdatePlaylistController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,37 +59,11 @@ public class allSongController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        boolean isLogin = false;
-        try {
-            isLogin = (boolean) session.getAttribute("islogin");
-        } catch (Exception e) {
-        }
-        if (isLogin == false) {
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        } else {
-            songDao db = new songDao();
-            playListDao plListDao = new playListDao();
-            int index = 1;
-            int pageSize = 10;
-            int total = db.getTotal();
-            int pageNumber = total / pageSize;
-            if (total % pageSize != 0) {
-                pageNumber++;
-            }
-            try {
-                index = Integer.parseInt(request.getParameter("index"));
-            } catch (Exception e) {
-            }
-            ArrayList<Song> list = db.get10Song(pageSize, index);
-            ArrayList<PlayList> playlist = plListDao.getAllPlaylist();
-            request.setAttribute("playlist", playlist);
-            request.setAttribute("list", list);
-            request.setAttribute("index", index);
-            request.setAttribute("pageNumber", pageNumber);
-            request.getRequestDispatcher("allSongs.jsp").forward(request, response);
-        }
-
+        String id = request.getParameter("id");
+        playListDao db = new playListDao();
+        ArrayList<PlayList> list = db.getPlaylistById(id);
+        request.setAttribute("list", list);
+        request.getRequestDispatcher("updatePlaylist.jsp").forward(request, response);
     }
 
     /**

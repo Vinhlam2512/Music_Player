@@ -5,6 +5,7 @@
  */
 package controller.admin;
 
+import dao.playListDao;
 import dao.songDao;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.PlayList;
 import model.Song;
 
 /**
@@ -65,15 +67,17 @@ public class searchAjax extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         out.println(" <tr class=\"text-center\">\n"
+                + "                                        <th style=\" width: 5%\">ID</th>\n"
                 + "                                        <th style=\" width: 25%\">Name</th>\n"
                 + "                                        <th style=\" width: 25%\">Singer</th>\n"
                 + "                                        <th style=\" width: 15%\">Image</th>\n"
                 + "                                        <th style=\" width: 5%\">Song</th>\n"
-                + "                                        <th style=\" width: 20%\">Options</th>\n"
-                + "                                        <th style=\" width: 10%\">Playlist</th>\n"
+                + "                                        <th style=\" width: 15%\">Options</th>\n"
+                + "                                        <th style=\" width: 10%\">Playlist</th>"
                 + "                                    </tr>");
         for (Song s : list) {
             out.println("<tr class=\"text-center\">\n"
+                    + "                                            <td>" + s.getId() + "</td>\n"
                     + "                                            <td>" + s.getName() + "</td>\n"
                     + "                                            <td>" + s.getSinger() + "</td>\n"
                     + "                                            <td><img src=\"" + s.getImage() + "\" style=\"width: 100px; height: 100px\"></td>\n"
@@ -99,7 +103,31 @@ public class searchAjax extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        String search = request.getParameter("search");
+        playListDao db = new playListDao();
+        ArrayList<PlayList> list = db.searchByName(search);
+        PrintWriter out = response.getWriter();
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        out.println(" <tr class=\"text-center\">\n"
+                + "                                        <th style=\" width: 10%\">ID</th>   \n"
+                + "                                        <th style=\" width: 30%\">Name</th>\n"
+                + "                                        <th style=\" width: 25%\">Image</th>\n"
+                + "                                        <th style=\" width: 20%\">Options</th>\n"
+                + "                                        <th style=\" width: 15%\">Playlist</th>"
+                + "                                    </tr>");
+        for (PlayList s : list) {
+            out.println(" <tr class=\"text-center\">\n"
+                    + "                                            <td>" + s.getId() + "</td>\n"
+                    + "                                            <td>" + s.getName() + "</td>\n"
+                    + "                                            <td><img src=\"" + s.getLink() + "\" style=\"width: 100px; height: 100px\"></td>\n"
+                    + "                                            <th><button onclick=\"update(" + s.getId() + ")\">Update</button><button onclick=\"isConfirm(" + s.getId() + ")\">Delete</button></th>\n"
+                    + "                                            <th>\n"
+                    + "                                                <button onclick=\"addSong('insert', " + s.getId() + "\" data-bs-toggle=\"modal\" data-bs-target=\"#exampleModal\">Add</button>\n"
+                    + "                                                <button onclick=\"addSong('delete', " + s.getId() + "\" data-bs-toggle=\"modal\" data-bs-target=\"#exampleModal\">Delete</button>\n"
+                    + "                                            </th>\n"
+                    + "                                        </tr>");
+        }
     }
 
     /**

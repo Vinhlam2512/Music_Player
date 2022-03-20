@@ -74,7 +74,7 @@ public class createPlaylistPersonalController extends HttpServlet {
         String name = request.getParameter("name");
         String image = request.getParameter("image");
         playListDao db = new playListDao();
-        db.createPlaylist(name, image);
+//        db.createPlaylist(name, image);
     }
 
     /**

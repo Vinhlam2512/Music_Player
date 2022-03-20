@@ -41,6 +41,7 @@
                 <a class="collapse-item" href="./add-music">Add Music</a>
                 <a class="collapse-item" href="./add-playlist">Add Playlist</a>
                 <a class="collapse-item" href="./update-song">Update Music</a>
+                <a class="collapse-item" href="./update-playlist">Update Playlist</a>
             </div>
         </div>
     </li>
@@ -55,7 +56,8 @@
     <li class="nav-item">
         <a class="nav-link" href="./all-playlist">
             <i class="fas fa-fw fa-table"></i>
-            <span>All Playlist</span></a>
+            <span>All Playlist</span>
+        </a>
     </li>
 
     <!-- Divider -->

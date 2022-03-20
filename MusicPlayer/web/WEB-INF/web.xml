@@ -120,6 +120,18 @@
         <servlet-name>allPlaylistController</servlet-name>
         <servlet-class>controller.admin.allPlaylistController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>adminUpdatePlaylistController</servlet-name>
+        <servlet-class>controller.admin.adminUpdatePlaylistController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deletePlaylistController</servlet-name>
+        <servlet-class>controller.admin.deletePlaylistController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>adminPlaylistSongController</servlet-name>
+        <servlet-class>controller.admin.adminPlaylistSongController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>discoverController</servlet-name>
         <url-pattern>/kham-pha</url-pattern>
@@ -227,6 +239,18 @@
     <servlet-mapping>
         <servlet-name>allPlaylistController</servlet-name>
         <url-pattern>/admin/all-playlist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminUpdatePlaylistController</servlet-name>
+        <url-pattern>/admin/update-playlist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deletePlaylistController</servlet-name>
+        <url-pattern>/admin/delete-playlist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminPlaylistSongController</servlet-name>
+        <url-pattern>/admin/update-playlist-song</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
