@@ -67,20 +67,25 @@
                                     </h6>
                                 </div>
                                 <div class="card-body">
-                                    <form action="">
+                                    <form action="add-music" method="POST">
                                         <label for="name">Name of Song</label>
-                                        <input disabled type="text" class="form-control" id="name" name="name"
+                                        <input  type="text" class="form-control" id="name" name="name"
                                                placeholder="Input name of songs:">
                                         <label for="singer">Singer</label>
-                                        <input disabled type="text" class="form-control" id="singer" name="singer"
+                                        <input  type="text" class="form-control" id="singer" name="singer"
                                                placeholder="Input name of singer:">
+                                        <label for="type">Type: <select name="type">
+                                                <c:forEach items="${list}" var="l">
+                                                    <option value="${l.getId()}">${l.getName()}</option>
+                                                </c:forEach>
+                                            </select></label><br>
                                         <label for="image">Image</label>
-                                        <input disabled type="file" class="form-control" id="image" name="image"
+                                        <input  type="file" class="form-control" id="image" name="image"
                                                placeholder="Input link image:">
                                         <label for="link">Link audio</label>
-                                        <input disabled type="file" class="form-control" id="link" name="link"
+                                        <input  type="file" class="form-control" id="link" name="link"
                                                placeholder="Input link audio:">
-                                        <input disabled type="submit" class="btn btn-primary" value="ADD">
+                                        <input  type="submit" class="btn btn-primary" value="ADD">
                                     </form>
                                 </div>
                             </div>

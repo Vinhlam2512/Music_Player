@@ -135,6 +135,7 @@
                                             fill="#f9595f" />
                                         </svg>
                                     </button>
+
                                     <div class="play-all text" style="margin: 20px;" id="play-ran">
                                         <div class="d-flex rounded-pill">
                                             <svg fill="white" id="Layer_1" height="512" viewBox="0 0 512 512" width="512"
@@ -196,7 +197,12 @@
                                         </div>
 
                                     </div>
-                                    <div class="right me-5 position-relative" style="width: 3%;">
+                                    <style>
+                                        .right button {
+                                            padding: 0 10px;
+                                        }
+                                    </style>
+                                    <div class="right me-3 position-relative" style=" display: flex; width: 10%">
                                         <button id='' style="${isLogin ? "" : "display:none"}" >
                                             <svg onclick="updateSong('insert', ${l.getId()})" class="unliked" id="unliked" data-id="${l.getId()}"  style="height: 38px; width: 38px; ${listIdFavorSong.contains(l.getId()) ? "display: none" : ""}"
                                                  fill="white" height="480pt" viewBox="0 -20 480 480" width="480pt"
@@ -211,6 +217,23 @@
                                             <path
                                                 d="m449.28 121.43a115.2 115.2 0 0 0 -137.89-35.75c-21.18 9.14-40.07 24.55-55.39 45-15.32-20.5-34.21-35.91-55.39-45a115.2 115.2 0 0 0 -137.89 35.75c-16.5 21.62-25.22 48.64-25.22 78.13 0 42.44 25.31 89 75.22 138.44 40.67 40.27 88.73 73.25 113.75 89.32a54.78 54.78 0 0 0 59.06 0c25-16.07 73.08-49.05 113.75-89.32 49.91-49.42 75.22-96 75.22-138.44 0-29.49-8.72-56.51-25.22-78.13z"
                                                 fill="#f9595f"></path>
+                                            </svg>
+                                        </button>
+                                        <button>
+                                            <svg onclick="deleteS('delete', ${l.getId()})" style="height: 38px; width: 38px; fill: white" id="light"  enable-background="new 0 0 24 24" height="512" viewBox="0 0 24 24" width="512"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                            <g>
+                                            <path
+                                                d="m12 24c-6.617 0-12-5.383-12-12s5.383-12 12-12 12 5.383 12 12-5.383 12-12 12zm0-23c-6.065 0-11 4.935-11 11s4.935 11 11 11 11-4.935 11-11-4.935-11-11-11z" />
+                                            </g>
+                                            <g>
+                                            <path
+                                                d="m8.111 16.389c-.128 0-.256-.049-.354-.146-.195-.195-.195-.512 0-.707l7.778-7.778c.195-.195.512-.195.707 0s.195.512 0 .707l-7.778 7.778c-.097.097-.225.146-.353.146z" />
+                                            </g>
+                                            <g>
+                                            <path
+                                                d="m15.889 16.389c-.128 0-.256-.049-.354-.146l-7.778-7.779c-.195-.195-.195-.512 0-.707s.512-.195.707 0l7.778 7.778c.195.195.195.512 0 .707-.097.098-.225.147-.353.147z" />
+                                            </g>
                                             </svg>
                                         </button>
                                     </div>
@@ -277,8 +300,8 @@
     </script>
     <script>
         var arr = ${listIdFavorSong};
-        console.log(arr.includes(id));
         function heartTrigger(id) {
+            console.log(arr.includes(id));
             if (arr.includes(id)) {
                 likeBtn.style.display = 'block';
                 unlikeBtn.style.display = 'none';
@@ -298,6 +321,23 @@
                 $('.unliked[data-id=' + id + ']').css('display', 'block')
                 $('.liked[data-id=' + id + ']').css('display', 'none')
             }
+        }
+    </script>
+    <script>
+        function deleteS(type, idSong) {
+            $.ajax({
+                type: 'POST',
+                url: "../../update-song-playlist",
+                data: {
+                    idSong: idSong,
+                    idPlaylist: ${idPlaylist},
+                    type: type
+                },
+                success: function (resultData) {
+                    location.reload();
+                    console.log("update Complete");
+                }
+            })
         }
     </script>
 </html>

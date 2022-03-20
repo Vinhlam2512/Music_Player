@@ -69,6 +69,7 @@ public class loadSongPlaylistUserController extends HttpServlet {
         PlayList playlist = db.getPlaylist(idPlaylist);
         request.setAttribute("listSong", listSong);
         request.setAttribute("playlist", playlist);
+        request.setAttribute("idPlaylist", idPlaylist);
         request.getRequestDispatcher("allSongPlayList.jsp").forward(request, response);
     }
 

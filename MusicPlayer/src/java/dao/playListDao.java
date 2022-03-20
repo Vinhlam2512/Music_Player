@@ -201,12 +201,13 @@ public class playListDao {
     }
 
     public void deleteSongToPlaylist(String idPlaylist, String idSong, String idUser) {
-        String sql = "DELETE FROM [PlayListSongUser] WHERE IDPlayList = ? and IDSong = ?";
+        String sql = "DELETE FROM [PlayListSongUser] WHERE IDPlayList = ? and IDSong = ? and IDUser = ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, idPlaylist);
             ps.setString(2, idSong);
+            ps.setString(3, idUser);
             ps.executeUpdate();
         } catch (Exception ex) {
             Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);

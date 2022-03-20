@@ -90,8 +90,11 @@ public class createMusicController extends HttpServlet {
         String type = request.getParameter("type");
         String image = request.getParameter("image");
         String link = request.getParameter("link");
+        System.out.println(image);
+        System.out.println(link);
         songDao db = new songDao();
         db.addSong(type, name, singer, image, link);
+        response.sendRedirect("./all-song");
     }
 
     /**
