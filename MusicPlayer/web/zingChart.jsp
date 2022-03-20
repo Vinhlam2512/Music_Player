@@ -13,6 +13,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>MusicPlayer</title>
+        <link rel="icon" type="image/x-icon" href="https://cdn-icons.flaticon.com/png/512/3672/premium/3672591.png?token=exp=1647801724~hmac=0d2eb5e47d9c83620f02f2bee3d77436">
         <script src="https://kit.fontawesome.com/b758da46dd.js" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
         <link rel="stylesheet" href="./assets/css/base.css">
@@ -141,8 +142,8 @@
                                 </a>
                             </div>
                             <div class="chart_type-country">
-                                <a href="./zing-chart?idType=6" class="${idType == 6 ? "active-chart" : ""}">
-                                    <span>K-POP</span>
+                                <a href="./zing-chart?idType=9" class="${idType == 9 ? "active-chart" : ""}">
+                                    <span>C-POP</span>
                                 </a>
                             </div>
                         </div>

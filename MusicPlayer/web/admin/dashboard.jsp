@@ -52,7 +52,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 All Songs</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">200+</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${total}+</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -122,96 +122,55 @@
                                     <h6 class="m-0 font-weight-bold text-primary">All Type Of Song</h6>
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="small font-weight-bold">Nhạc Việt Nam<span class="float-right">60%</span>
+                                    <h4 class="small font-weight-bold">Nhạc Việt Nam<span class="float-right">${vn}%</span>
                                     </h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 60%"
-                                             aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: ${vn}%"
+                                             aria-valuenow="${vn}" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Nhạc Âu Mỹ<span class="float-right">20%</span>
+                                    <h4 class="small font-weight-bold">Nhạc Âu Mỹ<span class="float-right">${us}%</span>
                                     </h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 20%"
-                                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: ${us}%"
+                                             aria-valuenow="${us}" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Nhạc Hoa<span class="float-right">15%</span></h4>
+                                    <h4 class="small font-weight-bold">Nhạc Hoa<span class="float-right">${tq}%</span></h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar" role="progressbar" style="width: 15%"
-                                             aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar" role="progressbar" style="width: ${tq}%"
+                                             aria-valuenow="${tq}" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Nhạc Hàn Quốc<span class="float-right">5%</span>
+                                    <h4 class="small font-weight-bold">Nhạc Hàn Quốc<span class="float-right">${100 - vn - tq - us}%</span>
                                     </h4>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 5%"
-                                             aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: ${100 - vn - tq - us}%"
+                                             aria-valuenow="${100 - vn - tq - us}" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Color System -->
                             <div class="row">
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-primary text-white shadow">
-                                        <div class="card-body">
-                                            Primary
-                                            <div class="text-white-50 small">#4e73df</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-success text-white shadow">
-                                        <div class="card-body">
-                                            Success
-                                            <div class="text-white-50 small">#1cc88a</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-info text-white shadow">
-                                        <div class="card-body">
-                                            Info
-                                            <div class="text-white-50 small">#36b9cc</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-warning text-white shadow">
-                                        <div class="card-body">
-                                            Warning
-                                            <div class="text-white-50 small">#f6c23e</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-danger text-white shadow">
-                                        <div class="card-body">
-                                            Danger
-                                            <div class="text-white-50 small">#e74a3b</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-secondary text-white shadow">
-                                        <div class="card-body">
-                                            Secondary
-                                            <div class="text-white-50 small">#858796</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-light text-black shadow">
-                                        <div class="card-body">
-                                            Light
-                                            <div class="text-black-50 small">#f8f9fc</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-dark text-white shadow">
-                                        <div class="card-body">
-                                            Dark
-                                            <div class="text-white-50 small">#5a5c69</div>
-                                        </div>
+                                <div class="col-lg-12 mb-4">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <tr class="text-center">
+                                                <th style=" width: 5%">ID</th>
+                                                <th style=" width: 25%">Full Name</th>
+                                                <th style=" width: 40%">Email</th>
+                                                <th style=" width: 25%">Password</th>
+                                                <th style=" width: 25%">Password</th>
+                                            </tr>
+                                            <c:forEach items="${list}" var="l">
+                                                <tr class="text-center">
+                                                    <td>${l.getId()}</td>
+                                                    <td>${l.getFullName()}</td>
+                                                    <td>${l.getEmail()}</td>
+                                                    <td>${l.getPassword()}</td>
+                                                    <th style="cursor: pointer" data-bs-toggle="modal" data-bs-target="#exampleModal">Options</th>
+                                                </tr>
+                                            </c:forEach>
+                                            <audio src=""></audio>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -272,25 +231,24 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Playlist</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul>
+                            <c:forEach items="${playlist}" var="pl">
+                                <li data-id = ${pl.getId()}>
+                                    <span>${pl.getName()}</span>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

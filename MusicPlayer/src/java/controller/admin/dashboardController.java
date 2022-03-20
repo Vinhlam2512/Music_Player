@@ -5,13 +5,16 @@
  */
 package controller.admin;
 
+import dao.songDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.User;
 
 /**
  *
@@ -57,11 +60,22 @@ public class dashboardController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        songDao db = new songDao();
         HttpSession session = request.getSession();
         boolean isLogin = (boolean) session.getAttribute("islogin");
         if (isLogin == false) {
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
+            ArrayList<User> list = db.getAllUser();
+            int total = db.getTotal();
+            int vn = (db.count(1) * 100) / total;
+            int us = (db.count(2) * 100) / total;
+            int tq = (db.count(9) * 100) / total;
+            request.setAttribute("total", total);
+            request.setAttribute("vn", vn);
+            request.setAttribute("us", us);
+            request.setAttribute("tq", tq);
+            request.setAttribute("list", list);
             request.getRequestDispatcher("dashboard.jsp").forward(request, response);
         }
     }
