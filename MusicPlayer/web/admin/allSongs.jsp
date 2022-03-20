@@ -50,18 +50,13 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                                                                                   href="https://datatables.net">official DataTables documentation</a>.</p>
-
-                    <!-- DataTales Example -->
+                    <h1 class="h3 mb-2 text-gray-800">All Songs</h1>
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">DataTables Songs</h6>
                         </div>
                         <div style="padding: 0.75rem 1.25rem">
-                            <label>Search:<input oninput="searchSong(this)" style="width: 400px;" type="text" class="form-control form-control-sm"></label>
+                            <label>Search Songs:<input oninput="searchSong(this)" style="width: 400px;" type="text" class="form-control form-control-sm"></label>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

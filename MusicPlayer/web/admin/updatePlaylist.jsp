@@ -25,11 +25,8 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-1 text-gray-800">Color Utilities</h1>
-                    <p class="mb-4">Bootstrap's default utility classes can be found on the official <a
-                            href="https://getbootstrap.com/docs">Bootstrap Documentation</a> page. The custom utilities
-                        below were created to extend this theme past the default utility classes built into Bootstrap's
-                        framework.</p>
+                    <h1 class="h3 mb-1 text-gray-800">Update Playlist</h1>
+                    <p class="mb-4">You can update Playlist by id</p>
 
                     <!-- Content Row -->
                     <div class="row">
@@ -40,7 +37,7 @@
                             <!-- Custom Text Color Utilities -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Update Song</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Update Playlist</h6>
                                 </div>
                                 <div class="card-body">
                                     <c:if test="${list.size() == 0}">
