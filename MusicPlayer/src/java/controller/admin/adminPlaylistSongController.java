@@ -66,7 +66,7 @@ public class adminPlaylistSongController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         for (Song s : listSong) {
-            out.println("<li data-id = "+ s.getId() + " onclick="+ "updateSongPl("+ "'delete'"+","+s.getId()+"," + idPlaylist+ ")" +">\n"
+            out.println("<li onclick="+ "updateSongPl("+ "'delete'"+","+s.getId()+"," + idPlaylist+ ")" +">\n"
                     + "                                    <span>"+ s.getName()+ "</span>\n"
                     + "                                </li>");
         }

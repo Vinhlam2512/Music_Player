@@ -458,4 +458,43 @@ public class playListDao {
         }
     }
 
+    public ArrayList<PlayList> getPlaylistHaveSong(String idSong) {
+        ArrayList<PlayList> list = new ArrayList<>();
+        String sql = "select p.* from PlayListSong pls left join PlayList p \n"
+                + "on p.IDPlayList = pls.IDPlayList where pls.IDSong = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, idSong);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                PlayList pl = new PlayList(rs.getInt(1), rs.getString(2), rs.getString(3));
+                list.add(pl);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(userDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+    public ArrayList<PlayList> getPlaylistHaventSong(String idSong) {
+        ArrayList<PlayList> list = new ArrayList<>();
+        String sql = "select * from PlayList where IDPlayList not in \n"
+                + "(select pls.IDPlayList from PlayListSong pls left join PlayList p \n"
+                + "on p.IDPlayList = pls.IDPlayList where pls.IDSong = ?) ";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, idSong);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                PlayList pl = new PlayList(rs.getInt(1), rs.getString(2), rs.getString(3));
+                list.add(pl);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(userDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
 }

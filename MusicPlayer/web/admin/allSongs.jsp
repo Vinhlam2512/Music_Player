@@ -80,8 +80,8 @@
                                             </td>
                                             <th><button onclick="update(${l.getId()})">Update</button><button onclick="isConfirm(${l.getId()})">Delete</button></th>
                                             <th>
-                                                <button onclick="addSong('insert', ${l.getId()})" data-bs-toggle="modal" data-bs-target="#exampleModal">Add</button>
-                                                <button onclick="addSong('delete', ${l.getId()})" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
+                                                <button onclick="showlist('insert', ${l.getId()})" data-bs-toggle="modal" data-bs-target="#exampleModal">Add</button>
+                                                <button onclick="showlist('delete', ${l.getId()})" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
                                             </th>
                                         </tr>
                                     </c:forEach>
@@ -124,69 +124,47 @@
                     </div>
                     <div class="modal-body">
                         <ul>
-                            <c:forEach items="${playlist}" var="pl">
-                                <li data-id = ${pl.getId()}>
-                                    <span>${pl.getName()}</span>
-                                </li>
-                            </c:forEach>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- End of Page Wrapper -->
-        <script>
-            function addSong(type, idSong) {
-                var li = document.querySelectorAll('.modal-body ul li');
-                for (let i = 0; i < li.length; i++) {
-                    li[i].onclick = function () {
-                        $.ajax({
-                            type: 'POST',
-                            url: "./update-song-playlist",
-                            data: {
-                                idSong: idSong,
-                                idPlaylist: li[i].getAttribute('data-id'),
-                                type: type,
-                            },
-                            success: function (resultData) {
-                                alert("Update SuccessFul");
-                            }
-                        })
-                    }
-                }
-            }
-
-        </script>
-
-        <!-- Scroll to Top Button-->
         <a class="scroll-to-top rounded" href="#page-top">
             <i class="fas fa-angle-up"></i>
         </a>
+        <!-- End of Page Wrapper -->
+        <script>
+            function showlist(type, idSong) {
+                $.ajax({
+                    type: 'GET',
+                    url: "./update-song-playlist",
+                    data: {
+                        type: type,
+                        idSong: idSong
+                    },
+                    success: function (resultData) {
+                        $('.modal-body ul').html(resultData);
+                    }
+                })
+            }
 
-        <!-- Logout Modal-->
-
-
-        <!-- Bootstrap core JavaScript-->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-        <!-- Core plugin JavaScript-->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-                integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
-        crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-                integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-        crossorigin="anonymous"></script>
-        <!-- Custom scripts for all pages-->
-        <script src="js/sb-admin-2.min.js"></script>
-
-        <!-- Page level plugins -->
-        <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-        <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-        <!-- Page level custom scripts -->
-        <script src="js/demo/datatables-demo.js"></script>
+        </script>
+        <script>
+            function updateSongPl(type, idPlaylist, idSong) {
+                $.ajax({
+                    type: 'POST',
+                    url: "./update-song-playlist",
+                    data: {
+                        idSong: idSong,
+                        idPlaylist: idPlaylist,
+                        type: type,
+                    },
+                    success: function (resultData) {
+                        window.location.href = "http://localhost:8080/musicplayer/admin/all-song";
+                    }
+                })
+            }
+        </script>
         <script>
             var audio = document.querySelector('audio');
             function preview(src) {
@@ -241,7 +219,7 @@
                 });
             }
         </script>
-        <<script>
+        <script>
             function update(id) {
                 window.location.href = './update-song?id=' + id;
             }
@@ -254,7 +232,19 @@
                 }
             }
         </script>
-
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+                integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+                integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+        <script src="js/sb-admin-2.min.js"></script>
+        <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+        <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+        <script src="js/demo/datatables-demo.js"></script>
 </body>
 
 </html>

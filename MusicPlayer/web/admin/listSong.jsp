@@ -34,14 +34,8 @@
 
         <!-- Sidebar -->
         <%@include file="./sideBar.jsp" %>
-
-        <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
             <div id="content">
-
-                <!-- Topbar -->
                 <%@include file="./topBar.jsp" %>
                 <c:if test="${list.size() != 0}">
                     <div class="container-fluid">
@@ -93,35 +87,30 @@
                         </form>
                     </div>
                 </c:if>
-
-                <div class="container-fluid">
-                    <h1 class="h3 mb-1 text-gray-800">Add Songs To Playlist</h1>
-                    <p class="mb-4">You can Search Playlist by id</p>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Update Songs Playlist</h6>
-                                </div>
-                                <div class="card-body">
-                                    <form action="add-song-playlist?idPlaylist=${l.getId()}" method="GET">
-                                        <label for="id">Input ID Playlist You Want To Add Songs:</label>
-                                        <input type="text" class="form-control" id="id" name="id" placeholder="Input id of Playlist" >
-                                        <input type="submit" class="btn btn-primary" value="SEARCH">
-                                    </form>
+                <c:if test="${list.size() == 0}">
+                    <div class="container-fluid">
+                        <h1 class="h3 mb-1 text-gray-800">Add Songs To Playlist</h1>
+                        <p class="mb-4">You can Search Playlist by id</p>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Update Songs Playlist</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <form action="add-song-playlist?idPlaylist=${l.getId()}" method="GET">
+                                            <label for="id">Input ID Playlist You Want To Add Songs:</label>
+                                            <input type="text" class="form-control" id="id" name="id" placeholder="Input id of Playlist" >
+                                            <input type="submit" class="btn btn-primary" value="SEARCH">
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-
-
-
+                </c:if>
             </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
+ 
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
@@ -226,7 +215,7 @@
                                             </td>
                                             <td> <button onclick="addSong('insert', ${l.getId()})">Add</button>
                                             </td>
-                                            <td><input type="checkbox" value="${l.getId()}" name="id"></td>
+                                            <td><input type="checkbox" value="${l.getId()}" name="idSong"></td>
                                         </tr>
             </c:forEach>
                                         <audio src=""></audio>`);

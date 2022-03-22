@@ -8,11 +8,13 @@ package controller.admin;
 import dao.playListDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.PlayList;
 
 /**
  *
@@ -38,7 +40,7 @@ public class adminSongPlaylistController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet adminSongPlaylistController</title>");            
+            out.println("<title>Servlet adminSongPlaylistController</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet adminSongPlaylistController at " + request.getContextPath() + "</h1>");
@@ -59,7 +61,26 @@ public class adminSongPlaylistController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String type = request.getParameter("type");
+        String idSong = request.getParameter("idSong");
+        System.out.println(idSong);
+        playListDao db = new playListDao();
+        ArrayList<PlayList> list = new ArrayList<>();
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        switch (type) {
+            case "insert":
+                list = db.getPlaylistHaventSong(idSong);
+                break;
+            case "delete":
+                list = db.getPlaylistHaveSong(idSong);
+                break;
+        }
+        for (PlayList pl : list) {
+            out.println("<li onclick="+ "updateSongPl('" + type + "',"+pl.getId()+"," + idSong+ ")" +">\n"
+                    + "                                    <span>"+ pl.getName()+ "</span>\n"
+                    + "                                </li>");
+        }
     }
 
     /**

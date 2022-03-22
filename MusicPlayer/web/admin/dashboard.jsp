@@ -158,7 +158,7 @@
                                                 <th style=" width: 25%">Full Name</th>
                                                 <th style=" width: 40%">Email</th>
                                                 <th style=" width: 25%">Password</th>
-                                                <th style=" width: 25%">Password</th>
+                                                <th style=" width: 25%"></th>
                                             </tr>
                                             <c:forEach items="${list}" var="l">
                                                 <tr class="text-center">

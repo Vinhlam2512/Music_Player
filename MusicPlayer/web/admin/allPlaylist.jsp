@@ -116,7 +116,6 @@
 
 <script>
     function showList(idPlaylist) {
-        var ul = document.querySelectorAll('.modal-body ul');
         $.ajax({
             type: 'GET',
             url: "./update-playlist-song",
@@ -131,7 +130,7 @@
 
 </script>
 <script>
-    function updateSongPl(type, idSong, idPlaylist) {
+    function updateSongPl(type, idPlaylist, idSong) {
         $.ajax({
             type: 'POST',
             url: "./update-playlist-song",
@@ -147,28 +146,7 @@
     }
 
 </script>
-<script>
-    function updateSong(type, idSong, idPlaylist) {
-        var li = document.querySelectorAll('.modal-body ul li');
-        for (let i = 0; i < li.length; i++) {
-            li[i].onclick = function () {
-                $.ajax({
-                    type: 'POST',
-                    url: "./update-playlist-song",
-                    data: {
-                        idSong: idSong,
-                        idPlaylist: idPlaylist,
-                        type: type,
-                    },
-                    success: function (resultData) {
-                        window.location.href = "http://localhost:8080/musicplayer/admin/all-playlist";
-                    }
-                })
-            }
-        }
-    }
 
-</script>
 
 <!-- Scroll to Top Button-->
 

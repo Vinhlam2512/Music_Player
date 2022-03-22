@@ -94,7 +94,7 @@ public class addManySongPlaylistController extends HttpServlet {
         for (String id : idSongs) {
             db.inserSongToPlaylist(idPlaylist, id);
         }
-        response.sendRedirect("./all-playlist");
+        response.sendRedirect("./add-song-playlist?id=" + idPlaylist);
     }
 
     /**

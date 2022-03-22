@@ -114,7 +114,7 @@ public class searchAjax extends HttpServlet {
                             + "                                            </td>\n"
                             + "                                            <td> <button onclick=\"addSong('insert', " + s.getId() + ")\">Add</button>\n"
                             + "                                            </td>\n"
-                            + "                                            <td><input type=\"checkbox\" value=\"" + s.getId() + "\" name=\"id\"></td>\n"
+                            + "                                            <td><input type=\"checkbox\" value=\"" + s.getId() + "\" name=\"idSong\"></td>\n"
                             + "                                        </tr>");
                 }
                 break;
