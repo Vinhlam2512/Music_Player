@@ -204,6 +204,7 @@
                     type: 'GET',
                     url: "./searchAjax",
                     data: {
+                        id: 1,
                         search: e.value,
                     },
                     success: function (resultData) {

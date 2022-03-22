@@ -61,34 +61,64 @@ public class searchAjax extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String search = request.getParameter("search");
+        String id = request.getParameter("id");
         songDao db = new songDao();
         ArrayList<Song> list = db.searchByName(search);
         PrintWriter out = response.getWriter();
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        out.println(" <tr class=\"text-center\">\n"
-                + "                                        <th style=\" width: 5%\">ID</th>\n"
-                + "                                        <th style=\" width: 25%\">Name</th>\n"
-                + "                                        <th style=\" width: 25%\">Singer</th>\n"
-                + "                                        <th style=\" width: 15%\">Image</th>\n"
-                + "                                        <th style=\" width: 5%\">Song</th>\n"
-                + "                                        <th style=\" width: 15%\">Options</th>\n"
-                + "                                        <th style=\" width: 10%\">Playlist</th>"
-                + "                                    </tr>");
-        for (Song s : list) {
-            out.println("<tr class=\"text-center\">\n"
-                    + "                                            <td>" + s.getId() + "</td>\n"
-                    + "                                            <td>" + s.getName() + "</td>\n"
-                    + "                                            <td>" + s.getSinger() + "</td>\n"
-                    + "                                            <td><img src=\"" + s.getImage() + "\" style=\"width: 100px; height: 100px\"></td>\n"
-                    + "                                            <td><button onclick=\"preview(this.getAttribute('data-src'))\" data-src=\"" + s.getLink() + "\">Preview</button>\n"
-                    + "                                            </td>\n"
-                    + "                                            <th><button onclick=\"update(" + s.getId() + ")\">Update</button><button onclick=\"isConfirm(" + s.getId() + ")\">Delete</button></th>\n"
-                    + "                                            <th>\n"
-                    + "                                                <button onclick=\"addSong('insert', " + s.getId() + ")\" data-bs-toggle=\"modal\" data-bs-target=\"#exampleModal\">Add</button>\n"
-                    + "                                                <button onclick=\"addSong('delete', " + s.getId() + ")\" data-bs-toggle=\"modal\" data-bs-target=\"#exampleModal\">Delete</button>\n"
-                    + "                                            </th>"
-                    + "                                        </tr>");
+        switch (id) {
+            case "1":
+                out.println(" <tr class=\"text-center\">\n"
+                        + "                                        <th style=\" width: 5%\">ID</th>\n"
+                        + "                                        <th style=\" width: 25%\">Name</th>\n"
+                        + "                                        <th style=\" width: 25%\">Singer</th>\n"
+                        + "                                        <th style=\" width: 15%\">Image</th>\n"
+                        + "                                        <th style=\" width: 5%\">Song</th>\n"
+                        + "                                        <th style=\" width: 15%\">Options</th>\n"
+                        + "                                        <th style=\" width: 10%\">Playlist</th>"
+                        + "                                    </tr>");
+                for (Song s : list) {
+                    out.println("<tr class=\"text-center\">\n"
+                            + "                                            <td>" + s.getId() + "</td>\n"
+                            + "                                            <td>" + s.getName() + "</td>\n"
+                            + "                                            <td>" + s.getSinger() + "</td>\n"
+                            + "                                            <td><img src=\"" + s.getImage() + "\" style=\"width: 100px; height: 100px\"></td>\n"
+                            + "                                            <td><button onclick=\"preview(this.getAttribute('data-src'))\" data-src=\"" + s.getLink() + "\">Preview</button>\n"
+                            + "                                            </td>\n"
+                            + "                                            <th><button onclick=\"update(" + s.getId() + ")\">Update</button><button onclick=\"isConfirm(" + s.getId() + ")\">Delete</button></th>\n"
+                            + "                                            <th>\n"
+                            + "                                                <button onclick=\"addSong('insert', " + s.getId() + ")\" data-bs-toggle=\"modal\" data-bs-target=\"#exampleModal\">Add</button>\n"
+                            + "                                                <button onclick=\"addSong('delete', " + s.getId() + ")\" data-bs-toggle=\"modal\" data-bs-target=\"#exampleModal\">Delete</button>\n"
+                            + "                                            </th>"
+                            + "                                        </tr>");
+                }
+                break;
+            case "2":
+                out.println(" <tr class=\"text-center\">\n"
+                        + "                                        <th style=\" width: 5%\">ID</th>\n"
+                        + "                                        <th style=\" width: 25%\">Name</th>\n"
+                        + "                                        <th style=\" width: 25%\">Singer</th>\n"
+                        + "                                        <th style=\" width: 15%\">Image</th>\n"
+                        + "                                        <th style=\" width: 5%\">Song</th>\n"
+                        + "                                        <th style=\" width: 15%\">Options 1</th>\n"
+                        + "                                        <th style=\" width: 15%\">Options 2</th>\n"
+                        + "                                    </tr>");
+                for (Song s : list) {
+                    out.println("<tr class=\"text-center\"  data-id=\"" + s.getId() + "\">\n"
+                            + "                                            <td>" + s.getId() + "</td>\n"
+                            + "                                            <td>" + s.getName() + "</td>\n"
+                            + "                                            <td>" + s.getSinger() + "</td>\n"
+                            + "                                            <td><img src=\"" + s.getImage() + "\" style=\"width: 100px; height: 100px\"></td>\n"
+                            + "                                            <td><button onclick=\"preview(this.getAttribute('data-src'))\" data-src=\"" + s.getLink() + "\">Preview</button>\n"
+                            + "                                            </td>\n"
+                            + "                                            <td> <button onclick=\"addSong('insert', " + s.getId() + ")\">Add</button>\n"
+                            + "                                            </td>\n"
+                            + "                                            <td><input type=\"checkbox\" value=\"" + s.getId() + "\" name=\"id\"></td>\n"
+                            + "                                        </tr>");
+                }
+                break;
+
         }
     }
 

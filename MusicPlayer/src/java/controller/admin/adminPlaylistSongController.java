@@ -62,10 +62,11 @@ public class adminPlaylistSongController extends HttpServlet {
         String idPlaylist = request.getParameter("idPlaylist");
         songDao db = new songDao();
         ArrayList<Song> listSong = db.getPlaylistSong(idPlaylist);
+        System.out.println("size:" +listSong.size());
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         for (Song s : listSong) {
-            out.println("<li data-id = "+ s.getId() + "}>\n"
+            out.println("<li data-id = "+ s.getId() + " onclick="+ "updateSongPl("+ "'delete'"+","+s.getId()+"," + idPlaylist+ ")" +">\n"
                     + "                                    <span>"+ s.getName()+ "</span>\n"
                     + "                                </li>");
         }
@@ -83,7 +84,7 @@ public class adminPlaylistSongController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        songDao song = new songDao();
+        songDao db = new songDao();
 //        ArrayList<Song> listSong = db.getPlaylistSong(pageSize, index);
         String idSong = request.getParameter("idSong");
         String idPlaylist = request.getParameter("idPlaylist");

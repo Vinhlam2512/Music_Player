@@ -5,23 +5,25 @@
  */
 package controller.admin;
 
+import dao.playListDao;
 import dao.songDao;
-import dao.userDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.User;
+import model.PlayList;
+import model.Song;
 
 /**
  *
  * @author VINH
  */
-public class dashboardController extends HttpServlet {
+@WebServlet(name = "addManySongPlaylistController", urlPatterns = {"/admin/add-song-playlist"})
+public class addManySongPlaylistController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +42,10 @@ public class dashboardController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet dashboardController</title>");
+            out.println("<title>Servlet addManySongPlaylistController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet dashboardController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet addManySongPlaylistController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,25 +63,17 @@ public class dashboardController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        songDao db = new songDao();
-        userDao dbU = new userDao();
-        HttpSession session = request.getSession();
-        boolean isLogin = (boolean) session.getAttribute("islogin");
-        if (isLogin == false) {
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        } else {
-            ArrayList<User> list = dbU.getAllUser();
-            int total = db.getTotal();
-            int vn = (db.count(1) * 100) / total;
-            int us = (db.count(2) * 100) / total;
-            int tq = (db.count(9) * 100) / total;
-            request.setAttribute("total", total);
-            request.setAttribute("vn", vn);
-            request.setAttribute("us", us);
-            request.setAttribute("tq", tq);
-            request.setAttribute("list", list);
-            request.getRequestDispatcher("dashboard.jsp").forward(request, response);
+        String id = request.getParameter("id");
+        ArrayList<Song> list = new ArrayList<>();
+        if (id != null) {
+            songDao db = new songDao();
+            playListDao pldb = new playListDao();
+            PlayList pl = pldb.getPlaylist(id);
+            list = db.getSongNotInPlayList(id);
+            request.setAttribute("pl", pl);
         }
+        request.setAttribute("list", list);
+        request.getRequestDispatcher("listSong.jsp").forward(request, response);
     }
 
     /**
@@ -93,7 +87,14 @@ public class dashboardController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        playListDao db = new playListDao();
+        String[] idSongs = request.getParameterValues("idSong");
+        String idPlaylist = request.getParameter("idPlaylist");
+        System.out.println(idPlaylist);
+        for (String id : idSongs) {
+            db.inserSongToPlaylist(idPlaylist, id);
+        }
+        response.sendRedirect("./all-playlist");
     }
 
     /**

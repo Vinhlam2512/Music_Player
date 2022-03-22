@@ -10,31 +10,16 @@
         <!-- Sidebar -->
         <%@include file="./sideBar.jsp" %>
 
-        <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
-            <!-- Main Content -->
             <div id="content">
 
-                <!-- Topbar -->
                 <%@include file="./topBar.jsp" %>
-
-                <!-- End of Topbar -->
-
-                <!-- Begin Page Content -->
                 <div class="container-fluid">
-
-                    <!-- Page Heading -->
                     <h1 class="h3 mb-1 text-gray-800">Update Playlist</h1>
                     <p class="mb-4">You can update Playlist by id</p>
-
-                    <!-- Content Row -->
                     <div class="row">
-
-                        <!-- First Column -->
                         <div class="col-lg-12">
-
-                            <!-- Custom Text Color Utilities -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Update Playlist</h6>
@@ -59,7 +44,6 @@
                                     </c:forEach>
                                 </div>
                             </div>
-
                         </div>
 
                         <!-- Second Column -->
@@ -68,7 +52,6 @@
                     </div>
 
                 </div>
-                <!-- /.container-fluid -->
 
             </div>
             <!-- End of Main Content -->

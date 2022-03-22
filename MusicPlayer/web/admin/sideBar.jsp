@@ -42,6 +42,7 @@
                 <a class="collapse-item" href="./add-playlist">Add Playlist</a>
                 <a class="collapse-item" href="./update-song">Update Music</a>
                 <a class="collapse-item" href="./update-playlist">Update Playlist</a>
+                <a class="collapse-item" href="./add-song-playlist">Update Songs Playlist</a>
             </div>
         </div>
     </li>

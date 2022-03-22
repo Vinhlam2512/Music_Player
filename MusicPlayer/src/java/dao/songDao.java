@@ -325,14 +325,14 @@ public class songDao {
     }
 
     public ArrayList<Song> getPlaylistSong(String idPlaylist) {
-        String sql = "select * from PlayListSong p left join Song s on p.IDSong = s.IDSong where p.IDPlayList = ?";
-        ArrayList<Song> list = new ArrayList<Song>();
+        String sql = "select s.* from PlayListSong p left join Song s on p.IDSong = s.IDSong where p.IDPlayList = ?";
+        ArrayList<Song> list = new ArrayList<>();
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, idPlaylist);
             rs = ps.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 Song song = new Song(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
                 list.add(song);
             }
@@ -358,17 +358,35 @@ public class songDao {
         return 0;
     }
 
-   
-
-    public ArrayList<User> getAllUser() {
-        ArrayList<User> list = new ArrayList<User>();
-        String sql = "SELECT * FROM [MusicApp].[dbo].[User]";
+    public void deleteSonginPlaylist(String idPlaylist, String idSong) {
+        String sql = "DELETE FROM [MusicApp].[dbo].[PlayListSong]\n"
+                + "      WHERE IDPlayList = ? and IDSong = ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
+            ps.setString(1, idPlaylist);
+            ps.setString(2, idSong);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            Logger.getLogger(songDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void inserSongToPlaylist(String idPlaylist, String idSong) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public ArrayList<Song> getSongNotInPlayList(String id) {
+        String sql = "select * from Song where IDSong not in (select IDSong from PlayListSong where IDPlayList = ?)";
+        ArrayList<Song> list = new ArrayList<>();
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+                Song song = new Song(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+                list.add(song);
             }
         } catch (Exception ex) {
             Logger.getLogger(userDao.class.getName()).log(Level.SEVERE, null, ex);
