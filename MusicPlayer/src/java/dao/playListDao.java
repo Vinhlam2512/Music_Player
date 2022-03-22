@@ -259,7 +259,7 @@ public class playListDao {
 
     public ArrayList<PlayList> getTop100() {
         ArrayList<PlayList> list = new ArrayList<>();
-        String sql = "SELECT * FROM PlayList where Name like '%100%'";
+        String sql = "SELECT TOP 5 * FROM PlayList where Name like '%100%'";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);

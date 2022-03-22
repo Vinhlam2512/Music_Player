@@ -88,6 +88,8 @@ public class loginController extends HttpServlet {
         User user = db.getUser(email, password);
         ArrayList listIdFavorSong = sogDb.getIdFavorSong(String.valueOf(user.getId()));
         ArrayList listIdPlaylist = plDb.getIdPlaylist(String.valueOf(user.getId()));
+        ArrayList<PlayList> playlist = plDb.getPlaylistUser(String.valueOf(user.getId()));
+        session.setAttribute("playlist", playlist);
         session.setAttribute("listIdFavorSong", listIdFavorSong);
         session.setAttribute("listIdPlaylist", listIdPlaylist);
         session.setAttribute("isLogin", isLogin);

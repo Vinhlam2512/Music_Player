@@ -61,11 +61,8 @@ public class zingChartController extends HttpServlet {
             idType = this.getInitParameter("idType");
         }
         songDao db = new songDao();
-        playListDao pListDao = new playListDao();
         ArrayList<Song> list = db.getTop20VN(idType);
-        ArrayList<PlayList> playlist = pListDao.getPlaylistUser(idUser);
         request.setAttribute("list", list);
-        session.setAttribute("playlist", playlist);
         request.setAttribute("idType", idType);
         request.getRequestDispatcher("zingChart.jsp").forward(request, response);
     }

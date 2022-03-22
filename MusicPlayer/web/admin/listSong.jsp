@@ -68,9 +68,9 @@
                                                 <td><img src="${l.getImage()}" style="width: 100px; height: 100px"></td>
                                                 <td><button onclick="preview(this.getAttribute('data-src'))" data-src="${l.getLink()}">Preview</button>
                                                 </td>
-                                                <td> <button onclick="addSong('insert', ${l.getId()})">Add</button>
+                                                <td><button onclick="addSong('insert', ${l.getId()})">Add</button>
                                                 </td>
-                                                <td><input type="checkbox" value="${l.getId()}" name="idSong"></td>
+                                                <td><input type="checkbox" value="${l.getId()}" name="idSongs"></td>
                                             </tr>
                                         </c:forEach>
                                         <audio src=""></audio>
@@ -110,7 +110,7 @@
                     </div>
                 </c:if>
             </div>
- 
+
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
@@ -124,6 +124,9 @@
 
         <script>
             function addSong(type, idSong) {
+                $("form").submit(function (e) {
+                    setTimeout(e.preventDefault(), 1);
+                });
                 $.ajax({
                     type: 'POST',
                     url: "./update-song-playlist",
@@ -133,9 +136,7 @@
                         type: type,
                     },
                     success: function (resultData) {
-
-                        $('tr[data-id="${pl.getId()}"]').empty();
-                        console.log("add success")
+                        window.location.href = "http://localhost:8080/musicplayer/admin/add-song-playlist?id=" + ${pl.getId()};
                     }
                 })
             }

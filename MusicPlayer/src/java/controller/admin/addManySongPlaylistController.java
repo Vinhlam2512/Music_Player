@@ -88,11 +88,12 @@ public class addManySongPlaylistController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         playListDao db = new playListDao();
-        String[] idSongs = request.getParameterValues("idSong");
         String idPlaylist = request.getParameter("idPlaylist");
-        System.out.println(idPlaylist);
-        for (String id : idSongs) {
-            db.inserSongToPlaylist(idPlaylist, id);
+        String[] idSongs = request.getParameterValues("idSongs");
+        System.out.println(idSongs.length);
+        for (String ids : idSongs) {
+            System.out.println(ids);
+            db.inserSongToPlaylist(idPlaylist, ids);
         }
         response.sendRedirect("./add-song-playlist?id=" + idPlaylist);
     }

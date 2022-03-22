@@ -13,7 +13,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Nhạc Cá Nhân</title>
-                <link rel="icon" type="image/x-icon" href="https://cdn-icons.flaticon.com/png/512/3672/premium/3672591.png?token=exp=1647801724~hmac=0d2eb5e47d9c83620f02f2bee3d77436">
+        <link rel="icon" type="image/x-icon" href="https://cdn-icons.flaticon.com/png/512/3672/premium/3672591.png?token=exp=1647801724~hmac=0d2eb5e47d9c83620f02f2bee3d77436">
 
         <script src="https://kit.fontawesome.com/b758da46dd.js" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -141,7 +141,32 @@
                 </footer>
             </div>
         </div>
-
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Create Playlist</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form class="modal-body" method="POST" action="create-playlist">
+                        <table>
+                            <tr>
+                                <td>Input Name of playlist: </td>
+                                <td><input type="text" name="name"></td>
+                            </tr>
+                            <tr>
+                                <td>Input link image: </td>
+                                <td><input type="text" name="img"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><input type="submit" value="Create"></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
     </body>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" crossorigin="anonymous"></script>
@@ -150,21 +175,21 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./assets/js/app.js"></script>
-     <script>
-        function updatePlaylist(type, idPlaylist) {
-            $.ajax({
-                type: 'POST',
-                url: "../update-playlist",
-                data: {
-                    idPlaylist: idPlaylist,
-                    idUser: ${idUser},
-                    type: type
-                },
-                success: function (resultData) {
-                    location.reload();
-                    console.log("Update Playlist Complete");
-                }
-            })
-        }
+    <script>
+                                                function updatePlaylist(type, idPlaylist) {
+                                                    $.ajax({
+                                                        type: 'POST',
+                                                        url: "../update-playlist",
+                                                        data: {
+                                                            idPlaylist: idPlaylist,
+                                                            idUser: ${idUser},
+                                                            type: type
+                                                        },
+                                                        success: function (resultData) {
+                                                            location.reload();
+                                                            console.log("Update Playlist Complete");
+                                                        }
+                                                    })
+                                                }
     </script>
 </html>

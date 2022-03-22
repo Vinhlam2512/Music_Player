@@ -130,7 +130,7 @@
 
 </script>
 <script>
-    function updateSongPl(type, idPlaylist, idSong) {
+    function updateSongPl(type, idSong, idPlaylist) {
         $.ajax({
             type: 'POST',
             url: "./update-playlist-song",

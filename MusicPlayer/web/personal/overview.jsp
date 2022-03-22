@@ -8,7 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Nhạc Cá Nhân</title>
-                <link rel="icon" type="image/x-icon" href="https://cdn-icons.flaticon.com/png/512/3672/premium/3672591.png?token=exp=1647801724~hmac=0d2eb5e47d9c83620f02f2bee3d77436">
+        <link rel="icon" type="image/x-icon" href="https://cdn-icons.flaticon.com/png/512/3672/premium/3672591.png?token=exp=1647801724~hmac=0d2eb5e47d9c83620f02f2bee3d77436">
 
         <script src="https://kit.fontawesome.com/b758da46dd.js" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
@@ -284,31 +284,51 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
     <script src="../assets/js/app.js" type="text/javascript"></script>
     <script src="../assets/js/like.js" type="text/javascript"></script>
-    <script src="../assets/js/modal.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-                                                    function updateSong(type, idSong) {
-                                                        $.ajax({
-                                                            type: 'POST',
-                                                            url: "../update-song",
-                                                            data: {
-                                                                idSong: idSong,
-                                                                idUser: ${idUser},
-                                                                type: type
-                                                            },
-                                                            success: function (resultData) {
-                                                                if (type === 'insert') {
-                                                                    likeBtn.style.display = 'block';
-                                                                    unlikeBtn.style.display = 'none';
-
-                                                                } else {
-                                                                    likeBtn.style.display = 'none';
-                                                                    unlikeBtn.style.display = 'block';
-                                                                }
-                                                                console.log("update Complete");
+                                                    function addSong(type, idSong) {
+                                                        var li = document.querySelectorAll('.modal-body ul li');
+                                                        for (let i = 0; i < li.length; i++) {
+                                                            li[i].onclick = function () {
+                                                                $.ajax({
+                                                                    type: 'POST',
+                                                                    url: "../update-song-playlist",
+                                                                    data: {
+                                                                        idSong: idSong,
+                                                                        idPlaylist: li[i].getAttribute('data-id'),
+                                                                        type: type
+                                                                    },
+                                                                    success: function (resultData) {
+                                                                        console.log("update Complete");
+                                                                    }
+                                                                })
                                                             }
-                                                        })
+                                                        }
                                                     }
+    </script>
+    <script>
+        function updateSong(type, idSong) {
+            $.ajax({
+                type: 'POST',
+                url: "../update-song",
+                data: {
+                    idSong: idSong,
+                    idUser: ${idUser},
+                    type: type
+                },
+                success: function (resultData) {
+                    if (type === 'insert') {
+                        likeBtn.style.display = 'block';
+                        unlikeBtn.style.display = 'none';
+
+                    } else {
+                        likeBtn.style.display = 'none';
+                        unlikeBtn.style.display = 'block';
+                    }
+                    console.log("update Complete");
+                }
+            })
+        }
     </script>
     <script>
         function updatePlaylist(type, idPlaylist) {

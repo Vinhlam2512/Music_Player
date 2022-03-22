@@ -7,7 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>MusicPlayer</title>
-                <link rel="icon" type="image/x-icon" href="https://cdn-icons.flaticon.com/png/512/3672/premium/3672591.png?token=exp=1647801724~hmac=0d2eb5e47d9c83620f02f2bee3d77436">
+        <link rel="icon" type="image/x-icon" href="https://cdn-icons.flaticon.com/png/512/3672/premium/3672591.png?token=exp=1647801724~hmac=0d2eb5e47d9c83620f02f2bee3d77436">
 
         <script src="https://kit.fontawesome.com/b758da46dd.js" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -309,6 +309,25 @@
                         </div>
                     </div>
                 </div>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Playlist</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <ul>
+                                    <c:forEach items="${playlist}" var="pl">
+                                        <li data-id = ${pl.getId()}>
+                                            <span>${pl.getName()}</span>
+                                        </li>
+                                    </c:forEach>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <%@include file="./footer.jsp" %>
             </div>
     </body>
@@ -318,20 +337,20 @@
     <script src="./assets/js/app.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        function updateSong(type, idSong) {
-            $.ajax({
-                type: 'POST',
-                url: "./update-song",
-                data: {
-                    idSong: idSong,
-                    idUser: ${idUser},
-                    type: type
-                },
-                success: function (resultData) {
-                    console.log("update Complete");
-                }
-            })
-        }
+                                                function updateSong(type, idSong) {
+                                                    $.ajax({
+                                                        type: 'POST',
+                                                        url: "./update-song",
+                                                        data: {
+                                                            idSong: idSong,
+                                                            idUser: ${idUser},
+                                                            type: type
+                                                        },
+                                                        success: function (resultData) {
+                                                            console.log("update Complete");
+                                                        }
+                                                    })
+                                                }
     </script>
     <script>
         function loadSongPlaylist(id) {

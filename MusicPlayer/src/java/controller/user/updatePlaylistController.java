@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.PlayList;
 
 /**
  *
@@ -39,7 +40,7 @@ public class updatePlaylistController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet updatePlaylistController</title>");            
+            out.println("<title>Servlet updatePlaylistController</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet updatePlaylistController at " + request.getContextPath() + "</h1>");
@@ -74,12 +75,11 @@ public class updatePlaylistController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        playListDao pListDao = new playListDao();
         HttpSession session = request.getSession();
         String idPlaylist = request.getParameter("idPlaylist");
         String idUser = request.getParameter("idUser");
         String type = request.getParameter("type");
-        System.out.println(idUser);
-        System.out.println(idPlaylist);
         playListDao db = new playListDao();
         if (type.equals("delete")) {
             db.deletePlaylistUser(idUser, idPlaylist);
@@ -87,7 +87,9 @@ public class updatePlaylistController extends HttpServlet {
         if (type.equals("insert")) {
             db.insertPlaylistUser(idUser, idPlaylist);
         }
-        ArrayList listIdPlaylist= db.getIdPlaylist(idUser);
+        ArrayList listIdPlaylist = db.getIdPlaylist(idUser);
+        ArrayList<PlayList> playlist = pListDao.getPlaylistUser(idUser);
+        session.setAttribute("playlist", playlist);
         session.setAttribute("listIdPlaylist", listIdPlaylist);
     }
 

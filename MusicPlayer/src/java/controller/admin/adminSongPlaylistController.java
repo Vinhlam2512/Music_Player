@@ -77,8 +77,8 @@ public class adminSongPlaylistController extends HttpServlet {
                 break;
         }
         for (PlayList pl : list) {
-            out.println("<li onclick="+ "updateSongPl('" + type + "',"+pl.getId()+"," + idSong+ ")" +">\n"
-                    + "                                    <span>"+ pl.getName()+ "</span>\n"
+            out.println("<li onclick=" + "updateSongPl('" + type + "'," + pl.getId() + "," + idSong + ")" + ">\n"
+                    + "                                    <span>" + pl.getName() + "</span>\n"
                     + "                                </li>");
         }
     }
