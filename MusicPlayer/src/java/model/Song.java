@@ -5,6 +5,7 @@
  */
 package model;
 
+import dao.songDao;
 import lombok.Setter;
 import lombok.Getter;
 
@@ -34,4 +35,8 @@ public class Song {
         this.link = link;
     }
     
+    public String getDes(){
+        songDao db = new songDao();
+        return db.getDesSong(id);
+    }
 }

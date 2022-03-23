@@ -280,7 +280,6 @@
     </script>
     <script>
         var arr = ${listIdFavorSong};
-        console.log(arr.includes(id));
         function heartTrigger(id) {
             if (arr.includes(id)) {
                 likeBtn.style.display = 'block';
@@ -293,8 +292,7 @@
     </script>
     <script>
         function trigger(type, id) {
-            console.log($('.liked[data-id=' + id + ']'))
-            if (type == 'unlike') {
+            if (type === 'unlike') {
                 $('.unliked[data-id=' + id + ']').css('display', 'none')
                 $('.liked[data-id=' + id + ']').css('display', 'block')
             } else {

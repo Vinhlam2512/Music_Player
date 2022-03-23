@@ -66,7 +66,7 @@
                                         <th style=" width: 25%">Name</th>
                                         <th style=" width: 25%">Singer</th>
                                         <th style=" width: 15%">Image</th>
-                                        <th style=" width: 5%">Song</th>
+                                        <th style=" width: 30%">Des</th>
                                         <th style=" width: 15%">Options</th>
                                         <th style=" width: 10%">Playlist</th>
                                     </tr>
@@ -76,13 +76,13 @@
                                             <td>${l.getName()}</td>
                                             <td>${l.getSinger()}</td>
                                             <td><img src="${l.getImage()}" style="width: 100px; height: 100px"></td>
-                                            <td><button onclick="preview(this.getAttribute('data-src'))" data-src="${l.getLink()}">Preview</button>
+                                            <td><button onclick="preview(this.getAttribute('data-src'))" data-src="${l.getLink()}">${l.getDes()}</button>
                                             </td>
                                             <th><button onclick="update(${l.getId()})">Update</button><button onclick="isConfirm(${l.getId()})">Delete</button></th>
-                                            <th>
+<!--                                            <th>
                                                 <button onclick="showlist('insert', ${l.getId()})" data-bs-toggle="modal" data-bs-target="#exampleModal">Add</button>
                                                 <button onclick="showlist('delete', ${l.getId()})" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
-                                            </th>
+                                            </th>-->
                                         </tr>
                                     </c:forEach>
                                     <audio src=""></audio>

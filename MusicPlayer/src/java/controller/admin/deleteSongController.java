@@ -59,6 +59,7 @@ public class deleteSongController extends HttpServlet {
             throws ServletException, IOException {
         songDao db = new songDao();
         String id = request.getParameter("id");
+        System.out.println("delet" +id);
         db.deleteSong(id);
         response.sendRedirect("./all-song");
     }

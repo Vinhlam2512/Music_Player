@@ -62,6 +62,8 @@
                                             <input type="text" class="form-control" id="image" name="image" placeholder="Input link image:" value="${l.getImage()}">
                                             <label for="link">Link audio</label>
                                             <input type="text" class="form-control" id="link" name="link" placeholder="Input link audio:" value="${l.getLink()}">
+                                            <label for="link">Des</label>
+                                            <input type="text" class="form-control" id="link" name="des" placeholder="Input link audio:" value="${l.getDes()}">
                                             <input type="submit" class="btn btn-primary" value="UPDATE">
                                         </form>
                                     </c:forEach>

@@ -89,8 +89,9 @@ public class updateSongsController extends HttpServlet {
         String singer = request.getParameter("singer");
         String image = request.getParameter("image");
         String link = request.getParameter("link");
+        String des = request.getParameter("des");
         songDao db = new songDao();
-        db.updateSong(id, type, name, singer, image, link);
+        db.updateSongT(id, type, name, singer, image, link, des);
         response.sendRedirect("./all-song");
     }
 

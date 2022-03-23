@@ -283,11 +283,6 @@ public class songDao {
         return list;
     }
 
-    public static void main(String[] args) {
-        songDao db = new songDao();
-        System.out.println(db.getSongById("1"));;
-    }
-
     public void updateSong(String id, String type, String name, String singer, String image, String link) {
         String sql = "UPDATE [MusicApp].[dbo].[Song]\n"
                 + "   SET [IDType] = ?\n"
@@ -311,18 +306,24 @@ public class songDao {
         }
     }
 
+
     public void deleteSong(String id) {
-        String sql = "DELETE FROM [MusicApp].[dbo].[Song]\n"
-                + "      WHERE IDSong = ?";
+        String sql = "delete FROM [MusicApp].[dbo].[PlayListSong] where IDSong = ?\n"
+                + "delete FROM [MusicApp].[dbo].[FavorSong] where IDSong = ?\n"
+                + "DELETE FROM [MusicApp].[dbo].[Song] WHERE IDSong = ? ";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, id);
+            ps.setString(2, id);
+            ps.setString(3, id);
             ps.executeUpdate();
         } catch (Exception ex) {
             Logger.getLogger(userDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    
 
     public ArrayList<Song> getPlaylistSong(String idPlaylist) {
         String sql = "select s.* from PlayListSong p left join Song s on p.IDSong = s.IDSong where p.IDPlayList = ?";
@@ -373,7 +374,7 @@ public class songDao {
     }
 
     public void inserSongToPlaylist(String idPlaylist, String idSong) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     public ArrayList<Song> getSongNotInPlayList(String id) {
@@ -393,4 +394,48 @@ public class songDao {
         }
         return list;
     }
+
+    public String getDesSong(int id) {
+        String sql = "SELECT [Des]\n"
+                + "  FROM [MusicApp].[dbo].[Song] where IDSong = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getString(1);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(userDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public void updateSongT(String id, String type, String name, String singer, String image, String link, String des) {
+        String sql = "UPDATE [MusicApp].[dbo].[Song]\n"
+                + "   SET [IDType] = ?\n"
+                + "      ,[Name] = ?\n"
+                + "      ,[Singer] = ?\n"
+                + "      ,[Image] = ?\n"
+                + "      ,[Link] = ?\n"
+                + "      ,[Des] = ?\n"
+                + " WHERE IDSong = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(7, id);
+            ps.setString(1, type);
+            ps.setString(2, name);
+            ps.setString(3, singer);
+            ps.setString(4, image);
+            ps.setString(5, link);
+            ps.setString(6, des);
+            System.out.println(des);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            Logger.getLogger(userDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 }

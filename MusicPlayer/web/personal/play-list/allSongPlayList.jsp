@@ -313,7 +313,6 @@
     </script>
     <script>
         function trigger(type, id) {
-            console.log($('.liked[data-id=' + id + ']'))
             if (type === 'unlike') {
                 $('.unliked[data-id=' + id + ']').css('display', 'none')
                 $('.liked[data-id=' + id + ']').css('display', 'block')
